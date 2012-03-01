@@ -4,13 +4,13 @@
 -add bouncing ball, make it do damage!
 Bugs:
 need to disable scrolling arrow keys (custom controls has helped this a bit)
-add shooting! make the gun shoot!
+add gun damage!
 custom control changing is a little wonky, and I would like to put that in a new javascript file anyway
 -if you double click on one then click off it always return to original default.
 -need a defaults button
 -need to figure out how to end events once they start. that will likely solve all the problems i'm having
 -also need to write the HTML changes back into the invisible spans on the title menus
-------reduce height by 22 (needs to be a consistent variable too) 
+-figure out how to reset the game without forcing a player to refresh
 */
 
 jQuery(document).ready(function($){
@@ -81,10 +81,9 @@ jQuery(document).ready(function($){
       
       if (player.currentHealth <= 0) {
         addData('You are dead.');
-        $('#game').css('background','black');
-        $('#game').html('<h1 class="dead">YOU ARE DEAD</h1><p class="dead">You died an ironic death.</p><p class="dead">Refresh the page to play again.</p>');
-        $('#inventory').css('display','none');
-        $('#data').css('display','none');
+        $('#title').css('display','block');
+        $('#title').html('<h1 class="dead">YOU ARE DEAD</h1><p class="dead">You died an ironic death.</p><p class="dead">Refresh the page to play again.</p>');
+        player.paused = true;
       }
       
     }
@@ -663,7 +662,7 @@ jQuery(document).ready(function($){
   }
   var updatePlayerTop = function(top) {
     player.top = top;
-    player.topUsed = top-22;
+    player.topUsed = top-player.heightReduction;
     player.elm.css('top', player.topUsed + 'px');
   }
   var updatePlayerLeft = function(left) {
@@ -800,6 +799,7 @@ jQuery(document).ready(function($){
       'heightUsed' : $('#player').height()-22,
       'width' : $('#player').width(),
       'topUsed' : parseInt($('#player').css('top'))-22,
+      'heightReduction' : 22,
       'dir' : 'down',
       'equip' : '',
       'inc' : 10,
