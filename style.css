@@ -513,7 +513,7 @@ h1#name {
 #title-content {
   float: right;
   width: 568px;
-  padding-left: 40px;
+  padding: 20px 0 0 40px;
 }
 #title-content p {
   margin: 15px 0 0 15px;
@@ -527,4 +527,10 @@ h1#name {
   padding: 10px;
   border: 0;
   font-size: 16px;
+}
+#title p.version {
+  opacity: .4;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
 }
