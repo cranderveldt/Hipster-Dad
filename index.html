@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="jGame">
+<link rel="stylesheet" href="style.css" type="text/css" /> 
+<!--<link href='http://fonts.googleapis.com/css?family=Leckerli+One' rel='stylesheet' type='text/css'>-->
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<title>Hipster Dad</title>
+</head>
+<body>
+  <div id="wrapper">
+  <div id="header" class="hide">
+    <h1>Hipster Dad</h1>
+  </div>
+  <div id="data"></div>
+	<div id="game">
+    <div id="overlay"></div>
+    <div id="room" title="Bedroom">
+      <div id="player"></div>
+      <div id="projectiles"></div>
+      <div id="elements"></div>
+    </div>
+    <div id="hud">
+      <h1 id="name">Bedroom</h1>
+      <div id="money">$0</div>
+      <ul id="health"><li></li><li></li><li></li><li></li><li></li></ul>
+    </div>
+  </div>
+  <div id="title">
+    <div id="title-content"></div>
+    <div class="title-choices">
+      <div class="link" id="title-start">Start Game</div>
+      <div class="link" id="title-options">
+        Controls
+        <span>
+          <table cellpadding="0" cellspacing="0">
+            <tr><td class="key-up">Up:<span>38</span></td><td class="key-press">Up Arrow</td></tr>
+            <tr><td class="key-down">Down:<span>40</span></td><td class="key-press">Down Arrow</td></tr>
+            <tr><td class="key-left">Left:<span>37</span></td><td class="key-press">Left Arrow</td></tr>
+            <tr><td class="key-right">Right:<span>39</span></td><td class="key-press">Right Arrow</td></tr>
+            <tr><td class="key-use">Use Item:<span>81</span></td><td class="key-press">Q</td></tr>
+            <tr><td class="key-action">Action:<span>87</span></td><td class="key-press">W</td></tr>
+            <tr><td>Select Item:</td><td>Number row 1-9</td></tr>
+          </table>
+          <p>Double click on the control to change it. Your key must not already be bound to another control.
+          <div style="display: none" class="link" id="title-defaults">Save</div>
+        </span>
+      </div>
+      <div class="link" id="title-about">
+        About
+        <span>
+          Hipster Dad is a project I started in order to learn more about JavaScript and jQuery. Every object in this game is pulled from the attributes of HTML elements, and styled in CSS. The story of the game follows Bison, a hipster-turned-father who never really learned how to live in the real world. Eventually this game will be a full sandbox- and exploration-type game, where you can go to a number of places  in the town. Enjoy!
+        </span>
+      </div>
+      <div class="link" id="title-credits">
+        Credits
+        <span>
+          Game concept, design and development by Trevor Moore. Artwork by Tim Giusti and stolen from the internet. Thanks Google!
+        </span>
+      </div>
+    </div>
+  </div>
+  <ul id="inventory"></ul>
+  <ul id="loading">
+    <li title="Bedroom">
+      <span id="start">top:134px,left:76px</span>
+      <div title="Bookshelf" class="stuck bookshelf bookshelf1 message"><span class="message">"I've already read all these."</span></div>
+      <div title="Bookshelf" class="stuck bookshelf bookshelf2 message"><span class="message">"I've already read all these."</span></div>
+      <div title="Bookshelf" class="stuck bookshelf bookshelf3 message"><span class="message">"I've already read all these."</span></div>
+      <div title="Bookshelf" class="stuck bookshelf bookshelf4 message"><span class="message">"I've already read all these."</span></div>
+      <div title="Dresser" class="stuck dresser interact"><span class="interact"><p>Do you want to change clothes?</p><input id="change_clothes_yes" type="button" value="Yes"><input id="change_clothes_no" type="button" value="No"></span></div>
+      <div title="Bed" class="bed stuck message"><span class="message">You can't go to bed, you just got up.</span></div>
+      <div title="Chest" class="container chest stuck">
+        <div title="cake" class="mobile cake"><span class="sprite">1</span></div>
+      </div>
+      <div id="doorS" title="Hallway" class="exit room1 door-00"></div>
+    </li>
+    <li title="Hallway">
+      <div title="Family Portrait" class="stuck wallart wallart1 message"><span class="message">It's a portrait of your family. You look really cool.</span></div>
+      <div title="Landscape Painting" class="stuck wallart wallart2 message"><span class="message">It's a painting of a landscape.</span></div>
+      <div id="doorN" title="Bedroom" class="exit room0 door-00"></div>
+      <div id="doorS" title="Daughter's Bedroom" class="exit room2 door-01"></div>
+      <div id="doorE" title="Living Room" class="exit room3 door-02"></div>
+    </li>
+    <li title="Daughter's Bedroom">
+      <div title="Bookshelf" class="stuck bookshelf bookshelf1 message"><span class="message">"There are quite a lot of books for an 8-year-old."</span></div>
+      <div title="Bookshelf" class="stuck bookshelf bookshelf2 message"><span class="message">"There are quite a lot of books for an 8-year-old."</span></div>
+      <div title="Bed" class="bed stuck message"><span class="message">You'll be in trouble if she finds you sleeping in her bed again.</span></div>
+      <div id="doorN" title="Hallway" class="exit room1 door-01"></div>
+      <div title="Chest" class="container chest stuck message">
+        <span class="message">You took $25 from your daughter's room. That's terrible.</span>
+        <div title="Money" class="cash money">
+          <span class="money">25</span>
+        </div>
+      </div>
+      <div title="Office Key" class="key mobile door-03"></div>
+    </li>
+    <li title="Living Room">
+      <div id="doorW" title="Hallway" class="exit room1 door-02"></div>
+      <div id="doorS" title="Office" class="exit locked room4 door-03"></div>
+      <div id="doorE" title="Kitchen" class="exit room5 door-04"></div>
+    </li>
+    <li title="Office">
+      <div title="Fire" class="stuck message hurt fire">
+        <span class="hurt">3</span>
+        <span class="message">Don't know why there's a fire in here. Better not touch it.</span>
+      </div>
+      <div title="Gun" class="gun mobile"><span class="sprite">2</span></div>
+      <div id="doorN" title="Living Room" class="exit room3 door-03"></div>
+    </li>
+    <li title="Kitchen">
+      <div id="doorW" title="Living Room" class="exit room3 door-04"></div>
+    </li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,530 @@
+@charset "UTF-8";
+/* CSS Document */
+
+/* Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+
+article,aside,canvas,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section,summary { 
+    display:block;
+}
+/*End Reset*/
+.group:after {
+  	visibility: hidden;
+  	display: block;
+  	font-size: 0;
+  	content: " ";
+  	clear: both;
+  	height: 0;
+}
+* html .group	{ zoom: 1; } /* IE6 /
+*:first-child+html .group { zoom: 1; } / IE7 */
+
+/* Separate items and positioning from classes and ids*/
+
+
+body {
+	background: #000;
+}
+span {
+  display: none;
+}
+#wrapper {
+  width: 890px;
+  margin: 0 auto;
+  position: relative;
+}
+#header {
+  
+  
+}
+#header h1 {
+  font-size: 34px;
+  padding: 10px 0;
+  color: #AAA;
+  font-family: 'Leckerli One', Arial, sans-serif;
+}
+#game {
+  width: 640px;
+  height: 512px;
+  display: block;
+  background: transparent url(images/textures/wood-bg.png) 0 0 repeat;
+  position: relative;
+}
+#game h1.dead {
+  font-size: 54px;
+  color: #FFF;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 30px 0 15px;
+  padding-left: 220px;
+}
+#game p.dead {
+  font-size: 19px;
+  color: #FFF;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 15px 0;
+  padding-left: 220px;
+}
+/* HUD stuff*/
+h1#name {
+  font-size: 24px;
+  position: absolute;
+  display: block;
+  color: #FFF;
+  text-shadow: 2px 2px 0 #333;
+  font-family: Arial, sans-serif;
+  top: 10px;
+  left: 10px;
+  z-index: 15;
+}
+#money {
+  font-size: 16px;
+  position: absolute;
+  display: block;
+  color: #FFF;
+  text-shadow: 2px 2px 0 #333;
+  font-family: Arial, sans-serif;
+  bottom: 10px;
+  left: 10px;
+  z-index: 15;
+}
+#health, #health li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#health {
+  position: absolute;
+  display: block;
+  bottom: 10px;
+  right: 10px;
+  z-index: 15;
+}
+#health li {
+  width: 22px;
+  height: 22px;
+  background: transparent url(images/hud/heart.png) 0 0 no-repeat;
+  float: left;
+  display: inline;
+}
+/* Game stuff*/
+#overlay {
+  position: absolute;
+  display: none;
+  width: 300px;
+  padding: 20px;
+  background: #CCC;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  z-index: 55;
+  top: 100px;
+  left: 150px;
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  box-shadow: 0 0 20px #000;
+  border:2px solid #FFF;
+}
+#overlay p {
+  margin-bottom: 15px;
+}
+#room {
+  z-index: 2;
+  border: 25px inset #80603E;
+  position: relative;
+  margin: 0 auto;
+}
+#player {
+  width: 23px;
+  height: 41px;
+  display: block;
+  background: transparent url(images/player/player.png) -23px 0 no-repeat;
+  position: absolute;
+  z-index: 10;
+}
+#data {
+  width: 200px;
+  height: 574px;
+  background: #333;
+  overflow: scroll;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+  float: right;
+  padding: 10px;
+  line-height: 1.4;
+}
+#data p {
+  margin-bottom: 15px;
+  color: #EEE;
+}
+#inventory {
+  width: 640px;
+  height: 67px;
+  margin: 15px 0 0 0;
+  position: relative;
+}
+#inventory li {
+  border: 2px solid #FFF;
+  background: #CCC;
+  height: 63px;
+  width: 63px;
+  float: left;
+  display: inline;
+  margin: 0 2px;
+  position: relative;
+}
+#inventory li div {
+  position: absolute;
+}
+/*General Elements*/
+#elements div {
+  position: absolute;
+  display: block;
+}
+.exit {
+  background: #000;  
+}
+.locked {
+  background: #777;
+}
+.cake {
+  background: transparent url(images/elements/cake.png) 0 0 no-repeat;
+  width: 50px;
+  height: 44px;
+}
+.gun {
+  width: 32px;
+  height: 18px;
+  background: transparent url(images/elements/gun.png) 0 0 no-repeat;
+}
+.key {
+  width: 17px;
+  height: 19px;
+  background: transparent url(images/elements/key.png) 0 0 no-repeat;
+}
+.bookshelf {
+  width: 64px;
+  height: 64px;
+}
+.bed {
+  width: 46px;
+  height: 64px;
+  background: transparent url(images/elements/bed.png) 0 0 no-repeat;
+}
+#projectile {
+  position: static;
+}
+.bullet {
+  width: 4px;
+  height: 4px;
+  border-radius: 2px;
+  -moz- border-radius: 2px;
+  background: #000;
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: block;
+}
+#elements .chest div {
+  visibility: hidden;
+}
+/*Bedroom, Room 0*/
+#room.room0 {
+  width: 256px;
+  height: 300px;
+  top: 50px;
+  background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
+}
+.room0 .chest {
+  width: 32px;
+  height: 32px;
+  background: transparent url(images/elements/chest.png) 0 0 no-repeat;
+  top: 225px;
+  left: 165px;
+}
+.room0 .chest .cake {
+  top: 0;
+  left: 0;
+}
+.room0 .bookshelf1 {
+    background: transparent url(images/elements/bookshelf1.png) 0 0 no-repeat;
+    top: 0px;
+    left: 0px;
+}
+.room0 .bookshelf2 {
+    background: transparent url(images/elements/bookshelf2.png) 0 0 no-repeat;
+    top: 0px;
+    left: 64px;
+}
+.room0 .bookshelf3 {
+    background: transparent url(images/elements/bookshelf3.png) 0 0 no-repeat;
+    top: 0px;
+    left: 128px;
+}
+.room0 .bookshelf4 {
+    background: transparent url(images/elements/bookshelf4.png) 0 0 no-repeat;
+    top: 0px;
+    left: 192px;
+}
+.room0 .dresser {
+    background: transparent url(images/elements/dresser-left.png) 0 0 no-repeat;
+    top: 110px;
+    left: 232px;
+    width: 24px;
+    height: 96px;
+}
+.room0 .bed {
+  top: 120px;
+  left: 30px;
+}
+.room0 #doorS {
+  top: 300px;
+  left: 110px;
+  width: 40px;
+  height: 7px;
+}
+/*Hallway, Room 1*/
+#room.room1 {
+  width: 100px;
+  height: 400px;
+  top: 20px;
+  background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
+}
+.room1 .wallart {
+  width: 2px;
+  height: 40px;
+  border: 1px solid #666;
+}
+.room1 .wallart1 {
+  background: transparent url(images/elements/wallart1.jpg) 0 0 no-repeat;
+  left: -4px;
+  top: 100px;
+}
+.room1 .wallart2 {
+  background: transparent url(images/elements/wallart2.jpg) 0 0 no-repeat;
+  left: -4px;
+  top: 230px;
+}
+.room1 #doorN {
+  top: -7px;
+  left: 30px;
+  width: 40px;
+  height: 7px;
+}
+.room1 #doorS {
+  top: 400px;
+  left: 30px;
+  width: 40px;
+  height: 7px;
+}
+.room1 #doorE {
+  top: 330px;
+  left: 100px;
+  width: 7px;
+  height: 40px;
+}
+/*Daughter's Room, Room 2*/
+#room.room2 {
+  width: 256px;
+  height: 300px;
+  top: 50px;
+  background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
+}
+.room2 #doorN {
+  top: -7px;
+  left: 108px;
+  width: 40px;
+  height: 7px;
+}
+.room2 .key {
+  top: 100px;
+  left: 50px;
+}
+.room2 .chest {
+  width: 32px;
+  height: 32px;
+  background: transparent url(images/elements/chest.png) 0 0 no-repeat;
+  top: 200px;
+  left: 55px;
+}
+.room2 .bookshelf1 {
+    background: transparent url(images/elements/bookshelf1.png) 0 0 no-repeat;
+    top: 0px;
+    left: 0px;
+}
+.room2 .bookshelf2 {
+    background: transparent url(images/elements/bookshelf2.png) 0 0 no-repeat;
+    top: 0px;
+    left: 192px;
+}
+.room2 .bed {
+  top: 230px;
+  left: 200px;
+}
+/*Living Room, Room 3*/
+#room.room3 {
+  width: 400px;
+  height: 400px;
+  top: 20px;
+  background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
+}
+.room3 #doorW {
+  top: 190px;
+  left: -7px;
+  width: 7px;
+  height: 40px;
+}
+.room3 #doorS {
+  top: 400px;
+  left: 230px;
+  width: 40px;
+  height: 7px;
+}
+.room3 #doorE {
+  top: 190px;
+  left: 400px;
+  width: 7px;
+  height: 40px;
+}
+/*Office, Room 4*/
+#room.room4 {
+  width: 256px;
+  height: 300px;
+  top: 50px;
+  background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
+}
+.room4 #doorN {
+  top: -7px;
+  left: 110px;
+  width: 40px;
+  height: 7px;
+}
+.room4 .fire {
+  width: 32px;
+  height: 32px;
+  background: transparent url(images/elements/fire.png) 0 0 no-repeat;
+  top: 100px;
+  left: 55px;
+}
+.room4 .gun {
+  top: 140px;
+  left: 105px;
+}
+
+/*Kitchen, Room 5*/
+#room.room5 {
+  width: 256px;
+  height: 300px;
+  top: 50px;
+  background: #FFF url(images/textures/lamenated-floor.png) 0 0 repeat;
+}
+.room5 #doorW {
+  top: 190px;
+  left: -7px;
+  width: 7px;
+  height: 40px;
+}
+
+/* About, footer etc */
+#loading {
+  display: none;
+}
+#title {
+  width: 808px;
+  background: #000;
+  position: absolute;
+  top: 55px;
+  left: 0;
+  display: block;
+  height: 514px;
+  border: 1px solid #CCC;
+  z-index: 20;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 40px;
+  line-height: 1.4;
+  font-size: 16px;
+  color: #FFF;
+}
+#title div.link {
+  font-size: 24px;
+  text-decoration: none;
+  color: #FFF;
+  font-weight: bold;
+  display: block;
+  padding: 15px 20px;
+  cursor: pointer;
+  border-radius: 20px;
+  -moz-border-radius: 20px;
+}
+#title div.link:hover {
+  background: #FFF;
+  color: #000;
+}
+#title .title-choices {
+  width: 200px;
+}
+#title-content {
+  float: right;
+  width: 568px;
+  padding-left: 40px;
+}
+#title-content p {
+  margin: 15px 0 0 15px;
+}
+#title td {
+  padding: 5px 15px;
+}
+#entry {
+  background: #FF0000;
+  color: #FFF;
+  padding: 10px;
+  border: 0;
+  font-size: 16px;
+}
