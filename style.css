@@ -492,7 +492,7 @@ h1#name {
   font-size: 16px;
   color: #FFF;
 }
-#title div.link {
+#title .link {
   font-size: 24px;
   text-decoration: none;
   color: #FFF;
@@ -503,7 +503,7 @@ h1#name {
   border-radius: 20px;
   -moz-border-radius: 20px;
 }
-#title div.link:hover {
+#title .link:hover {
   background: #FFF;
   color: #000;
 }
