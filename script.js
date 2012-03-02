@@ -846,16 +846,6 @@ jQuery(document).ready(function($){
     var list = item.parent().parent().find('tr');
     var currentKeyNumber = parseInt(item.prev().find('span').html());
     var thisKeyName = item.prev().html().substring(0,item.prev().html().indexOf(':'));
-    /*var thisKeyAll = item.prev().html();
-    
-    var keyList = {
-      'Up:' : parseInt($(list).find('td.key-up span').html());
-      'Down:' : parseInt($(list).find('td.key-down span').html());
-      'Left:' : parseInt($(list).find('td.key-left span').html());
-      'Right:' : parseInt($(list).find('td.key-right span').html());
-      'Use Item:' : parseInt($(list).find('td.key-use span').html());
-      'Action:' : parseInt($(list).find('td.key-action span').html());
-    }*/
     var keyList = [parseInt($(list).find('td.key-up span').html()), parseInt($(list).find('td.key-down span').html()), parseInt($(list).find('td.key-left span').html()), parseInt($(list).find('td.key-right span').html()), parseInt($(list).find('td.key-use span').html()), parseInt($(list).find('td.key-action span').html())];
     var currentKey = item.html();
     var originalKey = item.html();
@@ -991,6 +981,7 @@ jQuery(document).ready(function($){
       } else {
         item.html(originalKey);
       }
+      $('#title-options').find('span').html($('#title-content').html());
     });
     $(document).on('click', function() {
       console.log(item.html());
@@ -1013,6 +1004,7 @@ jQuery(document).ready(function($){
     });
     $('#title-options').click(function() {
       $('#title-content').html($('#title-options').find('span').html());
+      $('#title-options').find('span').html('');
       $('#title-content').find('table td.key-press').on('dblclick', edit_control);
       $('#title-default').click(function() {
         //set keys at original defaults
