@@ -852,118 +852,46 @@ jQuery(document).ready(function($){
     item.html('<input id="entry" type="text" autocomplete="off" placeholder="Enter key ..." />');
     var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     var numbers = ['0','1','2','3','4','5','6','7','8','9'];
+    var symbols = {
+      'char9' : 'Tab',
+      'char20' : 'Caps Lock',
+      'char16' : 'Shift',
+      'char17' : 'Control',
+      'char18' : 'Alt',
+      'char91' : 'Command',
+      'char32' : 'Space',
+      'char37' : 'Left Arrow',
+      'char38' : 'Up Arrow',
+      'char39' : 'Right Arrow',
+      'char40' : 'Down Arrow',
+      'char8' : 'Delete',
+      'char13' : 'Enter',
+      'char192' : '`',
+      'char189' : '-',
+      'char187' : '=',
+      'char219' : '[',
+      'char221' : ']',
+      'char220' : '\\',
+      'char186' : ';',
+      'char222' : '\'',
+      'char188' : ',',
+      'char190' : '.',
+      'char191' : '\/',
+    }
+    for (var i = 0; i < 26; i+=1) {
+      symbols['char' + (i+65)] = alphabet[i];
+    }
+    for (var i = 0; i < 10; i+=1) {
+      symbols['char' + (i+48)] = numbers[i];
+    }
     $('#entry').focus();
     $('#entry').keydown(function(e) {
       var code = (e.keyCode ? e.keyCode : e.which);
-      for (var i = 0; i < alphabet.length; i+=1) {
-        if (code === i+65) {
-          currentKey = alphabet[i];
+      for (var i = 0; i < 222; i+=1) {
+        if (symbols['char' + i] !== null && code === i) {
+          currentKey = symbols['char' + i];
           currentKeyNumber = code;
         }
-      }
-      for (var i = 0; i < numbers.length; i+=1) {
-        if (code === i+48) {
-          currentKey = numbers[i];
-          currentKeyNumber = code;
-        }
-      }
-      switch(code){
-        case 192:
-          currentKey = '`';
-          currentKeyNumber = code;
-          break;
-        case 9:
-          currentKey = 'Tab';
-          currentKeyNumber = code;
-          break;
-        case 20:
-          currentKey = 'Caps Lock';
-          currentKeyNumber = code;
-          break;
-        case 16:
-          currentKey = 'Shift';
-          currentKeyNumber = code;
-          break;
-        case 17:
-          currentKey = 'Control';
-          currentKeyNumber = code;
-          break;
-        case 18:
-          currentKey = 'Alt';
-          currentKeyNumber = code;
-          break;
-        case 91:
-          currentKey = 'Command';
-          currentKeyNumber = code;
-          break;
-        case 32:
-          currentKey = 'Space';
-          currentKeyNumber = code;
-          break;
-        case 37:
-          currentKey = 'Left Arrow';
-          currentKeyNumber = code;
-          break;
-        case 38:
-          currentKey = 'Up Arrow';
-          currentKeyNumber = code;
-          break;
-        case 39:
-          currentKey = 'Right Arrow';
-          currentKeyNumber = code;
-          break;
-        case 40:
-          currentKey = 'Down Arrow';
-          currentKeyNumber = code;
-          break;
-        case 189:
-          currentKey = '-';
-          currentKeyNumber = code;
-          break;
-        case 187:
-          currentKey = '=';
-          currentKeyNumber = code;
-          break;
-        case 8:
-          currentKey = 'Delete';
-          currentKeyNumber = code;
-          break;
-        case 219:
-          currentKey = '[';
-          currentKeyNumber = code;
-          break;
-        case 221:
-          currentKey = ']';
-          currentKeyNumber = code;
-          break;
-        case 220:
-          currentKey = '\\';
-          currentKeyNumber = code;
-          break;
-        case 186:
-          currentKey = ';';
-          currentKeyNumber = code;
-          break;
-        case 222:
-          currentKey = '\'';
-          currentKeyNumber = code;
-          break;
-        case 188:
-          currentKey = ',';
-          currentKeyNumber = code;
-          break;
-        case 190:
-          currentKey = '.';
-          currentKeyNumber = code;
-          break;
-        case 191:
-          currentKey = '\/';
-          currentKeyNumber = code;
-          break;
-        case 13:
-          currentKey = 'Enter';
-          currentKeyNumber = code;
-          break;
       }
     });
     $('#entry').keyup(function(){
@@ -984,7 +912,6 @@ jQuery(document).ready(function($){
       $('#title-options').find('span').html($('#title-content').html());
     });
     $(document).on('click', function() {
-      console.log(item.html());
       if (item.html() === '<input id="entry" type="text" autocomplete="off" placeholder="Enter key ...">' || item.html() === '<input id="entry" type="text" autocomplete="off" placeholder="Enter key ..."/>') {
         item.html(originalKey);
       }
