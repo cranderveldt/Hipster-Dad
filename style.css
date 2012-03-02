@@ -431,6 +431,12 @@ h1#name {
   width: 7px;
   height: 40px;
 }
+.room3 #doorN {
+  top: -7px;
+  left: 230px;
+  width: 40px;
+  height: 7px;
+}
 /*Office, Room 4*/
 #room.room4 {
   width: 256px;
@@ -468,6 +474,21 @@ h1#name {
   left: -7px;
   width: 7px;
   height: 40px;
+}
+/*Porch, Room 6*/
+#room.room6 {
+  background: #66a63c url(images/textures/grass.png) 0 0 repeat;
+  width: 640px;
+  height: 512px;
+  top: 0px;
+  left: 0px;
+}
+.room6 #doorS {
+  background: transparent;
+  width: 640px;
+  height: 7px;
+  top: 512px;
+  left: 0px;
 }
 
 /* About, footer etc */

@@ -264,6 +264,7 @@ jQuery(document).ready(function($){
         'top' : player.top,
         'left' : player.left
       }
+      console.log(e.width + ' ' + e.height + ' ' + e.top + ' ' + e.left);
       if (p.left >= e.left + e.width + inc) {
         space['v' + i] = inc;
       } else if (p.top + p.height > e.top && p.top < e.top + e.height) {
@@ -548,7 +549,7 @@ jQuery(document).ready(function($){
   var addData = function(str) {
     $('#data').html('<p>' + str + '</p>' + $('#data').html());
     dataP = $('#data').find('p');
-    /*$(dataP[0]).stop().delay(2000).animate({ color : '#AAA', opacity: .25 }, 200);*/
+    $('#data').find('p').stop().delay(2000).animate({ color : '#AAA', opacity: .25 }, 200);
   }
   var listInventory = function() {
     var list = '';
@@ -650,13 +651,14 @@ jQuery(document).ready(function($){
     for (var i = 0; i < roomElementsHTML.length; i+=1) {
      roomList.HTML[i] = $(roomElementsHTML[i]).html();
      roomList.classes[i] = $(roomElementsHTML[i]).attr('class');
-     console.log(roomList.classes[i]);
     }
     $('#loading').remove();
   }
   var setRoom = function(r, pos, prevPos, door) {
     $('#elements').html(roomList.HTML[pos]);
     r.elm = $('#room');
+    r.elm.removeClass('inside');
+    r.elm.removeClass('outside');
     r.elm.removeClass('room' + prevPos);
     r.elm.addClass('room' + pos);
     r.elm.addClass(roomList.classes[pos]);
