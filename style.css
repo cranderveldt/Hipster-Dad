@@ -327,7 +327,7 @@ h1#name {
 }
 /*Hallway, Room 1*/
 #room.room1 {
-  width: 100px;
+  width: 50px;
   height: 400px;
   top: 20px;
   background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
@@ -349,21 +349,22 @@ h1#name {
 }
 .room1 #doorN {
   top: -7px;
-  left: 30px;
+  left: 5px;
   width: 40px;
   height: 7px;
 }
 .room1 #doorS {
   top: 400px;
-  left: 30px;
+  left: 5px;
   width: 40px;
   height: 7px;
 }
 .room1 #doorE {
   top: 330px;
-  left: 100px;
-  width: 7px;
+  left: 50px;
+  width: 25px;
   height: 40px;
+  background: transparent url(images/elements/staircase-down.png) 0 0 no-repeat;
 }
 /*Daughter's Room, Room 2*/
 #room.room2 {
@@ -416,9 +417,10 @@ h1#name {
 }
 .room3 #doorW {
   top: 190px;
-  left: -7px;
-  width: 7px;
+  left: -25px;
+  width: 25px;
   height: 40px;
+  background: transparent url(images/elements/staircase-up.png) 0 0 no-repeat;
 }
 .room3 #doorS {
   top: 400px;
