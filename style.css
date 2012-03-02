@@ -219,6 +219,7 @@ h1#name {
 }
 .exit {
   background: #000;  
+  z-index: 9;
 }
 .locked {
   background: #777;
@@ -483,14 +484,38 @@ h1#name {
   top: 0px;
   left: 0px;
 }
-.room6 #doorS {
+.room6 #doorN {
   background: transparent;
   width: 640px;
   height: 7px;
-  top: 512px;
+  top: -7px;
   left: 0px;
 }
-
+.room6 #doorS {
+  width: 40px;
+  height: 7px;
+  top: 462px;
+  left: 300px;
+}
+.room6 .fence {
+  background: #cbbe88;
+  width: 10px;
+  height: 512px;
+  top: 0px;
+}
+.room6 .fence1 {
+  left: 30px;
+}
+.room6 .fence2 {
+  left: 600px;
+}
+.room6 .house {
+  background: transparent url(images/textures/wood-bg.png) 0 0 repeat;
+  width: 540px;
+  height: 50px;
+  top: 462px;
+  left: 50px;
+}
 /* About, footer etc */
 #loading {
   display: none;

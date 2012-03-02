@@ -264,7 +264,6 @@ jQuery(document).ready(function($){
         'top' : player.top,
         'left' : player.left
       }
-      console.log(e.width + ' ' + e.height + ' ' + e.top + ' ' + e.left);
       if (p.left >= e.left + e.width + inc) {
         space['v' + i] = inc;
       } else if (p.top + p.height > e.top && p.top < e.top + e.height) {
@@ -711,16 +710,16 @@ jQuery(document).ready(function($){
       //these methods assume doors are 7px deep and 40px wide
       if (doorElm.attr('class').indexOf(doorClass) !== -1) {
         if (dir === 'up') {
-          setPlayerLocation(currentRoom.height-player.heightUsed, parseInt(doorElm.css('left')) + ((doorElm.width() - player.width)/2));
+          setPlayerLocation(parseInt(doorElm.css('top'))-player.heightUsed, parseInt(doorElm.css('left')) + ((doorElm.width() - player.width)/2));
         }
         if (dir === 'down') {
-          setPlayerLocation(0, parseInt(doorElm.css('left')) + ((doorElm.width() - player.width)/2));
+          setPlayerLocation(parseInt(doorElm.css('top'))+parseInt(doorElm.height()), parseInt(doorElm.css('left')) + ((doorElm.width() - player.width)/2));
         }
         if (dir === 'left') {
-          setPlayerLocation(parseInt(doorElm.css('top')) + ((doorElm.height() - player.heightUsed)/2), currentRoom.width-player.width);
+          setPlayerLocation(parseInt(doorElm.css('top')) + ((doorElm.height() - player.heightUsed)/2), parseInt(doorElm.css('left'))-player.width);
         }
         if (dir === 'right') {
-          setPlayerLocation(parseInt(doorElm.css('top')) + ((doorElm.height() - player.heightUsed)/2), 0);
+          setPlayerLocation(parseInt(doorElm.css('top')) + ((doorElm.height() - player.heightUsed)/2), parseInt(doorElm.css('left')) + doorElm.width());
         }
       }
     }
