@@ -14,14 +14,7 @@ custom control changing is a little wonky, and I would like to put that in a new
 */
 
 jQuery(document).ready(function($){
-  var keyAssignments = {
-    'Up' : 38,
-    'Down' : 40,
-    'Left' : 37,
-    'Right' : 39,
-    'Use Item' : 81,
-    'Action' : 87
-  }
+  var keyAssignments = {}
   var currentRoom = {};
   var roomList = [];
   var player = {};
@@ -378,6 +371,12 @@ jQuery(document).ready(function($){
       results.gunPos = pos;
       results.isElm = true;
     }
+    if (space < inc && elm.money) {
+      results.moneyElm = elm;
+      results.money = true;
+      results.moneyPos = pos;
+      results.isElm = true;
+    }
     return results;
   }
   var setDirection = function(dir, newOutfit) {
@@ -438,7 +437,7 @@ jQuery(document).ready(function($){
       addData(results.messageElm.message);
     }
     if (results.interact) {
-      var interaction = determineInteraction(results.interactElm.interact, currentRoom.pos);
+      determineInteraction(results, currentRoom.pos);
     }
     /*this assumes the position returned is the container, and we want to remove the elements inside the container, so we add the +1 in the call to addToInventory to results.containerPos to grab the container's child.*/
     if (results.container) {
@@ -494,32 +493,55 @@ jQuery(document).ready(function($){
     $('#money').html('$' + money);
   }
   var roomInteractions = {
-    'room0' : function() {
+    'room0' : function(results) {
       $('#change_clothes_yes').click(function() {
         if (player.outfit === 0) {
           changePlayerOutfit(1);
         } else if (player.outfit === 1) {
           changePlayerOutfit(0);
         }
-        $('#overlay').css('display','none');
-        player.paused = false;
+        hideOverlay();
       });
       $('#change_clothes_no').click(function() {
-        $('#overlay').css('display','none');
-        player.paused = false;
+        hideOverlay();
       });
     },
-    'room1' : function() {
+    'room1' : function(results) {
+    },
+    'room2' : function(results) {
+      $('#piggy_smash_yes').click(function() {
+        var theMoney = $(results.interactElm).find('div');
+        if ($(theMoney).attr('class').indexOf('money') !== -1) {
+          var newMoney = parseInt($(theMoney).find('span.money').html());
+          player.money += newMoney;
+          addData('You took $25 from your daughter\'s piggy bank. You are terrible.');
+          $(results.interactElm).css('background-position','right top');
+          $(theMoney).removeClass('money');
+          $(theMoney).remove();
+          updateMoney(player.money);
+          $(results.interactElm).removeClass('interact');
+          elements[results.interactPos].interact = null;
+          results.interact = false;
+        }
+        hideOverlay();
+      });
+      $('#piggy_smash_no').click(function() {
+        hideOverlay();
+      });
     }
   }
-  var determineInteraction = function(str, roomNumber) {
-    showOverlay(str);
-    roomInteractions['room' + roomNumber]();
+  var determineInteraction = function(results, roomNumber) {
+    showOverlay(results.interactElm.interact);
+    roomInteractions['room' + roomNumber](results);
   }
   var showOverlay = function(str) {
     $('#overlay').html(str);
     $('#overlay').css('display','block');
     player.paused = true;
+  }
+  var hideOverlay = function() {
+    $('#overlay').css('display','none');
+    player.paused = false;
   }
   var addData = function(str) {
     $('#data').html('<p>' + str + '</p>' + $('#data').html());
@@ -578,6 +600,7 @@ jQuery(document).ready(function($){
       elms[i].hurt = 0;
       elms[i].playerSprite = 0;
       elms[i].gun = false;
+      elms[i].money = false;
       if ($(elms[i]).attr('class').indexOf('mobile') !== -1) {
         elms[i].mobile = true;
         elms[i].playerSprite = parseInt($(elms[i]).find('span.sprite').html());
@@ -612,6 +635,9 @@ jQuery(document).ready(function($){
       }
       if ($(elms[i]).attr('class').indexOf('gun') !== -1) {
         elms[i].gun = true;
+      }
+      if ($(elms[i]).attr('class').indexOf('money') !== -1) {
+        elms[i].money = true;
       }
     }
     return elms;
@@ -974,6 +1000,14 @@ jQuery(document).ready(function($){
     });
   };
   var titleScreen = function() {
+    keyAssignments = {
+      'Up' : 38,
+      'Down' : 40,
+      'Left' : 37,
+      'Right' : 39,
+      'Use Item' : 81,
+      'Action' : 87
+    }
     $('#title-start').click(function() {
       startGame();
     });

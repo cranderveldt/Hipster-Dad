@@ -371,10 +371,10 @@ h1#name {
   top: 100px;
   left: 50px;
 }
-.room2 .chest {
-  width: 32px;
-  height: 32px;
-  background: transparent url(images/elements/chest.png) 0 0 no-repeat;
+.room2 .piggy-bank {
+  width: 24px;
+  height: 21px;
+  background: transparent url(images/elements/piggy-bank.png) 0 0 no-repeat;
   top: 200px;
   left: 55px;
 }
