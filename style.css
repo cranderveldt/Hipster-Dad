@@ -256,6 +256,12 @@ h1#name {
 #projectile {
   position: static;
 }
+.sidewalk {
+  background: #CCC url(images/textures/sidewalk.png) 0 0 repeat;
+}
+.driveway {
+  background: #222 url(images/textures/asphalt.png) 0 0 repeat;
+}
 .bullet {
   width: 4px;
   height: 4px;
@@ -275,7 +281,7 @@ h1#name {
   width: 256px;
   height: 300px;
   top: 50px;
-  background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
+  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 .room0 .chest {
   width: 32px;
@@ -330,7 +336,7 @@ h1#name {
   width: 50px;
   height: 400px;
   top: 20px;
-  background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
+  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 .room1 .wallart {
   width: 2px;
@@ -371,7 +377,7 @@ h1#name {
   width: 168px;
   height: 190px;
   top: 80px;
-  background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
+  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 .room2 #doorN {
   top: -7px;
@@ -406,14 +412,14 @@ h1#name {
 }
 /*Living Room, Room 3*/
 #room.room3 {
-  width: 400px;
-  height: 400px;
-  top: 20px;
-  background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
+  width: 250px;
+  height: 250px;
+  top: 90px;
+  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 .room3 .table {
-  top: 200px;
-  left: 100px;
+  top: 95px;
+  left: 95px;
 }
 .room3 #doorW {
   top: 190px;
@@ -423,20 +429,20 @@ h1#name {
   background: transparent url(images/elements/staircase-up.png) 0 0 no-repeat;
 }
 .room3 #doorS {
-  top: 400px;
-  left: 230px;
+  top: 250px;
+  left: 110px;
   width: 40px;
   height: 7px;
 }
 .room3 #doorE {
-  top: 190px;
-  left: 400px;
+  top: 110px;
+  left: 250px;
   width: 7px;
   height: 40px;
 }
 .room3 #doorN {
   top: -7px;
-  left: 230px;
+  left: 110px;
   width: 40px;
   height: 7px;
 }
@@ -445,7 +451,7 @@ h1#name {
   width: 256px;
   height: 300px;
   top: 50px;
-  background: #FFF url(images/textures/wood-floor.png) 0 0 repeat;
+  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 .room4 #doorN {
   top: -7px;
@@ -470,7 +476,7 @@ h1#name {
   width: 256px;
   height: 300px;
   top: 50px;
-  background: #FFF url(images/textures/lamenated-floor.png) 0 0 repeat;
+  background: #CCC url(images/textures/lamenated-floor.png) 0 0 repeat;
 }
 .room5 #doorW {
   top: 190px;
@@ -517,6 +523,26 @@ h1#name {
   height: 50px;
   top: 462px;
   left: 50px;
+}
+.room6 .sidewalk {
+  width: 40px;
+  height: 462px;
+  top: 0px;
+  left: 300px;
+  background-position: 0 100%;
+}
+.room6 .driveway {
+  width: 100px;
+  height: 462px;
+  top: 0px;
+  left: 100px;
+}
+.room6 .garage {
+  width: 100px;
+  height: 12px;
+  top: 462px;
+  left: 100px;
+  background: transparent url(images/textures/garage.png) 0 0 repeat;
 }
 /* About, footer etc */
 #loading {
