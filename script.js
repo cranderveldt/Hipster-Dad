@@ -9,14 +9,16 @@ custom control changing is a little wonky, and I would like to put that in a new
 -if you double click on one then click off it always return to original default.
 -need a defaults button
 -need to figure out how to end events once they start. that will likely solve all the problems i'm having
--also need to write the HTML changes back into the invisible spans on the title menus
 -figure out how to reset the game without forcing a player to refresh
 */
 
 jQuery(document).ready(function($){
   var keyAssignments = {}
   var currentRoom = {};
-  var roomList = [];
+  var roomList = {
+    'HTML' : [],
+    'classes' : []
+  };
   var player = {};
   var elements = null;
   var move = function(horz, vert) {
@@ -646,15 +648,18 @@ jQuery(document).ready(function($){
     /* Rules for creating new rooms/doors: you must have the following classes: exit, roomX, and door-XX. The roomX is the room number the door leads to, and the door-XX corresponds with the connecting door in the next or previous room. */
     var roomElementsHTML = $('#loading li');
     for (var i = 0; i < roomElementsHTML.length; i+=1) {
-     roomList[i] = $(roomElementsHTML[i]).html();
+     roomList.HTML[i] = $(roomElementsHTML[i]).html();
+     roomList.classes[i] = $(roomElementsHTML[i]).attr('class');
+     console.log(roomList.classes[i]);
     }
     $('#loading').remove();
   }
   var setRoom = function(r, pos, prevPos, door) {
-    $('#elements').html(roomList[pos]);
+    $('#elements').html(roomList.HTML[pos]);
     r.elm = $('#room');
     r.elm.removeClass('room' + prevPos);
     r.elm.addClass('room' + pos);
+    r.elm.addClass(roomList.classes[pos]);
     r.name = $(door).attr('title');
     $('#name').html(r.name);
     r.elm.attr('title',r.name);
@@ -672,7 +677,7 @@ jQuery(document).ready(function($){
     return r;
   }
   var saveRoom = function(r, pos) {
-    roomList[pos] = r.elm.find('#elements').html();
+    roomList.HTML[pos] = r.elm.find('#elements').html();
   }
   var getLocationFromElement = function(elm) {
     var tempStart = elm.html();
@@ -853,7 +858,6 @@ jQuery(document).ready(function($){
     var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     var numbers = ['0','1','2','3','4','5','6','7','8','9'];
     var symbols = {
-      'char9' : 'Tab',
       'char20' : 'Caps Lock',
       'char16' : 'Shift',
       'char17' : 'Control',
