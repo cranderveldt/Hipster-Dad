@@ -330,9 +330,11 @@ jQuery(document).ready(function($){
       results.isElm = true;
       results.playerSprite = elm.playerSprite;
     }
-    if (space < inc && elm.message !== null) {
+    if (space < inc && elm.messages !== null) {
       results.messageElm = elm;
       results.message = true;
+      results.messageOutfitDependent = $(elm).attr('class').indexOf('outfit-dependent') !== -1;
+      results.messageEquipDependent = $(elm).attr('class').indexOf('equip-dependent') !== -1;
       results.messagePos = pos;
       results.isElm = true;
     }
@@ -378,6 +380,12 @@ jQuery(document).ready(function($){
       results.moneyElm = elm;
       results.money = true;
       results.moneyPos = pos;
+      results.isElm = true;
+    }
+    if (space < inc && elm.person) {
+      results.personElm = elm;
+      results.person = true;
+      results.personPos = pos;
       results.isElm = true;
     }
     return results;
@@ -437,7 +445,32 @@ jQuery(document).ready(function($){
       addData('Cannot add ' + results.mobileElm.name + ' to your inventory, because it is full.');
     }
     if (results.message) {
-      addData(results.messageElm.message);
+      if (results.person) {
+        if (results.messageOutfitDependent && !results.messageEquipDependent) {
+          for (var i = 0; i < results.messageElm.messages.length; i += 1) {
+            var str = $(results.messageElm.messages[i]).attr('class');
+            var outfit = parseInt(str.substr(str.indexOf('outfit')+6,1));
+            if (outfit === player.outfit) {
+              addData($(results.messageElm.messages[i]).html());
+            }
+          }
+        } else if (results.messageEquipDependent && !results.messageOutfitDependent) {
+          for (var i = 0; i < results.messageElm.messages; i += 1) {
+            var str = $(results.messageElm.messages[i]).attr('class');
+            var equip = parseInt(str.substr(str.indexOf('equip')+5,1));
+            if (equip === player.playerSprite) {
+              addData($(results.messageElm.messages[i]).html());
+            }
+          }
+        } else if (!results.messageEquipDependent && !results.messageOutfitDependent) {
+          addData($(results.messageElm.messages).html());
+        } else if (results.messageEquipDependent && results.messageOutfitDependent) {
+          
+        }
+      }
+      else {
+        addData($(results.messageElm.messages).html());
+      }
     }
     if (results.interact) {
       determineInteraction(results, currentRoom.pos);
@@ -644,12 +677,13 @@ jQuery(document).ready(function($){
       elms[i].stuck = false;
       elms[i].exit = false;
       elms[i].locked = false;
-      elms[i].message = null;
+      elms[i].messages = null;
       elms[i].interactions = null;
       elms[i].hurt = 0;
       elms[i].playerSprite = 0;
       elms[i].gun = false;
       elms[i].money = false;
+      elms[i].person = false;
       if ($(elms[i]).attr('class').indexOf('mobile') !== -1) {
         elms[i].mobile = true;
         elms[i].playerSprite = parseInt($(elms[i]).find('span.sprite').html());
@@ -668,7 +702,7 @@ jQuery(document).ready(function($){
         elms[i].locked = true;
       }
       if ($(elms[i]).attr('class').indexOf('message') !== -1) {
-        elms[i].message = $(elms[i]).find('span.message').html();
+        elms[i].messages = $(elms[i]).find('span.message');
       }
       if ($(elms[i]).attr('class').indexOf('passThru') !== -1) {
         elms[i].passThru = true;
@@ -687,6 +721,9 @@ jQuery(document).ready(function($){
       }
       if ($(elms[i]).attr('class').indexOf('money') !== -1) {
         elms[i].money = true;
+      }
+      if ($(elms[i]).attr('class').indexOf('person') !== -1) {
+        elms[i].person = true;
       }
     }
     return elms;

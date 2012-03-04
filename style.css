@@ -544,6 +544,13 @@ h1#name {
   left: 100px;
   background: transparent url(images/textures/garage.png) 0 0 repeat;
 }
+.room6 .earl {
+  width: 21px;
+  height: 44px;
+  top: 400px;
+  left: 400px;
+  background: transparent url(images/people/earl.png) 0 0 repeat;
+}
 /* About, footer etc */
 #loading {
   display: none;
