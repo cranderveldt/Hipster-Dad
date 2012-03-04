@@ -153,10 +153,35 @@ h1#name {
   border-radius: 10px;
   -moz-border-radius: 10px;
   box-shadow: 0 0 20px #000;
-  border:2px solid #FFF;
+  -moz-box-shadow: 0 0 20px #000;
+  border: 2px solid #FFF;
 }
 #overlay p {
   margin-bottom: 15px;
+}
+#achievement {
+  position: absolute;
+  display: none;
+  width: 480px;
+  padding: 10px 30px;
+  background: #FFF;
+  font-size: 14px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  z-index: 55;
+  top: 400px;
+  left: 70px;
+  border-radius: 40px;
+  -moz-border-radius: 40px;
+  box-shadow: 0 0 20px #444;
+  -moz-box-shadow: 0 0 20px #444;
+  border: 2px solid #CCC;
+
+}
+#achievement span {
+  display: block;
+  color: #AAA;
+  font-size: 20px;
 }
 #room {
   z-index: 2;

@@ -544,7 +544,9 @@ jQuery(document).ready(function($){
     }
   }
   var achievementUnlocked = function(str) {
-    addData('Achievement Unlocked: ' + str);
+    $('#achievement').html('<span>Achievement Unlocked</span>' + str);
+    addData('Achievement Unlocked<br/>' + str);
+    $('#achievement').stop().show(500).delay(5000).hide(500);
     return true;
   }
   var roomAchievements = {
@@ -562,7 +564,7 @@ jQuery(document).ready(function($){
     },
     'room6' : function(results) {
       if (!player.achievements[0] && player.outfit === 0) {
-        player.achievements[0] = achievementUnlocked('Brave Nude World - Go outside without getting dressed.');
+        player.achievements[0] = achievementUnlocked('<strong>Brave Nude World:</strong> Go outside without getting dressed.');
       }
     }
   }
