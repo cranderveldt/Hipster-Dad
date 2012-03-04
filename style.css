@@ -297,6 +297,7 @@ h1#name {
   left: 0;
   position: absolute;
   display: block;
+  z-index: 15;
 }
 #elements .chest div {
   visibility: hidden;

@@ -944,38 +944,64 @@ jQuery(document).ready(function($){
         addData('You used ' + equip.name + ' to unlock the door to the ' + results.lockedElm.name + '.');
       }
     } else if ($(equip).attr('class').indexOf('gun') !== -1) {
-      //add new html element with the class of bullet directly in the center of the player. move it in the direction the player is facing and make it go to the outside
-      $('#projectiles').append('<div class="bullet"></div>');
-      var bullet = $('#projectiles').find('div.bullet');
-      var bulletTargetX = player.left + (player.width/2);
-      var bulletTargetY = player.topUsed + (player.height/2);
-      var bulletSpeed = 100;
-      bullet.css('top', bulletTargetY + 'px');
-      bullet.css('left', bulletTargetX + 'px');
-
-      if (dir === 'up'){
-        bulletSpeed += (Math.floor(bulletTargetY));
-        bulletTargetY = 0;
-      }
-      if (dir === 'down'){
-        bulletSpeed += (Math.floor((currentRoom.height-bulletTargetY)));
-        bulletTargetY = currentRoom.height;
-      }
-      if (dir === 'left'){
-        bulletSpeed += (Math.floor(bulletTargetX));
-        bulletTargetX = 0;
-      }
-      if (dir === 'right'){
-        bulletSpeed += (Math.floor((currentRoom.width-bulletTargetX)));
-        bulletTargetX = currentRoom.width;
-      }
-      bullet.animate({ left : bulletTargetX + 'px', top : bulletTargetY + 'px' }, bulletSpeed, function() {
-        bullet.remove();
-      });
+      animateBullet(dir);
     } else {
       addData('You used ' + equip.name + '! Nothing happened.');
     }
     checkforAchievements(results, currentRoom.pos);
+  }
+  var checkBulletDamage = function(dir, pX, pY) {
+    var people = $('#elements div.person');
+    for (var i = 0; i < people.length; i +=1) { 
+      var e = {
+        'width' : $(people[i]).width(),
+        'height' : $(people[i]).height(),
+        'top' : parseInt($(people[i]).css('top')),
+        'left' : parseInt($(people[i]).css('left'))
+      }
+      if (dir === 'up' && e.top <= pY && e.left < pX && (e.left + e.width) > pX) {
+        $(people[i]).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
+      }
+      if (dir === 'down' && e.top >= pY && e.left < pX && (e.left + e.width) > pX) {
+        $(people[i]).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
+      }
+      if (dir === 'left' && e.left <= pX && e.top < pY && (e.top + e.height) > pY) {
+        $(people[i]).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
+      }
+      if (dir === 'right' && e.left >= pX && e.top < pY && (e.top + e.height) > pY) {
+        $(people[i]).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
+      }
+    }
+  }
+  var animateBullet = function(dir) {
+    //add new html element with the class of bullet directly in the center of the player. move it in the direction the player is facing and make it go to the outside
+    $('#projectiles').append('<div class="bullet"></div>');
+    var bullet = $('#projectiles').find('div.bullet');
+    var bulletTargetX = player.left + (player.width/2);
+    var bulletTargetY = player.topUsed + (player.height/2);
+    var bulletSpeed = 100;
+    bullet.css('top', bulletTargetY + 'px');
+    bullet.css('left', bulletTargetX + 'px');
+    if (dir === 'up'){
+      bulletSpeed += (Math.floor(bulletTargetY));
+      bulletTargetY = 0;
+    }
+    if (dir === 'down'){
+      bulletSpeed += (Math.floor((currentRoom.height-bulletTargetY)));
+      bulletTargetY = currentRoom.height;
+    }
+    if (dir === 'left'){
+      bulletSpeed += (Math.floor(bulletTargetX));
+      bulletTargetX = 0;
+    }
+    if (dir === 'right'){
+      bulletSpeed += (Math.floor((currentRoom.width-bulletTargetX)));
+      bulletTargetX = currentRoom.width;
+    }
+    bullet.animate({ left : bulletTargetX + 'px', top : bulletTargetY + 'px' }, bulletSpeed, function() {
+      bullet.remove();
+      checkBulletDamage(dir, player.left + (player.width/2), player.topUsed + (player.height/2));
+    });
   }
   var initializePlayer = function() {
     player = {
