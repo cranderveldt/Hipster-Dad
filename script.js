@@ -950,6 +950,10 @@ jQuery(document).ready(function($){
     }
     checkforAchievements(results, currentRoom.pos);
   }
+  var killPerson = function(p, e) {
+    p.css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
+    p.addClass('dead');
+  }
   var checkBulletDamage = function(dir, pX, pY) {
     var people = $('#elements div.person');
     for (var i = 0; i < people.length; i +=1) { 
@@ -959,17 +963,19 @@ jQuery(document).ready(function($){
         'top' : parseInt($(people[i]).css('top')),
         'left' : parseInt($(people[i]).css('left'))
       }
-      if (dir === 'up' && e.top <= pY && e.left < pX && (e.left + e.width) > pX) {
-        $(people[i]).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
-      }
-      if (dir === 'down' && e.top >= pY && e.left < pX && (e.left + e.width) > pX) {
-        $(people[i]).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
-      }
-      if (dir === 'left' && e.left <= pX && e.top < pY && (e.top + e.height) > pY) {
-        $(people[i]).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
-      }
-      if (dir === 'right' && e.left >= pX && e.top < pY && (e.top + e.height) > pY) {
-        $(people[i]).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
+      if ($(people[i]).attr('class').indexOf('dead') === -1) {
+        if (dir === 'up' && e.top <= pY && e.left < pX && (e.left + e.width) > pX) {
+          killPerson($(people[i]), e);
+        }
+        if (dir === 'down' && e.top >= pY && e.left < pX && (e.left + e.width) > pX) {
+          killPerson($(people[i]), e);
+        }
+        if (dir === 'left' && e.left <= pX && e.top < pY && (e.top + e.height) > pY) {
+          killPerson($(people[i]), e);
+        }
+        if (dir === 'right' && e.left >= pX && e.top < pY && (e.top + e.height) > pY) {
+          killPerson($(people[i]), e);
+        }
       }
     }
   }
