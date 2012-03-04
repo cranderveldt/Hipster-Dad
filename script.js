@@ -388,6 +388,12 @@ jQuery(document).ready(function($){
       results.personPos = pos;
       results.isElm = true;
     }
+    if (space < inc && elm.dead) {
+      results.deadElm = elm;
+      results.dead = true;
+      results.deadPos = pos;
+      results.isElm = true;
+    }
     return results;
   }
   var setDirection = function(dir, newOutfit) {
@@ -722,11 +728,11 @@ jQuery(document).ready(function($){
     }
     if (player.inventory[num] !== null) {
       addData('Selected ' + player.inventory[num].name);
-      if(player.inventory[num].playerSprite !== player.playerSprite) {
+      if (player.inventory[num].playerSprite !== player.playerSprite) {
         changePlayerSprite(player.inventory[num].playerSprite);
       }
     } else {
-      if(player.playerSprite !== 0) {
+      if (player.playerSprite !== 0) {
         changePlayerSprite(0);
       }
     }
@@ -756,6 +762,7 @@ jQuery(document).ready(function($){
       elms[i].gun = false;
       elms[i].money = false;
       elms[i].person = false;
+      elms[i].dead = false;
       if ($(elms[i]).attr('class').indexOf('mobile') !== -1) {
         elms[i].mobile = true;
         elms[i].playerSprite = parseInt($(elms[i]).find('span.sprite').html());
@@ -796,6 +803,9 @@ jQuery(document).ready(function($){
       }
       if ($(elms[i]).attr('class').indexOf('person') !== -1) {
         elms[i].person = true;
+      }
+      if ($(elms[i]).attr('class').indexOf('dead') !== -1) {
+        elms[i].dead = true;
       }
     }
     return elms;
@@ -944,17 +954,26 @@ jQuery(document).ready(function($){
         addData('You used ' + equip.name + ' to unlock the door to the ' + results.lockedElm.name + '.');
       }
     } else if ($(equip).attr('class').indexOf('gun') !== -1) {
-      animateBullet(dir);
+      animateBullet(dir, results);
     } else {
       addData('You used ' + equip.name + '! Nothing happened.');
     }
     checkforAchievements(results, currentRoom.pos);
   }
-  var killPerson = function(p, e) {
-    p.css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
-    p.addClass('dead');
+  var killPerson = function(p, e, results) {
+    $(p).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
+    $(p).addClass('dead');
+    $(p).removeClass('person');
+    $(p).removeClass('message');
+    p.dead = true;
+    p.messages = null;
+    results.message = false;
+    results.person = false;
+    results.dead = true;
+    results.deadElm = results.personElm;
+    results.deadPos = results.personPos;
   }
-  var checkBulletDamage = function(dir, pX, pY) {
+  var checkBulletDamage = function(dir, pX, pY, results) {
     var people = $('#elements div.person');
     for (var i = 0; i < people.length; i +=1) { 
       var e = {
@@ -965,21 +984,21 @@ jQuery(document).ready(function($){
       }
       if ($(people[i]).attr('class').indexOf('dead') === -1) {
         if (dir === 'up' && e.top <= pY && e.left < pX && (e.left + e.width) > pX) {
-          killPerson($(people[i]), e);
+          killPerson(people[i], e, results);
         }
         if (dir === 'down' && e.top >= pY && e.left < pX && (e.left + e.width) > pX) {
-          killPerson($(people[i]), e);
+          killPerson(people[i], e, results);
         }
         if (dir === 'left' && e.left <= pX && e.top < pY && (e.top + e.height) > pY) {
-          killPerson($(people[i]), e);
+          killPerson(people[i], e, results);
         }
         if (dir === 'right' && e.left >= pX && e.top < pY && (e.top + e.height) > pY) {
-          killPerson($(people[i]), e);
+          killPerson(people[i], e, results);
         }
       }
     }
   }
-  var animateBullet = function(dir) {
+  var animateBullet = function(dir, results) {
     //add new html element with the class of bullet directly in the center of the player. move it in the direction the player is facing and make it go to the outside
     $('#projectiles').append('<div class="bullet"></div>');
     var bullet = $('#projectiles').find('div.bullet');
@@ -1006,7 +1025,7 @@ jQuery(document).ready(function($){
     }
     bullet.animate({ left : bulletTargetX + 'px', top : bulletTargetY + 'px' }, bulletSpeed, function() {
       bullet.remove();
-      checkBulletDamage(dir, player.left + (player.width/2), player.topUsed + (player.height/2));
+      checkBulletDamage(dir, player.left + (player.width/2), player.topUsed + (player.height/2), results);
     });
   }
   var initializePlayer = function() {
