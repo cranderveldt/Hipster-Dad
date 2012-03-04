@@ -615,30 +615,30 @@ jQuery(document).ready(function($){
     },
     'room4' : function(results) {
       //this method messes up if you logout and try to log back in, something to do with the .live making multiple instances of each ID
-      $('#computer_pin_submit').live('click', function() {
+      $('#computer_pin_submit').click(function() {
         var pinID = parseInt($('#computer_pin_ID').val());
         if (!isNaN(pinID) && pinID === 3830) {
           changeOverlay('<p>You are now logged in to your account. What would you like to do?</p><input id="computer_withdraw_20" type="button" value="Withdraw $20"><input id="computer_withdraw_all" type="button" value="Withdraw All My Money"><input id="computer_logout" type="button" value="Log Out">');
         } else {
-          changeOverlay('<p>We\'re sorry, that PIN is incorrect, please try again.</p><input id="computer_pin_ID" type="text"><input id="computer_pin_submit" type="button" value="Submit"><input id="computer_logout" type="button" value="Cancel">');
+          changeOverlayP('We\'re sorry, that PIN is incorrect, please try again.');
         }
       });
       $('#computer_withdraw_20').live('click', function() {
         if (player.bankAccount >= 20) {
           player.bankAccount -= 20;
           updateMoney(20);
-          changeOverlay('<p>$20 has successfully been transferred into your pocket. Magic!</p><input id="computer_withdraw_20" type="button" value="Withdraw $20"><input id="computer_withdraw_all" type="button" value="Withdraw All My Money"><input id="computer_logout" type="button" value="Log Out">');
+          changeOverlayP('$20 has successfully been transferred into your pocket. Magic!');
         } else {
-          changeOverlay('<p>We\'re sorry, you do not have that much money in your account at this time. If you would like to empty your account, please select "Withdraw All My Money."</p><input id="computer_withdraw_20" type="button" value="Withdraw $20"><input id="computer_withdraw_all" type="button" value="Withdraw All My Money"><input id="computer_logout" type="button" value="Log Out">');
+          changeOverlayP('We\'re sorry, you do not have that much money in your account at this time. If you would like to empty your account, please select "Withdraw All My Money."');
         }
       });
       $('#computer_withdraw_all').live('click', function() {
         if (player.bankAccount > 0) {
-          changeOverlay('<p>$' + player.bankAccount + ' has successfully been transferred into your pocket. Magic! Your account is empty, you cannot have any more money.</p><input id="computer_logout" type="button" value="Log Out">');
+          changeOverlayP('$' + player.bankAccount + ' has successfully been transferred into your pocket. Magic! Your account is empty, you cannot have any more money.');
           updateMoney(player.bankAccount);
           player.bankAccount = 0;
         } else {
-          changeOverlay('<p>Your account is empty, you cannot have any more money.</p><input id="computer_logout" type="button" value="Log Out">');
+          changeOverlayP('Your account is empty, you cannot have any more money.');
         }
       });
       $('#computer_logout').live('click', function() {
@@ -693,6 +693,9 @@ jQuery(document).ready(function($){
   }
   var changeOverlay = function(str) {
     $('#overlay').html(str);
+  }
+  var changeOverlayP = function(str) {
+    $('#overlay p').html(str);
   }
   var addData = function(str) {
     $('#data').html('<p>' + str + '</p>' + $('#data').html());
