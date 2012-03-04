@@ -475,6 +475,7 @@ jQuery(document).ready(function($){
         addData('Cannot add ' + prize.name + ' to your inventory, because it is full.');
       } 
     }
+    checkforAchievements(results, currentRoom.pos);
   }
   var updateHealth = function(health) {
     var lis = $('#health li');
@@ -555,6 +556,9 @@ jQuery(document).ready(function($){
     'room1' : function(results) {
     },
     'room2' : function(results) {
+      if (!player.achievements[0] && player.eventList.piggySmashed) {
+        player.achievements[0] = achievementUnlocked('<strong>Bad Dad:</strong> Smash your daugher\'s piggy bank.');
+      }
     },
     'room3' : function(results) {
     },
@@ -563,8 +567,8 @@ jQuery(document).ready(function($){
     'room5' : function(results) {
     },
     'room6' : function(results) {
-      if (!player.achievements[0] && player.outfit === 0) {
-        player.achievements[0] = achievementUnlocked('<strong>Brave Nude World:</strong> Go outside without getting dressed.');
+      if (!player.achievements[1] && player.outfit === 0) {
+        player.achievements[1] = achievementUnlocked('<strong>Brave Nude World:</strong> Go outside without getting dressed.');
       }
     }
   }
@@ -602,6 +606,7 @@ jQuery(document).ready(function($){
           $(results.interactElm).removeClass('interact');
           elements[results.interactPos].interact = null;
           results.interact = false;
+          player.eventList.piggySmashed = true;
         }
         hideOverlay();
       });
@@ -933,6 +938,7 @@ jQuery(document).ready(function($){
     } else {
       addData('You used ' + equip.name + '! Nothing happened.');
     }
+    checkforAchievements(results, currentRoom.pos);
   }
   var initializePlayer = function() {
     player = {
@@ -957,7 +963,10 @@ jQuery(document).ready(function($){
       'outfit' : 0,
       'playerSprite' : 0,
       'paused' : false,
-      'achievements' : [false,false,false,false]
+      'achievements' : [false,false,false,false],
+      'eventList' : {
+        'piggySmashed' : false
+      }
     };
   }
   var edit_control = function(event) {
