@@ -446,29 +446,9 @@ jQuery(document).ready(function($){
     }
     if (results.message) {
       if (results.person) {
-        if (results.messageOutfitDependent && !results.messageEquipDependent) {
-          for (var i = 0; i < results.messageElm.messages.length; i += 1) {
-            var str = $(results.messageElm.messages[i]).attr('class');
-            var outfit = parseInt(str.substr(str.indexOf('outfit')+6,1));
-            if (outfit === player.outfit) {
-              addData($(results.messageElm.messages[i]).html());
-            }
-          }
-        } else if (results.messageEquipDependent && !results.messageOutfitDependent) {
-          for (var i = 0; i < results.messageElm.messages; i += 1) {
-            var str = $(results.messageElm.messages[i]).attr('class');
-            var equip = parseInt(str.substr(str.indexOf('equip')+5,1));
-            if (equip === player.playerSprite) {
-              addData($(results.messageElm.messages[i]).html());
-            }
-          }
-        } else if (!results.messageEquipDependent && !results.messageOutfitDependent) {
-          addData($(results.messageElm.messages).html());
-        } else if (results.messageEquipDependent && results.messageOutfitDependent) {
-          
-        }
-      }
-      else {
+        determineMessage(results);
+      } else {
+        //this is if it's not a person
         addData($(results.messageElm.messages).html());
       }
     }
@@ -527,6 +507,41 @@ jQuery(document).ready(function($){
   }
   var updateMoney = function(money) {
     $('#money').html('$' + money);
+  }
+  var determineMessage = function(results) {
+    //messages default to equipDependent results, then to outfit dependent ones
+    if (results.messageOutfitDependent && !results.messageEquipDependent) {
+      for (var i = 0; i < results.messageElm.messages.length; i += 1) {
+        var str = $(results.messageElm.messages[i]).attr('class');
+        var outfit = parseInt(str.substr(str.indexOf('outfit')+6,1));
+        if (outfit === player.outfit) {
+          addData($(results.messageElm.messages[i]).html());
+        }
+      }
+    } else if (results.messageEquipDependent && !results.messageOutfitDependent) {
+      for (var i = 0; i < results.messageElm.messages.length; i += 1) {
+        var str = $(results.messageElm.messages[i]).attr('class');
+        var equip = parseInt(str.substring(str.indexOf('equip')+5));
+        if (equip === player.playerSprite) {
+          addData($(results.messageElm.messages[i]).html());
+        }
+      }
+    } else if (!results.messageEquipDependent && !results.messageOutfitDependent) {
+      addData($(results.messageElm.messages).html());
+    } else if (results.messageEquipDependent && results.messageOutfitDependent) {
+      var finalMessage = '';
+      for (var i = 0; i < results.messageElm.messages.length; i += 1) {
+        var str = $(results.messageElm.messages[i]).attr('class');
+        var equip = parseInt(str.substring(str.indexOf('equip')+5));
+        var outfit = parseInt(str.substr(str.indexOf('outfit')+6,1));
+        if (equip === player.playerSprite) {
+          finalMessage = $(results.messageElm.messages[i]).html();
+        } else if (outfit === player.outfit) {
+          finalMessage = $(results.messageElm.messages[i]).html();
+        }
+      }
+      addData(finalMessage);
+    }
   }
   var achievementUnlocked = function(str) {
     addData('Achievement Unlocked: ' + str);
@@ -593,9 +608,9 @@ jQuery(document).ready(function($){
       });
     }
   }
-  //right now interactions can only be dependent on the outfit OR the equipped item, not both
+  //interactions default to equipDependent results, then to outfit dependent ones
   var determineInteraction = function(results, roomNumber) {
-    if (results.interactOutfitDependent) {
+    if (results.interactOutfitDependent && !results.interactEquipDependent) {
       for (var i = 0; i < results.interactElm.interactions.length; i += 1) {
         var str = $(results.interactElm.interactions[i]).attr('class');
         var outfit = parseInt(str.substr(str.indexOf('outfit')+6,1));
@@ -603,16 +618,29 @@ jQuery(document).ready(function($){
           showOverlay($(results.interactElm.interactions[i]).html());
         }
       }
-    } else if (results.interactEquipDependent) {
+    } else if (results.interactEquipDependent && !results.interactOutfitDependent) {
       for (var i = 0; i < results.interactElm.interactions; i += 1) {
         var str = $(results.interactElm.interactions[i]).attr('class');
-        var equip = parseInt(str.substr(str.indexOf('equip')+5,1));
+        var equip = parseInt(str.substring(str.indexOf('equip')+5));
         if (equip === player.playerSprite) {
           showOverlay($(results.interactElm.interactions[i]).html());
         }
       }
-    } else {
+    } else if (!results.messageEquipDependent && !results.messageOutfitDependent) {
       showOverlay($(results.interactElm.interactions).html());
+    } else if (results.messageEquipDependent && results.messageOutfitDependent) {
+      var finalInteraction = '';
+      for (var i = 0; i < results.interactElm.interactions.length; i += 1) {
+        var str = $(results.interactElm.interactions[i]).attr('class');
+        var equip = parseInt(str.substring(str.indexOf('equip')+5));
+        var outfit = parseInt(str.substr(str.indexOf('outfit')+6,1));
+        if (equip === player.playerSprite) {
+          finalInteraction = $(results.interactElm.interactions[i]).html();
+        } else if (outfit === player.outfit) {
+          finalInteraction = $(results.interactElm.interactions[i]).html();
+        }
+      }
+      addData(finalInteraction);
     }
     roomInteractions['room' + roomNumber](results);
   }
