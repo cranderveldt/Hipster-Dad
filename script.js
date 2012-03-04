@@ -73,15 +73,14 @@ jQuery(document).ready(function($){
     if (results.hurt > 0) {
       player.currentHealth -= results.hurt;
       updateHealth(player.currentHealth);
-      
       if (player.currentHealth <= 0) {
         addData('You are dead.');
         $('#title').css('display','block');
         $('#title').html('<h1 class="dead">YOU ARE DEAD</h1><p class="dead">You died an ironic death.</p><p class="dead">Refresh the page to play again.</p>');
         player.paused = true;
       }
-      
     }
+    checkforAchievements(results, currentRoom.pos);
   };
   
   //These calculations check to see if inside movement is legal, then default to whatever outside movement finds
@@ -496,6 +495,33 @@ jQuery(document).ready(function($){
   var updateMoney = function(money) {
     $('#money').html('$' + money);
   }
+  var achievementUnlocked = function(str) {
+    addData('Achievement Unlocked: ' + str);
+    return true;
+  }
+  var roomAchievements = {
+    'room0' : function(results) {
+    },
+    'room1' : function(results) {
+    },
+    'room2' : function(results) {
+    },
+    'room3' : function(results) {
+    },
+    'room4' : function(results) {
+    },
+    'room5' : function(results) {
+    },
+    'room6' : function(results) {
+      if (!player.achievements[0] && player.outfit === 0) {
+        player.achievements[0] = achievementUnlocked('Brave Nude World - Go outside without getting dressed.');
+      }
+    }
+  }
+  //achievements are ROOM SPECIFIC, which may not always be the case, be aware
+  var checkforAchievements = function(results, roomNumber) {
+    roomAchievements['room' + roomNumber](results);
+  }
   var roomInteractions = {
     'room0' : function(results) {
       $('#dressed_yes').click(function() {
@@ -865,7 +891,8 @@ jQuery(document).ready(function($){
       'money' : 0,
       'outfit' : 0,
       'playerSprite' : 0,
-      'paused' : false
+      'paused' : false,
+      'achievements' : [false,false,false,false]
     };
   }
   var edit_control = function(event) {
