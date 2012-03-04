@@ -170,7 +170,7 @@ h1#name {
   line-height: 1.4;
   z-index: 55;
   top: 400px;
-  left: 70px;
+  left: 50px;
   border-radius: 40px;
   -moz-border-radius: 40px;
   box-shadow: 0 0 20px #444;
@@ -473,9 +473,9 @@ h1#name {
 }
 /*Office, Room 4*/
 #room.room4 {
-  width: 256px;
-  height: 300px;
-  top: 50px;
+  width: 200px;
+  height: 200px;
+  top: 80px;
   background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 .room4 #doorN {
@@ -484,30 +484,60 @@ h1#name {
   width: 40px;
   height: 7px;
 }
-.room4 .fire {
-  width: 32px;
-  height: 32px;
-  background: transparent url(images/elements/fire.png) 0 0 no-repeat;
-  top: 100px;
+.room4 .computer {
+  width: 40px;
+  height: 40px;
+  background: #777;
+  top: 104px;
   left: 55px;
 }
-.room4 .gun {
-  top: 140px;
-  left: 105px;
+.room4 .desk {
+  top: 110px;
+  left: 20px;
+  width: 130px;
+  height: 40px;
+  background: #714C22;
 }
 
 /*Kitchen, Room 5*/
 #room.room5 {
   width: 256px;
-  height: 300px;
+  height: 280px;
   top: 50px;
   background: #CCC url(images/textures/lamenated-floor.png) 0 0 repeat;
 }
 .room5 #doorW {
-  top: 190px;
+  top: 235px;
   left: -7px;
   width: 7px;
   height: 40px;
+}
+.room5 .counter {
+  background: #777;
+  top: 0px;
+  left: 0px;
+}
+.room5 .counter1 {
+  width: 200px;
+  height: 40px;
+}
+.room5 .counter2 {
+  width: 40px;
+  height: 230px;
+}
+.room5 .island {
+  width: 100px;
+  height: 80px;
+  top: 100px;
+  left: 100px;
+  background: #999;
+}
+.room5 .fridge {
+  width: 40px;
+  height: 60px;
+  top: 0px;
+  left: 210px;
+  background: #333;
 }
 /*Porch, Room 6*/
 #room.room6 {
@@ -575,6 +605,19 @@ h1#name {
   top: 400px;
   left: 400px;
   background: transparent url(images/people/earl.png) 0 0 repeat;
+}
+
+/*Unused elements*/
+.room4 .fire {
+  width: 32px;
+  height: 32px;
+  background: transparent url(images/elements/fire.png) 0 0 no-repeat;
+  top: 100px;
+  left: 55px;
+}
+.room4 .gun {
+  top: 140px;
+  left: 105px;
 }
 /* About, footer etc */
 #loading {

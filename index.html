@@ -120,15 +120,16 @@
       <div id="doorN" title="Porch" class="exit room6 door-05"></div>
     </li>
     <li title="Office" class="inside">
-      <div title="Fire" class="stuck message hurt fire">
-        <span class="hurt">3</span>
-        <span class="message">Don't know why there's a fire in here. Better not touch it.</span>
-      </div>
-      <div title="Gun" class="gun mobile"><span class="sprite">2</span></div>
       <div id="doorN" title="Living Room" class="exit room3 door-03"></div>
+      <div title="Desk" class="stuck desk"></div>
+      <div title="Computer" class="stuck computer interact"><span class="interact"><p>Welcome to CoolBank! Please enter your PIN to log in.</p><input id="computer_pin_ID" type="text"><input id="computer_pin_submit" type="button" value="Submit"><input id="computer_logout" type="button" value="Cancel"></span></div>
     </li>
     <li title="Kitchen" class="inside">
       <div id="doorW" title="Living Room" class="exit room3 door-04"></div>
+      <div title="Fridge" class="stuck message fridge"><span class="message">There's a note taped to the fridge. It says "3830" on it, written in your wife's handwriting.</span></div>
+      <div title="Counter" class="stuck counter counter1"></div>
+      <div title="Counter" class="stuck counter counter2"></div>
+      <div title="Island" class="stuck island"></div>
     </li>
     <li title="Porch" class="outside">
       <div id="doorS" title="Living Room" class="exit room3 door-05"></div>
@@ -140,6 +141,13 @@
       <div title="Driveway" class="passThru driveway stuck"></div>
       <div title="Garage" class="message garage stuck"><span class="message">Garage door is jammed, you keep forgetting to fix it.</span></div>
     </li>
+    <li title="Future Room">
+      <div title="Fire" class="stuck message hurt fire">
+        <span class="hurt">3</span>
+        <span class="message">Don't know why there's a fire in here. Better not touch it.</span>
+      </div>
+      <div title="Gun" class="gun mobile"><span class="sprite">2</span></div>
+    <li>
   </ul>
 </body>
 </html>

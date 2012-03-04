@@ -461,12 +461,11 @@ jQuery(document).ready(function($){
       prize.name = $(prize).attr('title');
       if ($(prize).attr('class').indexOf('money') !== -1) {
         var newMoney = parseInt($(prize).find('span.money').html());
-        player.money += newMoney;
         addData('You received $' + newMoney + '!');
         $(results.containerElm).css('background-position','right top');
         $(prize).removeClass('money');
         $(prize).remove();
-        updateMoney(player.money);
+        updateMoney(newMoney);
       }
       if ($(prize).attr('class').indexOf('mobile') !== -1 && !player.full) {
         addToInventory(elms, results.containerPos+1, prize);
@@ -507,7 +506,8 @@ jQuery(document).ready(function($){
     setDirection(player.dir, true);
   }
   var updateMoney = function(money) {
-    $('#money').html('$' + money);
+    player.money += money;
+    $('#money').html('$' + player.money);
   }
   var determineMessage = function(results) {
     //messages default to equipDependent results, then to outfit dependent ones
@@ -578,31 +578,30 @@ jQuery(document).ready(function($){
   }
   var roomInteractions = {
     'room0' : function(results) {
-      $('#dressed_yes').click(function() {
+      $('#dressed_yes').live('click', function() {
         changePlayerOutfit(1);
         hideOverlay();
       });
-      $('#undressed_yes').click(function() {
+      $('#undressed_yes').live('click', function() {
         changePlayerOutfit(0);
         hideOverlay();
       });
-      $('#change_clothes_no').click(function() {
+      $('#change_clothes_no').live('click', function() {
         hideOverlay();
       });
     },
     'room1' : function(results) {
     },
     'room2' : function(results) {
-      $('#piggy_smash_yes').click(function() {
+      $('#piggy_smash_yes').live('click', function() {
         var theMoney = $(results.interactElm).find('div');
         if ($(theMoney).attr('class').indexOf('money') !== -1) {
           var newMoney = parseInt($(theMoney).find('span.money').html());
-          player.money += newMoney;
           addData('You took $25 from your daughter\'s piggy bank. You are terrible.');
           $(results.interactElm).css('background-position','right top');
           $(theMoney).removeClass('money');
           $(theMoney).remove();
-          updateMoney(player.money);
+          updateMoney(newMoney);
           $(results.interactElm).removeClass('interact');
           elements[results.interactPos].interact = null;
           results.interact = false;
@@ -610,7 +609,39 @@ jQuery(document).ready(function($){
         }
         hideOverlay();
       });
-      $('#piggy_smash_no').click(function() {
+      $('#piggy_smash_no').live('click', function() {
+        hideOverlay();
+      });
+    },
+    'room4' : function(results) {
+      //this method messes up if you logout and try to log back in, something to do with the .live making multiple instances of each ID
+      $('#computer_pin_submit').live('click', function() {
+        var pinID = parseInt($('#computer_pin_ID').val());
+        if (!isNaN(pinID) && pinID === 3830) {
+          changeOverlay('<p>You are now logged in to your account. What would you like to do?</p><input id="computer_withdraw_20" type="button" value="Withdraw $20"><input id="computer_withdraw_all" type="button" value="Withdraw All My Money"><input id="computer_logout" type="button" value="Log Out">');
+        } else {
+          changeOverlay('<p>We\'re sorry, that PIN is incorrect, please try again.</p><input id="computer_pin_ID" type="text"><input id="computer_pin_submit" type="button" value="Submit"><input id="computer_logout" type="button" value="Cancel">');
+        }
+      });
+      $('#computer_withdraw_20').live('click', function() {
+        if (player.bankAccount >= 20) {
+          player.bankAccount -= 20;
+          updateMoney(20);
+          changeOverlay('<p>$20 has successfully been transferred into your pocket. Magic!</p><input id="computer_withdraw_20" type="button" value="Withdraw $20"><input id="computer_withdraw_all" type="button" value="Withdraw All My Money"><input id="computer_logout" type="button" value="Log Out">');
+        } else {
+          changeOverlay('<p>We\'re sorry, you do not have that much money in your account at this time. If you would like to empty your account, please select "Withdraw All My Money."</p><input id="computer_withdraw_20" type="button" value="Withdraw $20"><input id="computer_withdraw_all" type="button" value="Withdraw All My Money"><input id="computer_logout" type="button" value="Log Out">');
+        }
+      });
+      $('#computer_withdraw_all').live('click', function() {
+        if (player.bankAccount > 0) {
+          changeOverlay('<p>$' + player.bankAccount + ' has successfully been transferred into your pocket. Magic! Your account is empty, you cannot have any more money.</p><input id="computer_logout" type="button" value="Log Out">');
+          updateMoney(player.bankAccount);
+          player.bankAccount = 0;
+        } else {
+          changeOverlay('<p>Your account is empty, you cannot have any more money.</p><input id="computer_logout" type="button" value="Log Out">');
+        }
+      });
+      $('#computer_logout').live('click', function() {
         hideOverlay();
       });
     }
@@ -659,6 +690,9 @@ jQuery(document).ready(function($){
   var hideOverlay = function() {
     $('#overlay').css('display','none');
     player.paused = false;
+  }
+  var changeOverlay = function(str) {
+    $('#overlay').html(str);
   }
   var addData = function(str) {
     $('#data').html('<p>' + str + '</p>' + $('#data').html());
@@ -960,6 +994,7 @@ jQuery(document).ready(function($){
       'maxHealth' : 10,
       'currentHealth' : 10,
       'money' : 0,
+      'bankAccount' : 230,
       'outfit' : 0,
       'playerSprite' : 0,
       'paused' : false,
