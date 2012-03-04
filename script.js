@@ -518,7 +518,7 @@ jQuery(document).ready(function($){
       }
     }
   }
-  //achievements are ROOM SPECIFIC, which may not always be the case, be aware
+  //achievements are ROOM SPECIFIC, which may not always be the best method, be aware
   var checkforAchievements = function(results, roomNumber) {
     roomAchievements['room' + roomNumber](results);
   }
@@ -819,7 +819,9 @@ jQuery(document).ready(function($){
     if (dir === 'right'){
       results = calcOutsideRight(elms, inc);
     }
-    if (results.locked && $(equip).attr('class').indexOf('key') !== -1) {
+    if (equip === null) {
+      addData('Nothing equipped.');
+    } else if (results.locked && $(equip).attr('class').indexOf('key') !== -1) {
       var equipClasses = $(equip).attr('class');
       var elmClasses = $(results.lockedElm).attr('class');
       var equipDoorClass = equipClasses.substr(equipClasses.indexOf('door'),6);
@@ -862,11 +864,7 @@ jQuery(document).ready(function($){
         bullet.remove();
       });
     } else {
-      if (equip !== null) {
-        addData('You used ' + equip.name + '! Nothing happened.');
-      } else {
-        addData('Nothing equipped.');
-      }
+      addData('You used ' + equip.name + '! Nothing happened.');
     }
   }
   var initializePlayer = function() {
