@@ -337,9 +337,11 @@ jQuery(document).ready(function($){
       results.messagePos = pos;
       results.isElm = true;
     }
-    if (space < inc && elm.interact !== null) {
+    if (space < inc && elm.interactions !== null) {
       results.interactElm = elm;
       results.interact = true;
+      results.interactOutfitDependent = $(elm).attr('class').indexOf('outfit-dependent') !== -1;
+      results.interactEquipDependent = $(elm).attr('class').indexOf('equip-dependent') !== -1;
       results.interactPos = pos;
       results.isElm = true;
     }
@@ -496,12 +498,12 @@ jQuery(document).ready(function($){
   }
   var roomInteractions = {
     'room0' : function(results) {
-      $('#change_clothes_yes').click(function() {
-        if (player.outfit === 0) {
-          changePlayerOutfit(1);
-        } else if (player.outfit === 1) {
-          changePlayerOutfit(0);
-        }
+      $('#dressed_yes').click(function() {
+        changePlayerOutfit(1);
+        hideOverlay();
+      });
+      $('#undressed_yes').click(function() {
+        changePlayerOutfit(0);
         hideOverlay();
       });
       $('#change_clothes_no').click(function() {
@@ -532,8 +534,27 @@ jQuery(document).ready(function($){
       });
     }
   }
+  //right now interactions can only be dependent on the outfit OR the equipped item, not both
   var determineInteraction = function(results, roomNumber) {
-    showOverlay(results.interactElm.interact);
+    if (results.interactOutfitDependent) {
+      for (var i = 0; i < results.interactElm.interactions.length; i += 1) {
+        var str = $(results.interactElm.interactions[i]).attr('class');
+        var outfit = parseInt(str.substr(str.indexOf('outfit')+6,1));
+        if (outfit === player.outfit) {
+          showOverlay($(results.interactElm.interactions[i]).html());
+        }
+      }
+    } else if (results.interactEquipDependent) {
+      for (var i = 0; i < results.interactElm.interactions; i += 1) {
+        var str = $(results.interactElm.interactions[i]).attr('class');
+        var equip = parseInt(str.substr(str.indexOf('equip')+5,1));
+        if (equip === player.playerSprite) {
+          showOverlay($(results.interactElm.interactions[i]).html());
+        }
+      }
+    } else {
+      showOverlay($(results.interactElm.interactions).html());
+    }
     roomInteractions['room' + roomNumber](results);
   }
   var showOverlay = function(str) {
@@ -598,7 +619,7 @@ jQuery(document).ready(function($){
       elms[i].exit = false;
       elms[i].locked = false;
       elms[i].message = null;
-      elms[i].interact = null;
+      elms[i].interactions = null;
       elms[i].hurt = 0;
       elms[i].playerSprite = 0;
       elms[i].gun = false;
@@ -630,7 +651,7 @@ jQuery(document).ready(function($){
         elms[i].container = true;
       }
       if ($(elms[i]).attr('class').indexOf('interact') !== -1) {
-       elms[i].interact = $(elms[i]).find('span.interact').html();
+       elms[i].interactions = $(elms[i]).find('span.interact');
       }
       if ($(elms[i]).attr('class').indexOf('hurt') !== -1) {
         elms[i].hurt = parseInt($(elms[i]).find('span.hurt').html());
