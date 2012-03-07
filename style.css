@@ -613,12 +613,12 @@ h1#name {
   width: 32px;
   height: 32px;
   background: transparent url(images/elements/fire.png) 0 0 no-repeat;
-  top: 100px;
-  left: 55px;
+  top: 240px;
+  left: 20px;
 }
 .room4 .gun {
-  top: 140px;
-  left: 105px;
+  top: 130px;
+  left: 117px;
 }
 /* About, footer etc */
 #loading {
@@ -696,7 +696,7 @@ h1#name {
   text-align: center;
   margin: 15px 0;
 }
-#title input#play_again {
+#title input {
   margin: 50px auto;
   position: relative;
   width: 300px;
@@ -717,6 +717,6 @@ h1#name {
   font-size: 18px;
   text-shadow: 2px 2px 0 #444;
 }
-#title input#play_again:hover {
+#title input:hover {
   background: #AAA;
 }

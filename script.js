@@ -82,10 +82,13 @@ jQuery(document).ready(function($){
   var gameOver = function() {
     addData('You are dead.');
     $('#title').css('display','block');
-    $('#title').html('<h1 class="dead">YOU ARE DEAD</h1><p class="dead">You died an ironic death.</p><input id="play_again" type="button" value="Play Again">');
+    $('#title').html('<h1 class="dead">YOU ARE DEAD</h1><p class="dead">You died an ironic death.</p><p class="dead">Final Score: ' + player.money + '</p><input id="post_score" type="button" value="Post Your Score"><input id="play_again" type="button" value="Play Again">');
     player.paused = true;
     $('#play_again').live('click', function() {
       location.reload(true);
+    });
+    $('#post_score').live('click', function() {
+      //write to database
     });
   }
   //These calculations check to see if inside movement is legal, then default to whatever outside movement finds
@@ -965,8 +968,10 @@ jQuery(document).ready(function($){
     }
     checkforAchievements(results, currentRoom.pos);
   }
-  var killPerson = function(p, e, results) {
-    $(p).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
+  var killPerson = function(p, e, results, speed) {
+    window.setTimeout(function() {
+      $(p).css({backgroundPosition: '-' + e.width + 'px 0', width: e.height + 'px', height: e.width + 'px', top: (e.top + e.height - e.width) + 'px'});
+    }, speed+100);
     $(p).addClass('dead');
     $(p).removeClass('person');
     $(p).removeClass('message');
@@ -989,16 +994,16 @@ jQuery(document).ready(function($){
       }
       if ($(people[i]).attr('class').indexOf('dead') === -1) {
         if (dir === 'up' && e.top <= pY && e.left < pX && (e.left + e.width) > pX) {
-          killPerson(people[i], e, results);
+          killPerson(people[i], e, results, pY-e.top);
         }
         if (dir === 'down' && e.top >= pY && e.left < pX && (e.left + e.width) > pX) {
-          killPerson(people[i], e, results);
+          killPerson(people[i], e, results, e.top-pY);
         }
         if (dir === 'left' && e.left <= pX && e.top < pY && (e.top + e.height) > pY) {
-          killPerson(people[i], e, results);
+          killPerson(people[i], e, results, pX-e.left);
         }
         if (dir === 'right' && e.left >= pX && e.top < pY && (e.top + e.height) > pY) {
-          killPerson(people[i], e, results);
+          killPerson(people[i], e, results, e.left-pX);
         }
       }
     }
@@ -1030,8 +1035,8 @@ jQuery(document).ready(function($){
     }
     bullet.animate({ left : bulletTargetX + 'px', top : bulletTargetY + 'px' }, bulletSpeed, function() {
       bullet.remove();
-      checkBulletDamage(dir, player.left + (player.width/2), player.topUsed + (player.height/2), results);
     });
+    checkBulletDamage(dir, player.left + (player.width/2), player.topUsed + (player.height/2), results);
   }
   var initializePlayer = function() {
     player = {
