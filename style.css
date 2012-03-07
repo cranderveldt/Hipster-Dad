@@ -138,13 +138,15 @@ h1#name {
   display: inline;
 }
 #sound {
-  right: 20px;
-  top: 20px;
+  right: 10px;
+  top: 10px;
   display: block;
   position: absolute;
   width: 42px;
   height: 36px;
-  background: transparent url(images/hud/sound.png) 0 0 no-repeat;
+  background: transparent url(images/hud/sound2.png) 0 0 no-repeat;
+  cursor: pointer;
+  z-index: 15;
 }
 #sound.off {
   background-position: 0 100%;
