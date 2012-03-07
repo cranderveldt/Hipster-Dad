@@ -599,7 +599,11 @@ jQuery(document).ready(function($){
       if (!player.achievements[1] && player.outfit === 0) {
         player.achievements[1] = achievementUnlocked('<strong>Brave Nude World:</strong> Go outside without getting dressed.');
       }
-    }
+    },
+    'room7' : function(results){},
+    'room8' : function(results){},
+    'room9' : function(results){},
+    'room10' : function(results){}
   }
   //achievements are ROOM SPECIFIC, which may not always be the best method, be aware
   var checkforAchievements = function(results, roomNumber) {
@@ -619,8 +623,7 @@ jQuery(document).ready(function($){
         hideOverlay();
       });
     },
-    'room1' : function(results) {
-    },
+    'room1' : function(results) {},
     'room2' : function(results) {
       $('#piggy_smash_yes').live('click', function() {
         var theMoney = $(results.interactElm).find('div');
@@ -642,6 +645,7 @@ jQuery(document).ready(function($){
         hideOverlay();
       });
     },
+    'room3' : function(results){},
     'room4' : function(results) {
       //this method messes up if you logout and try to log back in, something to do with the .live making multiple instances of each ID
       $('#computer_pin_submit').click(function() {
@@ -673,7 +677,10 @@ jQuery(document).ready(function($){
       $('#computer_logout').live('click', function() {
         hideOverlay();
       });
-    }
+    },
+    'room5' : function(results){},
+    'room6' : function(results){},
+    'room7' : function(results){}
   }
   //interactions default to equipDependent results, then to outfit dependent ones
   var determineInteraction = function(results, roomNumber) {
@@ -860,7 +867,7 @@ jQuery(document).ready(function($){
     r.pos = pos;
     elements = getElements(currentRoom.elm);
     if (door !== null) {
-      movePlayerOutsideDoor(door, $('#elements').find('.exit'), player.dir);
+      movePlayerOutsideDoor(door, $('#elements').find('.exit'), player.dir, roomList.classes[prevPos], roomList.classes[pos]);
     } else {
       getLocationFromElement(r.elm.find('#start'));
     }
@@ -890,14 +897,14 @@ jQuery(document).ready(function($){
     player.left = left;
     player.elm.css('left', player.left + 'px');
   }
-  var movePlayerOutsideDoor = function(door, newDoorList, dir) {
+  var movePlayerOutsideDoor = function(door, newDoorList, dir, prevClasses, nextClasses) {
     var allClasses = door.attr('class');
     var doorClass = allClasses.substr(allClasses.indexOf('door'),7);
-    //var doorNum = parseInt(doorClass.substring(doorClass.indexOf('-')+1));
+    var isInside = prevClasses.indexOf('inside') !== -1 || nextClasses.indexOf('inside') !== -1;
     for (var i = 0; i < newDoorList.length; i+=1) {
       doorElm = $(newDoorList[i]);
       //these methods assume doors are 7px deep and 40px wide
-      if (doorElm.attr('class').indexOf(doorClass) !== -1) {
+      if (doorElm.attr('class').indexOf(doorClass) !== -1 && isInside) {
         if (dir === 'up') {
           setPlayerLocation(parseInt(doorElm.css('top'))-player.heightUsed, parseInt(doorElm.css('left')) + ((doorElm.width() - player.width)/2));
         }
@@ -909,6 +916,21 @@ jQuery(document).ready(function($){
         }
         if (dir === 'right') {
           setPlayerLocation(parseInt(doorElm.css('top')) + ((doorElm.height() - player.heightUsed)/2), parseInt(doorElm.css('left')) + doorElm.width());
+        }
+      }
+      if (doorElm.attr('class').indexOf(doorClass) !== -1 && !isInside) {
+        console.log('coming from an outside door')
+        if (dir === 'up') {
+          setPlayerLocation(parseInt(doorElm.css('top'))-player.heightUsed, player.left);
+        }
+        if (dir === 'down') {
+          setPlayerLocation(parseInt(doorElm.css('top'))+parseInt(doorElm.height()), player.left);
+        }
+        if (dir === 'left') {
+          setPlayerLocation(player.top, parseInt(doorElm.css('left'))-player.width);
+        }
+        if (dir === 'right') {
+          setPlayerLocation(player.top, parseInt(doorElm.css('left')) + doorElm.width());
         }
       }
     }

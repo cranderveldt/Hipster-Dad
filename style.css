@@ -298,7 +298,7 @@ h1#name {
 .sidewalk {
   background: #CCC url(images/textures/sidewalk.png) 0 0 repeat;
 }
-.driveway {
+.driveway, .road {
   background: #222 url(images/textures/asphalt.png) 0 0 repeat;
 }
 .bullet {
@@ -555,7 +555,11 @@ h1#name {
   background: #333;
 }
 /*Porch, Room 6*/
-#room.room6 {
+#room.room6,
+#room.room7,
+#room.room8,
+#room.room9,
+#room.room10 {
   background: #66a63c url(images/textures/grass.png) 0 0 repeat;
   width: 640px;
   height: 512px;
@@ -573,7 +577,7 @@ h1#name {
   width: 40px;
   height: 7px;
   top: 462px;
-  left: 300px;
+  left: 240px;
 }
 .room6 .fence {
   background: #cbbe88;
@@ -598,7 +602,7 @@ h1#name {
   width: 40px;
   height: 462px;
   top: 0px;
-  left: 300px;
+  left: 240px;
   background-position: 0 100%;
 }
 .room6 .driveway {
@@ -620,6 +624,181 @@ h1#name {
   top: 400px;
   left: 400px;
   background: transparent url(images/people/earl.png) 0 0 repeat;
+}
+/*Driveway, Room 7*/
+.room7 #doorS {
+  background: transparent;
+  width: 640px;
+  height: 7px;
+  top: 512px;
+  left: 0px;
+}
+.room7 #doorN {
+  background: transparent;
+  width: 640px;
+  height: 7px;
+  top: -7px;
+  left: 0px;
+}
+.room7 #doorE {
+  background: transparent;
+  width: 7px;
+  height: 512px;
+  top: 0px;
+  left: 640px;
+}
+.room7 #doorW {
+  background: transparent;
+  width: 7px;
+  height: 512px;
+  top: 0px;
+  left: -7px;
+}
+.room7 .fence {
+  background: #cbbe88;
+  top: 390px;
+}
+.room7 .fence1 {
+  left: 30px;
+  width: 10px;
+  height: 122px;
+}
+.room7 .fence2 {
+  left: 600px;
+  width: 10px;
+  height: 122px;
+}
+.room7 .fence3 {
+  left: 0px;
+  width: 80px;
+  height: 10px;
+}
+.room7 .fence4 {
+  left: 300px;
+  width: 340px;
+  height: 10px;
+}
+.room7 .sidewalk1 {
+  width: 40px;
+  height: 172px;
+  top: 340px;
+  left: 240px;
+}
+.room7 .sidewalk2 {
+  width: 640px;
+  height: 40px;
+  top: 340px;
+  left: 0px;
+}
+.room7 .sidewalk3 {
+  width: 640px;
+  height: 40px;
+  top: 100px;
+  left: 0px;
+}
+.room7 .driveway {
+  width: 100px;
+  height: 172px;
+  top: 340px;
+  left: 100px;
+}
+.room7 .road {
+  width: 640px;
+  height: 200px;
+  top: 140px;
+  left: 0px;
+}
+.room7 .road .line {
+  width: 100%;
+  border-bottom: 10px dashed yellow;
+  top: 95px;
+  left: 0px;
+  height: 0px;
+}
+/*Culdesac, Room 8*/
+.room8 #doorE {
+  background: transparent;
+  width: 7px;
+  height: 512px;
+  top: 0px;
+  left: 640px;
+}
+/*Forest Entrance, Room 9*/
+.room9 #doorS {
+  background: transparent;
+  width: 640px;
+  height: 7px;
+  top: 512px;
+  left: 0px;
+}
+/*Neighbor's Driveway, Room 10*/
+.room10 #doorW {
+  background: transparent;
+  width: 7px;
+  height: 512px;
+  top: 0px;
+  left: -7px;
+}
+.room10 .fence {
+  background: #cbbe88;
+  top: 390px;
+}
+.room10 .fence1 {
+  left: 30px;
+  width: 10px;
+  height: 122px;
+}
+.room10 .fence2 {
+  left: 600px;
+  width: 10px;
+  height: 122px;
+}
+.room10 .fence3 {
+  left: 0px;
+  width: 340px;
+  height: 10px;
+}
+.room10 .fence4 {
+  left: 560px;
+  width: 80px;
+  height: 10px;
+}
+.room10 .sidewalk1 {
+  width: 40px;
+  height: 172px;
+  top: 340px;
+  left: 360px;
+}
+.room10 .sidewalk2 {
+  width: 640px;
+  height: 40px;
+  top: 340px;
+  left: 0px;
+}
+.room10 .sidewalk3 {
+  width: 640px;
+  height: 40px;
+  top: 100px;
+  left: 0px;
+}
+.room10 .driveway {
+  width: 100px;
+  height: 172px;
+  top: 340px;
+  left: 440px;
+}
+.room10 .road {
+  width: 640px;
+  height: 200px;
+  top: 140px;
+  left: 0px;
+}
+.room10 .road .line {
+  width: 100%;
+  border-bottom: 10px dashed yellow;
+  top: 95px;
+  left: 0px;
+  height: 0px;
 }
 
 /*Unused elements*/
