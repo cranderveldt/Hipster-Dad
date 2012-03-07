@@ -507,7 +507,7 @@ jQuery(document).ready(function($){
   }
   var playMusic = function() {
     var music = '<audio controls="controls" autoplay="autoplay" loop="loop" class="audio" height="50px" width="100px"><source src="media/ipatch.mp3" type="audio/mpeg" /><source src="media/ipatch.ogg" type="audio/ogg" /><embed class="audio" height="50px" width="100px" src="media/ipatch.mp3" /></audio>';
-    $('#music').append(music);
+    /*$('#music').html(music);*/
     $('#sound').live('click', function() {
       if($('#music').html() === '') {
         $('#music').html(music);
