@@ -82,7 +82,7 @@ jQuery(document).ready(function($){
   var gameOver = function() {
     addData('You are dead.');
     $('#title').css('display','block');
-    $('#title').html('<h1 class="dead">YOU ARE DEAD</h1><p class="dead">You died an ironic death.</p><p class="dead">Final Score: ' + player.money + '</p><input id="post_score" type="button" value="Post Your Score"><input id="play_again" type="button" value="Play Again">');
+    $('#title').html('<h1 class="dead">YOU ARE DEAD</h1><p class="dead">You died an ironic death.</p><p class="dead">Final Score: ' + player.money + '</p><input id="post_score" style="display: none;" type="button" value="Post Your Score"><input id="play_again" type="button" value="Play Again">');
     player.paused = true;
     $('#play_again').live('click', function() {
       location.reload(true);
