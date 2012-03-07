@@ -609,7 +609,7 @@ h1#name {
 }
 
 /*Unused elements*/
-.room4 .fire {
+.room0 .fire {
   width: 32px;
   height: 32px;
   background: transparent url(images/elements/fire.png) 0 0 no-repeat;
@@ -695,4 +695,28 @@ h1#name {
   font-family: Arial, sans-serif;
   text-align: center;
   margin: 15px 0;
+}
+#title input#play_again {
+  margin: 50px auto;
+  position: relative;
+  width: 300px;
+  padding: 15px;
+  display: block;
+  border: 1px solid #444;
+  cursor: pointer;
+  border-radius: 8px;
+  -moz-border-radius: 8px;
+  background-color: #777;
+  background: -o-linear-gradient(top, #AAA, #777);
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#AAA), to(#777));
+  background: -webkit-linear-gradient(top, #AAA, #777);
+  background: -moz-linear-gradient(top, #AAA, #777);
+  background: -ms-linear-gradient(top, #AAA, #777);
+  background: -o-linear-gradient(top, #AAA, #777);
+  color: white;
+  font-size: 18px;
+  text-shadow: 2px 2px 0 #444;
+}
+#title input#play_again:hover {
+  background: #AAA;
 }

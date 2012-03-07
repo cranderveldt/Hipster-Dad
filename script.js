@@ -1,15 +1,14 @@
 /*To work on next time:
--spirtes????
 -if you have problems, you might want to check your substr/substring methods
 -add bouncing ball, make it do damage!
+-today we implement the death method, where we provide a button to refresh, and eventually a button to post a high score!
 Bugs:
 need to disable scrolling arrow keys (custom controls has helped this a bit)
-add gun damage!
+figure out how to reset the game without forcing a player to refresh
 custom control changing is a little wonky, and I would like to put that in a new javascript file anyway
 -if you double click on one then click off it always return to original default.
 -need a defaults button
 -need to figure out how to end events once they start. that will likely solve all the problems i'm having
--figure out how to reset the game without forcing a player to refresh
 */
 
 jQuery(document).ready(function($){
@@ -74,15 +73,21 @@ jQuery(document).ready(function($){
       player.currentHealth -= results.hurt;
       updateHealth(player.currentHealth);
       if (player.currentHealth <= 0) {
-        addData('You are dead.');
-        $('#title').css('display','block');
-        $('#title').html('<h1 class="dead">YOU ARE DEAD</h1><p class="dead">You died an ironic death.</p><p class="dead">Refresh the page to play again.</p>');
-        player.paused = true;
+        gameOver();
+        
       }
     }
     checkforAchievements(results, currentRoom.pos);
   };
-  
+  var gameOver = function() {
+    addData('You are dead.');
+    $('#title').css('display','block');
+    $('#title').html('<h1 class="dead">YOU ARE DEAD</h1><p class="dead">You died an ironic death.</p><input id="play_again" type="button" value="Play Again">');
+    player.paused = true;
+    $('#play_again').live('click', function() {
+      location.reload(true);
+    });
+  }
   //These calculations check to see if inside movement is legal, then default to whatever outside movement finds
   var calcUp = function (top, inc, elms) {
     var inside = calcInsideUp(top, inc);
