@@ -505,6 +505,19 @@ jQuery(document).ready(function($){
       }
     }
   }
+  var playMusic = function() {
+    var music = '<audio controls="controls" autoplay="autoplay" loop="loop" class="audio" height="50px" width="100px"><source src="media/ipatch.mp3" type="audio/mpeg" /><source src="media/ipatch.ogg" type="audio/ogg" /><embed class="audio" height="50px" width="100px" src="media/ipatch.mp3" /></audio>';
+    $('#music').append(music);
+    $('#sound').live('click', function() {
+      if($('#music').html() === '') {
+        $('#music').html(music);
+        $('#sound').removeClass('off');
+      } else {
+        $('#music').html('');
+        $('#sound').addClass('off');
+      }
+    });
+  }
   var changePlayerSprite = function(sprite) {
     var bgPos = player.elm.css('background-position');
     bgPosLeft = bgPos.substring(0, bgPos.indexOf(' '));
@@ -1178,6 +1191,7 @@ jQuery(document).ready(function($){
     initializeInventory();
     selectInvSlot(0);
     keyListener(keyAssignments);
+    playMusic();
   }
   var keyListener = function(controls) {
     $(document).keydown(function(e) {

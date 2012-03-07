@@ -137,6 +137,18 @@ h1#name {
   float: left;
   display: inline;
 }
+#sound {
+  right: 20px;
+  top: 20px;
+  display: block;
+  position: absolute;
+  width: 42px;
+  height: 36px;
+  background: transparent url(images/hud/sound.png) 0 0 no-repeat;
+}
+#sound.off {
+  background-position: 0 100%;
+}
 /* Game stuff*/
 #overlay {
   position: absolute;
@@ -720,3 +732,10 @@ h1#name {
 #title input:hover {
   background: #AAA;
 }
+#music .audio {
+  visibility: hidden;
+}
+#playlist {
+  display: none;
+}
+
