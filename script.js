@@ -409,24 +409,48 @@ jQuery(document).ready(function($){
   }
   var setDirection = function(dir, newOutfit) {
     if (dir === 'up' || dir === 'down' || dir === 'left' || dir === 'right'){
-      if (dir !== player.dir || newOutfit) {
+      //if (dir !== player.dir || newOutfit) {
         player.dir = dir;
         var bgPosTop = player.elm.css('background-position');
         bgPosTop = bgPosTop.substring(bgPosTop.indexOf(' ')+1)
         //23px x 41px
         if (dir === 'up') {
-          player.elm.css('background-position', '-' + ((player.width*0)+(player.outfit*player.width*4)) + 'px ' + bgPosTop);
+          player.elm.css('background-position', '-' + ((player.width*4)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+          window.setTimeout(function() {
+            player.elm.css('background-position', '-' + ((player.width*8)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            window.setTimeout(function() {
+              player.elm.css('background-position', '-' + ((player.width*0)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            }, player.speed/2);
+          }, player.speed/2);
         }
         if (dir === 'down') {
-          player.elm.css('background-position','-' + ((player.width*1)+(player.outfit*player.width*4)) + 'px ' + bgPosTop);
+          player.elm.css('background-position','-' + ((player.width*5)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+          window.setTimeout(function() {
+            player.elm.css('background-position', '-' + ((player.width*9)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            window.setTimeout(function() {
+              player.elm.css('background-position', '-' + ((player.width*1)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            }, player.speed/2);
+          }, player.speed/2);
         }
         if (dir === 'left') {
-          player.elm.css('background-position','-' + ((player.width*2)+(player.outfit*player.width*4)) + 'px ' + bgPosTop);
+          player.elm.css('background-position','-' + ((player.width*6)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+          window.setTimeout(function() {
+            player.elm.css('background-position', '-' + ((player.width*10)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            window.setTimeout(function() {
+              player.elm.css('background-position', '-' + ((player.width*2)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            }, player.speed/2);
+          }, player.speed/2);
         }
         if (dir === 'right') {
-          player.elm.css('background-position','-' + ((player.width*3)+(player.outfit*player.width*4)) + 'px ' + bgPosTop);
+          player.elm.css('background-position','-' + ((player.width*7)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+          window.setTimeout(function() {
+            player.elm.css('background-position', '-' + ((player.width*11)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            window.setTimeout(function() {
+              player.elm.css('background-position', '-' + ((player.width*3)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            }, player.speed/2);
+          }, player.speed/2);
         }
-      }
+      //}
     }
   }
   var addToInventory = function(elms, pos, m) {
@@ -938,7 +962,6 @@ jQuery(document).ready(function($){
         }
       }
       if (doorElm.attr('class').indexOf(doorClass) !== -1 && !isInside) {
-        console.log('coming from an outside door')
         if (dir === 'up') {
           setPlayerLocation(parseInt(doorElm.css('top'))-player.heightUsed, player.left, false);
         }
@@ -1107,7 +1130,7 @@ jQuery(document).ready(function($){
       'dir' : 'down',
       'equip' : '',
       'inc' : 20,
-      'speed' : 100,
+      'speed' : 200,
       'inventory' : [null,null,null,null,null,null,null,null,null],
       'full' : false,
       'invPos' : 0,
