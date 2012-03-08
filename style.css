@@ -298,8 +298,21 @@ h1#name {
 .sidewalk {
   background: #CCC url(images/textures/sidewalk.png) 0 0 repeat;
 }
-.driveway, .road {
+.driveway, .road, .hroad, .vroad {
   background: #222 url(images/textures/asphalt.png) 0 0 repeat;
+}
+.hroad {
+  width: 640px;
+  height: 200px;
+  top: 140px;
+  left: 0px;
+}
+.hroad .line {
+  width: 100%;
+  border-bottom: 10px dashed yellow;
+  top: 95px;
+  left: 0px;
+  height: 0px;
 }
 .bullet {
   width: 4px;
@@ -312,6 +325,41 @@ h1#name {
   position: absolute;
   display: block;
   z-index: 15;
+}
+.outside #doorS {
+  background: transparent;
+  width: 640px;
+  height: 7px;
+  top: 512px;
+  left: 0px;
+}
+.outside #doorN {
+  background: transparent;
+  width: 640px;
+  height: 7px;
+  top: -7px;
+  left: 0px;
+}
+.outside #doorE {
+  background: transparent;
+  width: 7px;
+  height: 512px;
+  top: 0px;
+  left: 640px;
+}
+.outside #doorW {
+  background: transparent;
+  width: 7px;
+  height: 512px;
+  top: 0px;
+  left: -7px;
+}
+#room.outside {
+  background: #66a63c url(images/textures/grass.png) 0 0 repeat;
+  width: 640px;
+  height: 512px;
+  top: 0px;
+  left: 0px;
 }
 #elements .chest div {
   visibility: hidden;
@@ -555,24 +603,6 @@ h1#name {
   background: #333;
 }
 /*Porch, Room 6*/
-#room.room6,
-#room.room7,
-#room.room8,
-#room.room9,
-#room.room10 {
-  background: #66a63c url(images/textures/grass.png) 0 0 repeat;
-  width: 640px;
-  height: 512px;
-  top: 0px;
-  left: 0px;
-}
-.room6 #doorN {
-  background: transparent;
-  width: 640px;
-  height: 7px;
-  top: -7px;
-  left: 0px;
-}
 .room6 #doorS {
   width: 40px;
   height: 7px;
@@ -626,34 +656,6 @@ h1#name {
   background: transparent url(images/people/earl.png) 0 0 repeat;
 }
 /*Driveway, Room 7*/
-.room7 #doorS {
-  background: transparent;
-  width: 640px;
-  height: 7px;
-  top: 512px;
-  left: 0px;
-}
-.room7 #doorN {
-  background: transparent;
-  width: 640px;
-  height: 7px;
-  top: -7px;
-  left: 0px;
-}
-.room7 #doorE {
-  background: transparent;
-  width: 7px;
-  height: 512px;
-  top: 0px;
-  left: 640px;
-}
-.room7 #doorW {
-  background: transparent;
-  width: 7px;
-  height: 512px;
-  top: 0px;
-  left: -7px;
-}
 .room7 .fence {
   background: #cbbe88;
   top: 390px;
@@ -702,43 +704,70 @@ h1#name {
   top: 340px;
   left: 100px;
 }
-.room7 .road {
-  width: 640px;
-  height: 200px;
-  top: 140px;
-  left: 0px;
-}
-.room7 .road .line {
-  width: 100%;
-  border-bottom: 10px dashed yellow;
-  top: 95px;
-  left: 0px;
-  height: 0px;
-}
 /*Culdesac, Room 8*/
-.room8 #doorE {
-  background: transparent;
-  width: 7px;
+.room8 .hroad {
+  left: 90px;
+  width: 550px;
+}
+.room8 .sidewalk1 {
+  width: 40px;
+  height: 280px;
+  top: 100px;
+  left: 50px;
+}
+.room8 .sidewalk2 {
+  width: 550px;
+  height: 40px;
+  top: 340px;
+  left: 90px;
+}
+.room8 .sidewalk3 {
+  width: 550px;
+  height: 40px;
+  top: 100px;
+  left: 90px;
+}
+.room8 .sidewalk4 {
+  width: 40px;
+  height: 172px;
+  top: 340px;
+  left: 360px;
+}
+.room8 .driveway {
+  width: 100px;
+  height: 172px;
+  top: 340px;
+  left: 440px;
+}
+.room8 .fence {
+  background: #cbbe88;
+  top: 390px;
+}
+.room8 .fence1 {
+  left: 30px;
+  width: 10px;
   height: 512px;
   top: 0px;
-  left: 640px;
 }
+.room8 .fence2 {
+  left: 600px;
+  width: 10px;
+  height: 122px;
+}
+.room8 .fence3 {
+  left: 30px;
+  width: 310px;
+  height: 10px;
+}
+.room8 .fence4 {
+  left: 560px;
+  width: 80px;
+  height: 10px;
+}
+
 /*Forest Entrance, Room 9*/
-.room9 #doorS {
-  background: transparent;
-  width: 640px;
-  height: 7px;
-  top: 512px;
-  left: 0px;
-}
-/*Neighbor's Driveway, Room 10*/
-.room10 #doorW {
-  background: transparent;
-  width: 7px;
-  height: 512px;
-  top: 0px;
-  left: -7px;
-}
+
+/*Allen's Driveway, Room 10*/
 .room10 .fence {
   background: #cbbe88;
   top: 390px;
@@ -787,19 +816,10 @@ h1#name {
   top: 340px;
   left: 440px;
 }
-.room10 .road {
-  width: 640px;
-  height: 200px;
-  top: 140px;
-  left: 0px;
-}
-.room10 .road .line {
-  width: 100%;
-  border-bottom: 10px dashed yellow;
-  top: 95px;
-  left: 0px;
-  height: 0px;
-}
+/*Allen's Porch, Room 11*/
+
+/*Road, Room 12*/
+
 
 /*Unused elements*/
 .room0 .fire {

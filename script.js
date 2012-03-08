@@ -1,7 +1,7 @@
 /*To work on next time:
 -if you have problems, you might want to check your substr/substring methods
 -add bouncing ball, make it do damage!
--today we implement the death method, where we provide a button to refresh, and eventually a button to post a high score!
+-figure out write to sql with node.js
 Bugs:
 need to disable scrolling arrow keys (custom controls has helped this a bit)
 figure out how to reset the game without forcing a player to refresh
@@ -13,6 +13,7 @@ custom control changing is a little wonky, and I would like to put that in a new
 
 jQuery(document).ready(function($){
   var keyAssignments = {}
+  var startingRoom = 8;
   var currentRoom = {};
   var roomList = {
     'HTML' : [],
@@ -877,10 +878,18 @@ jQuery(document).ready(function($){
     roomList.HTML[pos] = r.elm.find('#elements').html();
   }
   var getLocationFromElement = function(elm) {
-    var tempStart = elm.html();
-    var playerStart = {
-      'top' : parseInt(tempStart.substring(tempStart.indexOf('top:') + 4,tempStart.indexOf('px,'))),
-      'left' : parseInt(tempStart.substring(tempStart.indexOf('left:') + 5))
+    var playerStart = {};
+    if (elm.html() !== null) {
+      var tempStart = elm.html();
+      playerStart = {
+        'top' : parseInt(tempStart.substring(tempStart.indexOf('top:') + 4,tempStart.indexOf('px,'))),
+        'left' : parseInt(tempStart.substring(tempStart.indexOf('left:') + 5))
+      };
+    } else {
+      playerStart = {
+        'top' : 50,
+        'left' : 50
+      };
     }
     setPlayerLocation(playerStart.top, playerStart.left);
   }
@@ -1211,7 +1220,7 @@ jQuery(document).ready(function($){
     $('#title').css('display','none');
     initializePlayer();
     initializeRooms();
-    currentRoom = setRoom(currentRoom, 0, 0, null);
+    currentRoom = setRoom(currentRoom, startingRoom, 0, null);
     initializeInventory();
     selectInvSlot(0);
     keyListener(keyAssignments);

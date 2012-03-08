@@ -75,7 +75,7 @@
         </span>
       </div>
       <a class="link" id="title-blog" target="_blank" href="http://blog.hipsterdadgame.com/">Blog</a>
-      <p class="version">v0.1.9 Pre-alpha</p>
+      <p class="version">v0.2.0 Pre-alpha</p>
     </div>
   </div>
   <ul id="inventory"></ul>
@@ -153,7 +153,7 @@
     <li title="Driveway" class="outside">
       <div id="doorS" title="Porch" class="exit room6 door-06"></div>
       <div id="doorN" title="Forest Entrance" class="exit room9 door-08"></div>
-      <div id="doorE" title="Neighbor's Driveway" class="exit room10 door-09"></div>
+      <div id="doorE" title="Allen's Driveway" class="exit room10 door-09"></div>
       <div id="doorW" title="Culdesec" class="exit room8 door-07"></div>
       <div title="Fence" class="stuck fence fence1"></div>
       <div title="Fence" class="stuck fence fence2"></div>
@@ -163,18 +163,34 @@
       <div title="Sidewalk" class="passThru sidewalk sidewalk2 stuck"></div>
       <div title="Sidewalk" class="passThru sidewalk sidewalk3 stuck"></div>
       <div title="Driveway" class="passThru driveway stuck"></div>
-      <div title="Road" class="passThru road stuck">
+      <div title="Road" class="passThru hroad stuck">
         <div class="line passThru"></div>
       </div>
     </li>
     <li title="Culdesac" class="outside">
       <div id="doorE" title="Driveway" class="exit room7 door-07"></div>
+      <div id="doorN" title="Playground" class="exit room16 door-15"></div>
+      <div id="doorS" title="Jerry's Porch" class="exit room17 door-16"></div>
+      <div title="Sidewalk" class="passThru sidewalk sidewalk4 stuck"></div>
+      <div title="Sidewalk" class="passThru sidewalk sidewalk1 stuck"></div>
+      <div title="Sidewalk" class="passThru sidewalk sidewalk2 stuck"></div>
+      <div title="Sidewalk" class="passThru sidewalk sidewalk3 stuck"></div>
+      <div title="Driveway" class="passThru driveway stuck"></div>
+      <div title="Fence" class="stuck fence fence1"></div>
+      <div title="Fence" class="stuck fence fence2"></div>
+      <div title="Fence" class="stuck fence fence3"></div>
+      <div title="Fence" class="stuck fence fence4"></div>
+      <div title="Road" class="passThru hroad stuck">
+        <div class="line passThru"></div>
+      </div>
     </li>
     <li title="Forest Entrance" class="outside">
       <div id="doorS" title="Driveway" class="exit room7 door-08"></div>
     </li>
-    <li title="Neighbor's Driveway" class="outside">
+    <li title="Allen's Driveway" class="outside">
       <div id="doorW" title="Driveway" class="exit room7 door-09"></div>
+      <div id="doorE" title="Road" class="exit room12 door-11"></div>
+      <div id="doorS" title="Allen's Porch" class="exit room11 door-10"></div>
       <div title="Fence" class="stuck fence fence1"></div>
       <div title="Fence" class="stuck fence fence2"></div>
       <div title="Fence" class="stuck fence fence3"></div>
@@ -183,17 +199,65 @@
       <div title="Sidewalk" class="passThru sidewalk sidewalk2 stuck"></div>
       <div title="Sidewalk" class="passThru sidewalk sidewalk3 stuck"></div>
       <div title="Driveway" class="passThru driveway stuck"></div>
-      <div title="Road" class="passThru road stuck">
+      <div title="Road" class="passThru hroad stuck">
         <div class="line passThru"></div>
       </div>
     </li>
-    <li title="Future Room">
-      <div title="Fire" class="stuck message hurt fire">
-        <span class="hurt">3</span>
-        <span class="message">Don't know why there's a fire in here. Better not touch it.</span>
+    <li title="Allen's Porch" class="outside">
+      <div id="doorN" title="Allen's Driveway" class="exit room10 door-10"></div>
+      <div title="House" class="stuck house"></div>
+      <div title="Fence" class="stuck fence fence1"></div>
+      <div title="Fence" class="stuck fence fence2"></div>
+      <div title="Sidewalk" class="passThru sidewalk stuck"></div>
+      <div title="Driveway" class="passThru driveway stuck"></div>
+      <div title="Garage" class="message garage locked exit"></div>
+    </li>
+    <li title="Road" class="outside">
+      <div id="doorW" title="Allen's Driveway" class="exit room10 door-11"></div>
+      <div id="doorE" title="Road" class="exit room13 door-12"></div>
+      <div title="Road" class="passThru hroad stuck">
+        <div class="line passThru"></div>
       </div>
-      <div title="Gun" class="gun mobile"><span class="sprite">2</span></div>
-    <li>
+    </li>
+    <li title="Road" class="outside">
+      <div id="doorW" title="Road" class="exit room12 door-12"></div>
+      <div id="doorE" title="Road" class="exit room14 door-13"></div>
+      <div title="Road" class="passThru hroad stuck">
+        <div class="line passThru"></div>
+      </div>
+    </li>
+    <li title="Road" class="outside">
+      <div id="doorW" title="Road" class="exit room13 door-13"></div>
+      <div id="doorE" title="Road" class="exit room15 door-14"></div>
+      <div title="Road" class="passThru hroad stuck">
+        <div class="line passThru"></div>
+      </div>
+    </li>
+    <li title="Road" class="outside">
+      <div id="doorW" title="Road" class="exit room14 door-14"></div>
+      <div id="doorE" title="Town" class="exit room18 door-17"></div>
+      <div title="Road" class="passThru hroad stuck">
+        <div class="line passThru"></div>
+      </div>
+    </li>
+    <li title="Playground" class="outside">
+      <div id="doorS" title="Culdesac" class="exit room8 door-15"></div>
+    </li>
+    <li title="Jerry's Porch" class="outside">
+      <div id="doorN" title="Culdesac" class="exit room8 door-16"></div>
+      <div title="House" class="stuck house"></div>
+      <div title="Fence" class="stuck fence fence1"></div>
+      <div title="Fence" class="stuck fence fence2"></div>
+      <div title="Sidewalk" class="passThru sidewalk stuck"></div>
+      <div title="Driveway" class="passThru driveway stuck"></div>
+      <div title="Garage" class="message garage locked exit"></div>
+    </li>
+    <li title="Town" class="outside">
+      <div id="doorW" title="Road" class="exit room15 door-17"></div>
+      <div title="Road" class="passThru hroad stuck">
+        <div class="line passThru"></div>
+      </div>
+    </li>
   </ul>
   <div id="music">
   </div>
