@@ -29,9 +29,9 @@ jQuery(document).ready(function($){
     if (vert < 0) {
       results = calcUp(currentTop, player.inc, elements);
       if (results.lowest === player.inc && !results.isElm) {
-        updatePlayerTop(currentTop+(vert*results.inside));
+        updatePlayerTop(currentTop+(vert*results.inside), true);
       } else {
-        updatePlayerTop(currentTop+(vert*results.lowest));
+        updatePlayerTop(currentTop+(vert*results.lowest), true);
       }
       setDirection('up', false);
     }
@@ -39,27 +39,27 @@ jQuery(document).ready(function($){
     if (vert > 0) {
       results = calcDown(currentTop, player.inc, elements);
       if (results.lowest === player.inc && !results.isElm) {
-        updatePlayerTop(currentTop+(vert*results.inside));
+        updatePlayerTop(currentTop+(vert*results.inside), true);
       } else {
-        updatePlayerTop(currentTop+(vert*results.lowest));
+        updatePlayerTop(currentTop+(vert*results.lowest), true);
       }
       setDirection('down', false);
     } 
     if (horz < 0) {
       results = calcLeft(currentLeft, player.inc, elements);
       if (results.lowest === player.inc && !results.isElm) {
-        updatePlayerLeft(currentLeft+(horz*results.inside));
+        updatePlayerLeft(currentLeft+(horz*results.inside), true);
       } else {
-        updatePlayerLeft(currentLeft+(horz*results.lowest));
+        updatePlayerLeft(currentLeft+(horz*results.lowest), true);
       }
       setDirection('left', false);
     }
     if (horz > 0) {
       results = calcRight(currentLeft, player.inc, elements);
       if (results.lowest === player.inc && !results.isElm) {
-        updatePlayerLeft(currentLeft+(horz*results.inside));
+        updatePlayerLeft(currentLeft+(horz*results.inside), true);
       } else {
-        updatePlayerLeft(currentLeft+(horz*results.lowest));
+        updatePlayerLeft(currentLeft+(horz*results.lowest), true);
       }
       setDirection('right', false);
     }
@@ -891,20 +891,30 @@ jQuery(document).ready(function($){
         'left' : 50
       };
     }
-    setPlayerLocation(playerStart.top, playerStart.left);
+    setPlayerLocation(playerStart.top, playerStart.left, false);
   }
-  var setPlayerLocation = function(top,left) {
-    updatePlayerTop(top);
-    updatePlayerLeft(left);
+  var setPlayerLocation = function(top,left, animate) {
+    updatePlayerTop(top, animate);
+    updatePlayerLeft(left, animate);
   }
-  var updatePlayerTop = function(top) {
+  var updatePlayerTop = function(top, animate) {
     player.top = top;
     player.topUsed = top-player.heightReduction;
-    player.elm.css('top', player.topUsed + 'px');
+    if (animate) {
+      player.elm.stop().animate({ top : player.topUsed + 'px', left : player.left + 'px' }, player.speed);
+    } else {
+      player.elm.stop();
+      player.elm.css('top', player.topUsed + 'px');
+    }
   }
-  var updatePlayerLeft = function(left) {
+  var updatePlayerLeft = function(left, animate) {
     player.left = left;
-    player.elm.css('left', player.left + 'px');
+    if (animate) {
+      player.elm.stop().animate({ top : player.topUsed + 'px', left : player.left + 'px' }, player.speed);
+    } else {
+      player.elm.stop();
+      player.elm.css('left', player.left + 'px');
+    }
   }
   var movePlayerOutsideDoor = function(door, newDoorList, dir, prevClasses, nextClasses) {
     var allClasses = door.attr('class');
@@ -915,31 +925,31 @@ jQuery(document).ready(function($){
       //these methods assume doors are 7px deep and 40px wide
       if (doorElm.attr('class').indexOf(doorClass) !== -1 && isInside) {
         if (dir === 'up') {
-          setPlayerLocation(parseInt(doorElm.css('top'))-player.heightUsed, parseInt(doorElm.css('left')) + ((doorElm.width() - player.width)/2));
+          setPlayerLocation(parseInt(doorElm.css('top'))-player.heightUsed, parseInt(doorElm.css('left')) + ((doorElm.width() - player.width)/2), false);
         }
         if (dir === 'down') {
-          setPlayerLocation(parseInt(doorElm.css('top'))+parseInt(doorElm.height()), parseInt(doorElm.css('left')) + ((doorElm.width() - player.width)/2));
+          setPlayerLocation(parseInt(doorElm.css('top'))+parseInt(doorElm.height()), parseInt(doorElm.css('left')) + ((doorElm.width() - player.width)/2), false);
         }
         if (dir === 'left') {
-          setPlayerLocation(parseInt(doorElm.css('top')) + ((doorElm.height() - player.heightUsed)/2), parseInt(doorElm.css('left'))-player.width);
+          setPlayerLocation(parseInt(doorElm.css('top')) + ((doorElm.height() - player.heightUsed)/2), parseInt(doorElm.css('left'))-player.width, false);
         }
         if (dir === 'right') {
-          setPlayerLocation(parseInt(doorElm.css('top')) + ((doorElm.height() - player.heightUsed)/2), parseInt(doorElm.css('left')) + doorElm.width());
+          setPlayerLocation(parseInt(doorElm.css('top')) + ((doorElm.height() - player.heightUsed)/2), parseInt(doorElm.css('left')) + doorElm.width(), false);
         }
       }
       if (doorElm.attr('class').indexOf(doorClass) !== -1 && !isInside) {
         console.log('coming from an outside door')
         if (dir === 'up') {
-          setPlayerLocation(parseInt(doorElm.css('top'))-player.heightUsed, player.left);
+          setPlayerLocation(parseInt(doorElm.css('top'))-player.heightUsed, player.left, false);
         }
         if (dir === 'down') {
-          setPlayerLocation(parseInt(doorElm.css('top'))+parseInt(doorElm.height()), player.left);
+          setPlayerLocation(parseInt(doorElm.css('top'))+parseInt(doorElm.height()), player.left, false);
         }
         if (dir === 'left') {
-          setPlayerLocation(player.top, parseInt(doorElm.css('left'))-player.width);
+          setPlayerLocation(player.top, parseInt(doorElm.css('left'))-player.width, false);
         }
         if (dir === 'right') {
-          setPlayerLocation(player.top, parseInt(doorElm.css('left')) + doorElm.width());
+          setPlayerLocation(player.top, parseInt(doorElm.css('left')) + doorElm.width(), false);
         }
       }
     }
@@ -1096,7 +1106,8 @@ jQuery(document).ready(function($){
       'heightReduction' : 22,
       'dir' : 'down',
       'equip' : '',
-      'inc' : 10,
+      'inc' : 20,
+      'speed' : 100,
       'inventory' : [null,null,null,null,null,null,null,null,null],
       'full' : false,
       'invPos' : 0,

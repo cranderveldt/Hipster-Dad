@@ -206,7 +206,39 @@ h1#name {
   border: 25px inset #80603E;
 }
 #room.outside {
-  
+  background: #66a63c url(images/textures/grass.png) 0 0 repeat;
+  width: 640px;
+  height: 512px;
+  top: 0px;
+  left: 0px;
+}
+.outside #doorS {
+  background: transparent;
+  width: 640px;
+  height: 7px;
+  top: 512px;
+  left: 0px;
+}
+.outside #doorN {
+  background: transparent;
+  width: 640px;
+  height: 7px;
+  top: -7px;
+  left: 0px;
+}
+.outside #doorE {
+  background: transparent;
+  width: 7px;
+  height: 512px;
+  top: 0px;
+  left: 640px;
+}
+.outside #doorW {
+  background: transparent;
+  width: 7px;
+  height: 512px;
+  top: 0px;
+  left: -7px;
 }
 #player {
   width: 23px;
@@ -325,41 +357,6 @@ h1#name {
   position: absolute;
   display: block;
   z-index: 15;
-}
-.outside #doorS {
-  background: transparent;
-  width: 640px;
-  height: 7px;
-  top: 512px;
-  left: 0px;
-}
-.outside #doorN {
-  background: transparent;
-  width: 640px;
-  height: 7px;
-  top: -7px;
-  left: 0px;
-}
-.outside #doorE {
-  background: transparent;
-  width: 7px;
-  height: 512px;
-  top: 0px;
-  left: 640px;
-}
-.outside #doorW {
-  background: transparent;
-  width: 7px;
-  height: 512px;
-  top: 0px;
-  left: -7px;
-}
-#room.outside {
-  background: #66a63c url(images/textures/grass.png) 0 0 repeat;
-  width: 640px;
-  height: 512px;
-  top: 0px;
-  left: 0px;
 }
 #elements .chest div {
   visibility: hidden;
@@ -608,6 +605,7 @@ h1#name {
   height: 7px;
   top: 462px;
   left: 240px;
+  background: #000;
 }
 .room6 .fence {
   background: #cbbe88;
