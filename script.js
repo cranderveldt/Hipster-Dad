@@ -618,8 +618,9 @@ jQuery(document).ready(function($){
     }
   }
   //achievements are ROOM SPECIFIC, which may not always be the best method, be aware
+  //also now this if statement has to specify which rooms have achievements, which is really bad
   var checkforAchievements = function(results, roomNumber) {
-    if (roomNumber < roomList.length) {
+    if (roomNumber === 2 || roomNumber === 6) {
       roomAchievements['room' + roomNumber](results);
     }
   }

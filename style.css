@@ -891,8 +891,14 @@ h1#name {
 }
 .room10 .fence4 {
   left: 560px;
-  width: 80px;
+  width: 50px;
   height: 10px;
+}
+.room10 .fence5 {
+  left: 610px;
+  width: 30px;
+  height: 10px;
+  top: 472px;
 }
 .room10 .sidewalk1 {
   width: 40px;
@@ -987,6 +993,14 @@ h1#name {
   background: transparent url(images/textures/garage.png) 0 0 repeat;
 }
 /*Road, Rooms 12-15*/
+.room12 .tree1 {
+  background-position: 100% 100%;
+  top: 0px;
+  left: 0px;
+  width: 60px;
+  height: 90px;
+}
+
 .room12 .sidewalk1,
 .room13 .sidewalk1,
 .room14 .sidewalk1,
