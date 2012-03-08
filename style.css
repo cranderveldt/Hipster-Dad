@@ -324,6 +324,11 @@ h1#name {
   height: 64px;
   background: transparent url(images/elements/table.png) 0 0 no-repeat;
 }
+.sign {
+  width: 32px;
+  height: 32px;
+  background: transparent url(images/elements/sign.png) 0 0 no-repeat;
+}
 #projectile {
   position: static;
 }
@@ -357,6 +362,11 @@ h1#name {
   position: absolute;
   display: block;
   z-index: 15;
+}
+.tree {
+    background: transparent url(images/elements/tree.png) 0 0 no-repeat;
+    width: 115px;
+    height: 151px;
 }
 #elements .chest div {
   visibility: hidden;
@@ -702,6 +712,18 @@ h1#name {
   top: 340px;
   left: 100px;
 }
+.room7 .tree1 {
+  top: 0px;
+  left: 0px;
+  height: 90px;
+  background-position: 0 100%;
+}
+.room7 .tree2 {
+  top: 0px;
+  left: 525px;
+  height: 90px;
+  background-position: 0 100%;
+}
 /*Culdesac, Room 8*/
 .room8 .hroad {
   left: 90px;
@@ -762,8 +784,80 @@ h1#name {
   width: 80px;
   height: 10px;
 }
-
+.room8 .tree1 {
+  top: 0px;
+  left: 525px;
+  height: 90px;
+  background-position: 0 100%;
+}
 /*Forest Entrance, Room 9*/
+
+.room9 .tree1 {
+  top: 0px;
+  left: 0px;
+}
+.room9 .tree2 {
+  top: 0px;
+  left: 150px;
+}
+.room9 .tree3 {
+  top: 0px;
+  left: 375px;
+}
+.room9 .tree4 {
+  top: 0px;
+  left: 525px;
+}
+.room9 .tree5 {
+  top: 75px;
+  left: 75px;
+}
+.room9 .tree6 {
+  top: 75px;
+  left: 450px;
+}
+.room9 .tree7 {
+  top: 150px;
+  left: 0px;
+}
+.room9 .tree8 {
+  top: 225px;
+  left: 0px;
+}
+.room9 .tree9 {
+  top: 150px;
+  left: 525px;
+}
+.room9 .tree10 {
+  top: 225px;
+  left: 525px;
+}
+.room9 .tree11 {
+  top: 300px;
+  left: 0px;
+}
+.room9 .tree12 {
+  top: 300px;
+  left: 525px;
+}
+.room9 .tree13 {
+  top: 362px;
+  left: 0px;
+}
+.room9 .tree14 {
+  top: 362px;
+  left: 525px;
+}
+.room9 .sign {
+  top: 120px;
+  left: 380px;
+}
+.room9 .forest-entrance {
+  top: -7px;
+  left: 0px;
+  width: 640px;
+  height: 7px;
+}
 
 /*Allen's Driveway, Room 10*/
 .room10 .fence {
@@ -815,10 +909,73 @@ h1#name {
   left: 440px;
 }
 /*Allen's Porch, Room 11*/
-
+.room11 .fence {
+  background: #cbbe88;
+  width: 10px;
+  height: 512px;
+  top: 0px;
+}
+.room11 .fence1 {
+  left: 30px;
+}
+.room11 .fence2 {
+  left: 600px;
+}
+.room11 .house {
+  background: transparent url(images/textures/wood-bg.png) 0 0 repeat;
+  width: 540px;
+  height: 50px;
+  top: 462px;
+  left: 50px;
+}
+.room11 .sidewalk {
+  width: 40px;
+  height: 462px;
+  top: 0px;
+  left: 360px;
+  background-position: 0 100%;
+}
+.room11 .driveway {
+  width: 100px;
+  height: 462px;
+  top: 0px;
+  left: 440px;
+}
+.room11 .garage {
+  width: 100px;
+  height: 12px;
+  top: 462px;
+  left: 440px;
+  background: transparent url(images/textures/garage.png) 0 0 repeat;
+}
 /*Road, Room 12*/
 
-
+/*Playground, Room 16*/
+.room16 .tree1 {
+  top: 0px;
+  left: 525px;
+}
+.room16 .tree2 {
+  top: 75px;
+  left: 525px;
+}
+.room16 .tree3 {
+  top: 150px;
+  left: 525px;
+}
+.room16 .tree4 {
+  top: 225px;
+  left: 525px;
+}
+.room16 .tree5 {
+  top: 300px;
+  left: 525px;
+}
+.room16 .tree6 {
+  top: 375px;
+  left: 525px;
+  height: 137px;
+}
 /*Unused elements*/
 .room0 .fire {
   width: 32px;

@@ -13,7 +13,7 @@ custom control changing is a little wonky, and I would like to put that in a new
 
 jQuery(document).ready(function($){
   var keyAssignments = {}
-  var startingRoom = 8;
+  var startingRoom = 7;
   var currentRoom = {};
   var roomList = {
     'HTML' : [],
@@ -83,6 +83,7 @@ jQuery(document).ready(function($){
   var gameOver = function() {
     addData('You are dead.');
     $('#title').css('display','block');
+    $('#player').css('display','none');
     $('#title').html('<h1 class="dead">YOU ARE DEAD</h1><p class="dead">You died an ironic death.</p><p class="dead">Final Score: ' + player.money + '</p><input id="post_score" style="display: none;" type="button" value="Post Your Score"><input id="play_again" type="button" value="Play Again">');
     $('#music').html('');
     $('#sound').addClass('off');
@@ -605,34 +606,22 @@ jQuery(document).ready(function($){
     return true;
   }
   var roomAchievements = {
-    'room0' : function(results) {
-    },
-    'room1' : function(results) {
-    },
     'room2' : function(results) {
       if (!player.achievements[0] && player.eventList.piggySmashed) {
         player.achievements[0] = achievementUnlocked('<strong>Bad Dad:</strong> Smash your daugher\'s piggy bank.');
       }
     },
-    'room3' : function(results) {
-    },
-    'room4' : function(results) {
-    },
-    'room5' : function(results) {
-    },
     'room6' : function(results) {
       if (!player.achievements[1] && player.outfit === 0) {
         player.achievements[1] = achievementUnlocked('<strong>Brave Nude World:</strong> Go outside without getting dressed.');
       }
-    },
-    'room7' : function(results){},
-    'room8' : function(results){},
-    'room9' : function(results){},
-    'room10' : function(results){}
+    }
   }
   //achievements are ROOM SPECIFIC, which may not always be the best method, be aware
   var checkforAchievements = function(results, roomNumber) {
-    roomAchievements['room' + roomNumber](results);
+    if (roomNumber < roomList.length) {
+      roomAchievements['room' + roomNumber](results);
+    }
   }
   var roomInteractions = {
     'room0' : function(results) {
