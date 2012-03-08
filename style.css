@@ -351,6 +351,9 @@ h1#name {
   left: 0px;
   height: 0px;
 }
+.fence {
+  background: #cbbe88;
+}
 .bullet {
   width: 4px;
   height: 4px;
@@ -618,7 +621,6 @@ h1#name {
   background: #000;
 }
 .room6 .fence {
-  background: #cbbe88;
   width: 10px;
   height: 512px;
   top: 0px;
@@ -663,9 +665,8 @@ h1#name {
   left: 400px;
   background: transparent url(images/people/earl.png) 0 0 repeat;
 }
-/*Driveway, Room 7*/
+/*Your Driveway, Room 7*/
 .room7 .fence {
-  background: #cbbe88;
   top: 390px;
 }
 .room7 .fence1 {
@@ -760,7 +761,6 @@ h1#name {
   left: 440px;
 }
 .room8 .fence {
-  background: #cbbe88;
   top: 390px;
 }
 .room8 .fence1 {
@@ -791,7 +791,6 @@ h1#name {
   background-position: 0 100%;
 }
 /*Forest Entrance, Room 9*/
-
 .room9 .tree1 {
   top: 0px;
   left: 0px;
@@ -848,6 +847,18 @@ h1#name {
   top: 362px;
   left: 525px;
 }
+.room9 .tree15 {
+  top: 0px;
+  left: 75px;
+  height: 75px;
+  background-position: 0 100%;
+}
+.room9 .tree16 {
+  top: 0px;
+  left: 450px;
+  height: 75px;
+  background-position: 0 100%;
+}
 .room9 .sign {
   top: 120px;
   left: 380px;
@@ -861,7 +872,6 @@ h1#name {
 
 /*Allen's Driveway, Room 10*/
 .room10 .fence {
-  background: #cbbe88;
   top: 390px;
 }
 .room10 .fence1 {
@@ -908,9 +918,37 @@ h1#name {
   top: 340px;
   left: 440px;
 }
+.room10 .tree {
+  background-position: 0 100%;
+  top: 0px;
+}
+.room10 .tree1 {
+  left: 0px;
+  height: 90px;
+}
+.room10 .tree2 {
+  left: 525px;
+  height: 90px;
+}
+.room10 .tree3 {
+  left: 115px;
+  height: 90px;
+}
+.room10 .tree4 {
+  left: 410px;
+  height: 90px;
+}
+.room10 .tree5 {
+  left: 210px;
+  height: 40px;
+}
+.room10 .tree6 {
+  left: 315px;
+  height: 40px;
+}
+
 /*Allen's Porch, Room 11*/
 .room11 .fence {
-  background: #cbbe88;
   width: 10px;
   height: 512px;
   top: 0px;
@@ -948,34 +986,128 @@ h1#name {
   left: 440px;
   background: transparent url(images/textures/garage.png) 0 0 repeat;
 }
-/*Road, Room 12*/
+/*Road, Rooms 12-15*/
+.room12 .sidewalk1,
+.room13 .sidewalk1,
+.room14 .sidewalk1,
+.room15 .sidewalk1 {
+  width: 640px;
+  height: 40px;
+  top: 340px;
+  left: 0px;
+}
+.room12 .sidewalk2,
+.room13 .sidewalk2,
+.room14 .sidewalk2,
+.room15 .sidewalk2 {
+  width: 640px;
+  height: 40px;
+  top: 100px;
+  left: 0px;
+}
+.room12 .fence1,
+.room13 .fence1,
+.room14 .fence1,
+.room15 .fence1 {
+  width: 640px;
+  height: 10px;
+  top: 30px;
+  left: 0px;
+}
+.room12 .fence2,
+.room13 .fence2,
+.room14 .fence2,
+.room15 .fence2 {
+  width: 640px;
+  height: 10px;
+  top: 472px;
+  left: 0px;
+}
 
 /*Playground, Room 16*/
 .room16 .tree1 {
   top: 0px;
   left: 525px;
+  height: 75px;
+  background-position: 0 100%;
 }
 .room16 .tree2 {
-  top: 75px;
+  top: 0px;
   left: 525px;
 }
 .room16 .tree3 {
-  top: 150px;
+  top: 75px;
   left: 525px;
 }
 .room16 .tree4 {
-  top: 225px;
+  top: 150px;
   left: 525px;
 }
 .room16 .tree5 {
-  top: 300px;
+  top: 225px;
   left: 525px;
 }
 .room16 .tree6 {
+  top: 300px;
+  left: 525px;
+}
+.room16 .tree7 {
   top: 375px;
   left: 525px;
   height: 137px;
 }
+.room16 .fence {
+  top: 30px;
+  left: 30px;
+}
+.room16 .fence1 {
+  width: 10px;
+  height: 482px;
+}
+.room16 .fence2 {
+  width: 590px;
+  height: 10px;
+}
+/*Jerry's Porch, Room 17*/
+.room17 .fence {
+  width: 10px;
+  height: 512px;
+  top: 0px;
+}
+.room17 .fence1 {
+  left: 30px;
+}
+.room17 .fence2 {
+  left: 600px;
+}
+.room17 .house {
+  background: transparent url(images/textures/wood-bg.png) 0 0 repeat;
+  width: 540px;
+  height: 50px;
+  top: 462px;
+  left: 50px;
+}
+.room17 .sidewalk {
+  width: 40px;
+  height: 462px;
+  top: 0px;
+  left: 360px;
+  background-position: 0 100%;
+}
+.room17 .driveway {
+  width: 100px;
+  height: 462px;
+  top: 0px;
+  left: 440px;
+}
+.room17 .garage {
+  width: 100px;
+  height: 12px;
+  top: 462px;
+  left: 440px;
+  background: transparent url(images/textures/garage.png) 0 0 repeat;
+}
+
 /*Unused elements*/
 .room0 .fire {
   width: 32px;
