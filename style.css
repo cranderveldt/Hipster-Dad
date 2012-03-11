@@ -1272,6 +1272,9 @@ h1#name {
   background: #FFF;
   color: #000;
 }
+#title .hidden {
+  display: none;
+}
 #title .title-choices {
   width: 200px;
 }
@@ -1313,7 +1316,7 @@ h1#name {
   text-align: center;
   margin: 15px 0;
 }
-#title input {
+#title input.button {
   margin: 50px auto;
   position: relative;
   width: 300px;
@@ -1334,7 +1337,7 @@ h1#name {
   font-size: 18px;
   text-shadow: 2px 2px 0 #444;
 }
-#title input:hover {
+#title input.button:hover {
   background: #AAA;
 }
 #music .audio {

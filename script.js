@@ -1141,14 +1141,7 @@ jQuery(document).ready(function($){
     };
   }
   var edit_control = function(event) {
-    var item = $(event.target);
-    var list = item.parent().parent().find('tr');
-    var currentKeyNumber = parseInt(item.prev().find('span').html());
-    var thisKeyName = item.prev().html().substring(0,item.prev().html().indexOf(':'));
-    var keyList = [parseInt($(list).find('td.key-up span').html()), parseInt($(list).find('td.key-down span').html()), parseInt($(list).find('td.key-left span').html()), parseInt($(list).find('td.key-right span').html()), parseInt($(list).find('td.key-use span').html()), parseInt($(list).find('td.key-action span').html())];
-    var currentKey = item.html();
-    var originalKey = item.html();
-    item.html('<input id="entry" type="text" autocomplete="off" placeholder="Enter key ..." />');
+    //set up the symbols obj lit
     var alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     var numbers = ['0','1','2','3','4','5','6','7','8','9'];
     var symbols = {
@@ -1182,36 +1175,44 @@ jQuery(document).ready(function($){
     for (var i = 0; i < 10; i+=1) {
       symbols['char' + (i+48)] = numbers[i];
     }
+    var item = $(event.target);
+    var list = item.parent().parent().find('tr');
+    var currentKeyNumber = parseInt(item.prev().find('span').html()); //e.g. "65"
+    var thisControlName = item.prev().html().substring(0,item.prev().html().indexOf(':')); //e.g. "Up"
+    var keyNumberList = $(list).find('td span');
+    var originalKeyName = item.html();
+    var currentKeyName = originalKeyName;
+    item.html('<input id="entry" type="text" autocomplete="off" placeholder="Enter key ..." />');
     $('#entry').focus();
     $('#entry').keydown(function(e) {
       var code = (e.keyCode ? e.keyCode : e.which);
       for (var i = 0; i < 222; i+=1) {
         if (symbols['char' + i] !== null && code === i) {
-          currentKey = symbols['char' + i];
+          currentKeyName = symbols['char' + i];
           currentKeyNumber = code;
         }
       }
     });
     $('#entry').keyup(function(){
-      //make sure key isnt' already assigned, if it is set currentKey back to what it was
+      //make sure key isnt' already assigned, if it is set currentKeyName back to what it was
       var matchesAnyOtherKeys = false;
-      for (var i = 0; i < keyList.length; i+=1) { 
-        if (currentKeyNumber === keyList[i]) {
+      for (var i = 0; i < keyNumberList.length; i+=1) {
+        if (currentKeyNumber === parseInt($(keyNumberList[i]).html())) {
           matchesAnyOtherKeys = true;
         }
       }
       if (!matchesAnyOtherKeys) {
-        item.html(currentKey);
+        item.html(currentKeyName);
         item.prev().find('span').html(currentKeyNumber+'');
-        keyAssignments[thisKeyName] = currentKeyNumber;
+        keyAssignments[thisControlName] = currentKeyNumber;
+        originalKeyName = currentKeyName;
       } else {
-        item.html(originalKey);
+        item.html(originalKeyName);
       }
-      $('#title-options').find('span').html($('#title-content').html());
     });
     $(document).on('click', function() {
       if (item.html() === '<input id="entry" type="text" autocomplete="off" placeholder="Enter key ...">' || item.html() === '<input id="entry" type="text" autocomplete="off" placeholder="Enter key ..."/>') {
-        item.html(originalKey);
+        item.html(originalKeyName);
       }
     });
   };
@@ -1228,20 +1229,36 @@ jQuery(document).ready(function($){
     $('#title-start').click(function() {
       startGame();
     });
+    //this whole custom controls section needs a lot of fixes. see blog for details
     $('#title-options').click(function() {
-      $('#title-content').html($('#title-options').find('span').html());
-      $('#title-options').find('span').html('');
-      $('#title-content').find('table td.key-press').on('dblclick', edit_control);
-      $('#title-default').click(function() {
-        //set keys at original defaults
-      });
+      $('#t-options').removeClass('hidden');
+      $('#t-about').addClass('hidden');
+      $('#t-credits').addClass('hidden');
     });
     $('#title-about').click(function() {
-      $('#title-content').html($('#title-about').find('span').html());
+      $('#t-about').removeClass('hidden');
+      $('#t-options').addClass('hidden');
+      $('#t-credits').addClass('hidden');
     });
     $('#title-credits').click(function() {
-      $('#title-content').html($('#title-credits').find('span').html());
+      $('#t-credits').removeClass('hidden');
+      $('#t-options').addClass('hidden');
+      $('#t-about').addClass('hidden');
     });
+    $('#title-default').live('click', function() {
+      keyAssignments = {
+        'Up' : 38,
+        'Down' : 40,
+        'Left' : 37,
+        'Right' : 39,
+        'Use Item' : 81,
+        'Action' : 87
+      }
+      var defaultKeyString = '<tr><td class="key-up">Up:<span>38</span></td><td class="key-press">Up Arrow</td></tr><tr><td class="key-down">Down:<span>40</span></td><td class="key-press">Down Arrow</td></tr><tr><td class="key-left">Left:<span>37</span></td><td class="key-press">Left Arrow</td></tr><tr><td class="key-right">Right:<span>39</span></td><td class="key-press">Right Arrow</td></tr><tr><td class="key-use">Use Item:<span>81</span></td><td class="key-press">Q</td></tr><tr><td class="key-action">Action:<span>87</span></td><td class="key-press">W</td></tr><tr><td>Select Item:</td><td>Number row 1-9</td></tr>';
+      $('#title-options').find('table').html(defaultKeyString);
+      $('#title-content').find('table').html(defaultKeyString);
+    });
+    $('#t-options').find('table td.key-press').live('dblclick', edit_control);
   }
   var initializeAll = function() {
     initializePlayer();

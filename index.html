@@ -43,37 +43,32 @@
     </div>
   </div>
   <div id="title">
-    <div id="title-content"></div>
+    <div id="title-content">
+      <div title="Controls" id="t-options" class="hidden">
+        <table cellpadding="0" cellspacing="0">
+          <tr><td class="key-up">Up:<span>38</span></td><td class="key-press">Up Arrow</td></tr>
+          <tr><td class="key-down">Down:<span>40</span></td><td class="key-press">Down Arrow</td></tr>
+          <tr><td class="key-left">Left:<span>37</span></td><td class="key-press">Left Arrow</td></tr>
+          <tr><td class="key-right">Right:<span>39</span></td><td class="key-press">Right Arrow</td></tr>
+          <tr><td class="key-use">Use Item:<span>81</span></td><td class="key-press">Q</td></tr>
+          <tr><td class="key-action">Action:<span>87</span></td><td class="key-press">W</td></tr>
+          <tr><td>Select Item:</td><td>Number row 1-9</td></tr>
+        </table>
+        <p>Double click on the control to change it. Your key must not already be bound to another control.
+        <div class="link" id="title-default">Revert to Defaults</div>
+      </div>
+      <div title="About" id="t-about" class="hidden">
+        Hipster Dad is a project I started in order to learn more about JavaScript and jQuery. Every object in this game is pulled from the attributes of HTML elements, and styled in CSS. The story of the game follows Warren, a hipster-turned-father who never really learned how to live in the real world. Eventually this game will be a full sandbox- and exploration-type game, where you can go to a number of places  in the town. Enjoy!
+      </div>
+      <div title="Credits" id="t-credits" class="hidden">
+        Game concept, design and development by Trevor Moore. Artwork by Tim Giusti and stolen from the internet. Thanks Google!
+      </div>
+    </div>
     <div class="title-choices">
       <div class="link" id="title-start">Start Game</div>
-      <div class="link" id="title-options">
-        Controls
-        <span>
-          <table cellpadding="0" cellspacing="0">
-            <tr><td class="key-up">Up:<span>38</span></td><td class="key-press">Up Arrow</td></tr>
-            <tr><td class="key-down">Down:<span>40</span></td><td class="key-press">Down Arrow</td></tr>
-            <tr><td class="key-left">Left:<span>37</span></td><td class="key-press">Left Arrow</td></tr>
-            <tr><td class="key-right">Right:<span>39</span></td><td class="key-press">Right Arrow</td></tr>
-            <tr><td class="key-use">Use Item:<span>81</span></td><td class="key-press">Q</td></tr>
-            <tr><td class="key-action">Action:<span>87</span></td><td class="key-press">W</td></tr>
-            <tr><td>Select Item:</td><td>Number row 1-9</td></tr>
-          </table>
-          <p>Double click on the control to change it. Your key must not already be bound to another control.
-          <div style="display: none" class="link" id="title-defaults">Save</div>
-        </span>
-      </div>
-      <div class="link" id="title-about">
-        About
-        <span>
-          Hipster Dad is a project I started in order to learn more about JavaScript and jQuery. Every object in this game is pulled from the attributes of HTML elements, and styled in CSS. The story of the game follows Warren, a hipster-turned-father who never really learned how to live in the real world. Eventually this game will be a full sandbox- and exploration-type game, where you can go to a number of places  in the town. Enjoy!
-        </span>
-      </div>
-      <div class="link" id="title-credits">
-        Credits
-        <span>
-          Game concept, design and development by Trevor Moore. Artwork by Tim Giusti and stolen from the internet. Thanks Google!
-        </span>
-      </div>
+      <div class="link" id="title-options">Controls</div>
+      <div class="link" id="title-about">About</div>
+      <div class="link" id="title-credits">Credits</div>
       <a class="link" id="title-blog" target="_blank" href="http://blog.hipsterdadgame.com/">Blog</a>
       <p class="version">v0.2.1 Pre-alpha</p>
     </div>
