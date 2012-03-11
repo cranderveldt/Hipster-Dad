@@ -13,7 +13,7 @@ custom control changing is a little wonky, and I would like to put that in a new
 
 jQuery(document).ready(function($){
   var keyAssignments = {}
-  var startingRoom = 11;
+  var startingRoom = 0;
   var currentRoom = {};
   var roomList = {
     'HTML' : [],
@@ -417,55 +417,55 @@ jQuery(document).ready(function($){
       var shouldSpriteSwitch = !player.isAnimatingFeet || oldDir !== dir;
       if (dir === 'up' && shouldSpriteSwitch) {
         player.isAnimatingFeet = true;
-        player.elm.css('background-position', '-' + ((player.width*4)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        player.elm.css('background-position', '-' + ((player.width*4)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
         window.setTimeout(function() {
-          player.elm.css('background-position', '-' + ((player.width*8)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+          player.elm.css('background-position', '-' + ((player.width*8)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
           window.setTimeout(function() {
-            player.elm.css('background-position', '-' + ((player.width*0)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            player.elm.css('background-position', '-' + ((player.width*0)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
             player.isAnimatingFeet = false;
           }, player.speed/2);
         }, player.speed/2);
-      } else {
-        //do nothing?
+      } else if (dir === 'up' && newOutfit) {
+        player.elm.css('background-position', '-' + ((player.width*0)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
       }
       if (dir === 'down' && shouldSpriteSwitch) {
         player.isAnimatingFeet = true;
-        player.elm.css('background-position','-' + ((player.width*5)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        player.elm.css('background-position','-' + ((player.width*5)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
         window.setTimeout(function() {
-          player.elm.css('background-position', '-' + ((player.width*9)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+          player.elm.css('background-position', '-' + ((player.width*9)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
           window.setTimeout(function() {
-            player.elm.css('background-position', '-' + ((player.width*1)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            player.elm.css('background-position', '-' + ((player.width*1)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
             player.isAnimatingFeet = false;
           }, player.speed/2);
         }, player.speed/2);
-      } else {
-        //do nothing?
+      } else if (dir === 'down' && newOutfit) {
+        player.elm.css('background-position', '-' + ((player.width*1)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
       }
       if (dir === 'left' && shouldSpriteSwitch) {
         player.isAnimatingFeet = true;
-        player.elm.css('background-position','-' + ((player.width*6)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        player.elm.css('background-position','-' + ((player.width*6)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
         window.setTimeout(function() {
-          player.elm.css('background-position', '-' + ((player.width*10)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+          player.elm.css('background-position', '-' + ((player.width*10)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
           window.setTimeout(function() {
-            player.elm.css('background-position', '-' + ((player.width*2)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            player.elm.css('background-position', '-' + ((player.width*2)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
             player.isAnimatingFeet = false;
           }, player.speed/2);
         }, player.speed/2);
-      } else {
-        //do nothing?
+      } else if (dir === 'left' && newOutfit) {
+        player.elm.css('background-position', '-' + ((player.width*2)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
       }
       if (dir === 'right' && shouldSpriteSwitch) {
         player.isAnimatingFeet = true;
-        player.elm.css('background-position','-' + ((player.width*7)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        player.elm.css('background-position','-' + ((player.width*7)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
         window.setTimeout(function() {
-          player.elm.css('background-position', '-' + ((player.width*11)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+          player.elm.css('background-position', '-' + ((player.width*11)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');;
           window.setTimeout(function() {
-            player.elm.css('background-position', '-' + ((player.width*3)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            player.elm.css('background-position', '-' + ((player.width*3)+(player.outfit*player.width*12)) + 'px -' + player.height*player.playerSprite + 'px');
             player.isAnimatingFeet = false;
           }, player.speed/2);
         }, player.speed/2);
-      } else {
-        //do nothing?
+      } else if (dir === 'right' && newOutfit) {
+        player.elm.css('background-position', '-' + ((player.width*3)+(player.outfit*player.width*12)) + 'px -' + player.height*sprite + 'px');
       }
     }
   }
@@ -564,16 +564,10 @@ jQuery(document).ready(function($){
     });
   }
   var changePlayerSprite = function(sprite) {
-    var bgPos = player.elm.css('background-position');
-    bgPosLeft = bgPos.substring(0, bgPos.indexOf(' '));
-    bgPosTop = bgPos.substring(bgPos.indexOf(' ')+1);
-    player.elm.css('background-position',bgPosLeft + ' -' + player.height*sprite + 'px');
     player.playerSprite = sprite;
+    setDirection(player.dir, true);
   }
   var changePlayerOutfit = function(outfit) {
-    var bgPos = player.elm.css('background-position');
-    bgPosLeft = bgPos.substring(0, bgPos.indexOf(' '));
-    bgPosTop = bgPos.substring(bgPos.indexOf(' ')+1);
     player.outfit = outfit;
     setDirection(player.dir, true);
   }
