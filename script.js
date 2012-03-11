@@ -410,48 +410,63 @@ jQuery(document).ready(function($){
   }
   var setDirection = function(dir, newOutfit) {
     if (dir === 'up' || dir === 'down' || dir === 'left' || dir === 'right'){
-      //if (dir !== player.dir || newOutfit) {
-        player.dir = dir;
-        var bgPosTop = player.elm.css('background-position');
-        bgPosTop = bgPosTop.substring(bgPosTop.indexOf(' ')+1)
-        //23px x 41px
-        if (dir === 'up') {
-          player.elm.css('background-position', '-' + ((player.width*4)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+      var oldDir = player.dir;
+      player.dir = dir;
+      var bgPosTop = player.elm.css('background-position');
+      bgPosTop = bgPosTop.substring(bgPosTop.indexOf(' ')+1)
+      var shouldSpriteSwitch = !player.isAnimatingFeet || oldDir !== dir;
+      if (dir === 'up' && shouldSpriteSwitch) {
+        player.isAnimatingFeet = true;
+        player.elm.css('background-position', '-' + ((player.width*4)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        window.setTimeout(function() {
+          player.elm.css('background-position', '-' + ((player.width*8)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
           window.setTimeout(function() {
-            player.elm.css('background-position', '-' + ((player.width*8)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
-            window.setTimeout(function() {
-              player.elm.css('background-position', '-' + ((player.width*0)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
-            }, player.speed/2);
+            player.elm.css('background-position', '-' + ((player.width*0)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            player.isAnimatingFeet = false;
           }, player.speed/2);
-        }
-        if (dir === 'down') {
-          player.elm.css('background-position','-' + ((player.width*5)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        }, player.speed/2);
+      } else {
+        //do nothing?
+      }
+      if (dir === 'down' && shouldSpriteSwitch) {
+        player.isAnimatingFeet = true;
+        player.elm.css('background-position','-' + ((player.width*5)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        window.setTimeout(function() {
+          player.elm.css('background-position', '-' + ((player.width*9)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
           window.setTimeout(function() {
-            player.elm.css('background-position', '-' + ((player.width*9)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
-            window.setTimeout(function() {
-              player.elm.css('background-position', '-' + ((player.width*1)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
-            }, player.speed/2);
+            player.elm.css('background-position', '-' + ((player.width*1)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            player.isAnimatingFeet = false;
           }, player.speed/2);
-        }
-        if (dir === 'left') {
-          player.elm.css('background-position','-' + ((player.width*6)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        }, player.speed/2);
+      } else {
+        //do nothing?
+      }
+      if (dir === 'left' && shouldSpriteSwitch) {
+        player.isAnimatingFeet = true;
+        player.elm.css('background-position','-' + ((player.width*6)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        window.setTimeout(function() {
+          player.elm.css('background-position', '-' + ((player.width*10)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
           window.setTimeout(function() {
-            player.elm.css('background-position', '-' + ((player.width*10)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
-            window.setTimeout(function() {
-              player.elm.css('background-position', '-' + ((player.width*2)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
-            }, player.speed/2);
+            player.elm.css('background-position', '-' + ((player.width*2)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            player.isAnimatingFeet = false;
           }, player.speed/2);
-        }
-        if (dir === 'right') {
-          player.elm.css('background-position','-' + ((player.width*7)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        }, player.speed/2);
+      } else {
+        //do nothing?
+      }
+      if (dir === 'right' && shouldSpriteSwitch) {
+        player.isAnimatingFeet = true;
+        player.elm.css('background-position','-' + ((player.width*7)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+        window.setTimeout(function() {
+          player.elm.css('background-position', '-' + ((player.width*11)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
           window.setTimeout(function() {
-            player.elm.css('background-position', '-' + ((player.width*11)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
-            window.setTimeout(function() {
-              player.elm.css('background-position', '-' + ((player.width*3)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
-            }, player.speed/2);
+            player.elm.css('background-position', '-' + ((player.width*3)+(player.outfit*player.width*12)) + 'px ' + bgPosTop);
+            player.isAnimatingFeet = false;
           }, player.speed/2);
-        }
-      //}
+        }, player.speed/2);
+      } else {
+        //do nothing?
+      }
     }
   }
   var addToInventory = function(elms, pos, m) {
@@ -753,7 +768,7 @@ jQuery(document).ready(function($){
   var addData = function(str) {
     $('#data').html('<p>' + str + '</p>' + $('#data').html());
     dataP = $('#data').find('p');
-    $('#data').find('p').stop().delay(2000).animate({ color : '#AAA', opacity: .25 }, 200);
+    $('#data').find('p').stop().delay(5000).animate({ color : '#AAA', opacity: .25 }, 200);
   }
   var listInventory = function() {
     var list = '';
@@ -914,21 +929,35 @@ jQuery(document).ready(function($){
     updatePlayerLeft(left, animate);
   }
   var updatePlayerTop = function(top, animate) {
-    player.top = top;
-    player.topUsed = top-player.heightReduction;
     if (animate) {
-      player.elm.stop().animate({ top : player.topUsed + 'px', left : player.left + 'px' }, player.speed);
+      if (!player.isAnimating) {
+        player.top = top;
+        player.topUsed = top-player.heightReduction;
+        player.isAnimating = true;
+        player.elm.stop().animate({ top : player.topUsed + 'px', left : player.left + 'px' }, player.speed, function() {
+          player.isAnimating = false;
+        });
+      }
     } else {
+      player.top = top;
+      player.topUsed = top-player.heightReduction;
       player.elm.stop();
       player.elm.css('top', player.topUsed + 'px');
     }
   }
   var updatePlayerLeft = function(left, animate) {
-    player.left = left;
     if (animate) {
-      player.elm.stop().animate({ top : player.topUsed + 'px', left : player.left + 'px' }, player.speed);
+      if (!player.isAnimating) {
+        player.left = left;
+        player.isAnimating = true;
+        player.elm.stop().animate({ top : player.topUsed + 'px', left : player.left + 'px' }, player.speed, function() {
+          player.isAnimating = false;
+        });
+      }
     } else {
+      player.left = left;
       player.elm.stop();
+      player.isAnimating = false;
       player.elm.css('left', player.left + 'px');
     }
   }
@@ -1122,10 +1151,12 @@ jQuery(document).ready(function($){
       'dir' : 'down',
       'equip' : '',
       'inc' : 20,
-      'speed' : 200,
+      'speed' : 100,
       'inventory' : [null,null,null,null,null,null,null,null,null],
       'full' : false,
       'invPos' : 0,
+      'isAnimating' : false,
+      'isAnimatingFeet' : false, 
       'selectedInv' : 0,
       'maxHealth' : 10,
       'currentHealth' : 10,
@@ -1256,6 +1287,7 @@ jQuery(document).ready(function($){
       var defaultKeyString = '<tr><td class="key-up">Up:<span>38</span></td><td class="key-press">Up Arrow</td></tr><tr><td class="key-down">Down:<span>40</span></td><td class="key-press">Down Arrow</td></tr><tr><td class="key-left">Left:<span>37</span></td><td class="key-press">Left Arrow</td></tr><tr><td class="key-right">Right:<span>39</span></td><td class="key-press">Right Arrow</td></tr><tr><td class="key-use">Use Item:<span>81</span></td><td class="key-press">Q</td></tr><tr><td class="key-action">Action:<span>87</span></td><td class="key-press">W</td></tr><tr><td>Select Item:</td><td>Number row 1-9</td></tr>';
       $('#title-options').find('table').html(defaultKeyString);
       $('#title-content').find('table').html(defaultKeyString);
+      //need to also set the values in the spans inside the custom controls table
     });
     $('#t-options').find('table td.key-press').live('dblclick', edit_control);
   }
