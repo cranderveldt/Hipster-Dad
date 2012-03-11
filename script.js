@@ -930,34 +930,35 @@ jQuery(document).ready(function($){
   }
   var updatePlayerTop = function(top, animate) {
     if (animate) {
-      if (!player.isAnimating) {
+      if (!player.isAnimatingLeft && !player.isAnimatingTop) {
         player.top = top;
         player.topUsed = top-player.heightReduction;
-        player.isAnimating = true;
+        player.isAnimatingTop = true;
         player.elm.stop().animate({ top : player.topUsed + 'px', left : player.left + 'px' }, player.speed, function() {
-          player.isAnimating = false;
+          player.isAnimatingTop = false;
         });
       }
     } else {
       player.top = top;
       player.topUsed = top-player.heightReduction;
       player.elm.stop();
+      player.isAnimatingTop = false;
       player.elm.css('top', player.topUsed + 'px');
     }
   }
   var updatePlayerLeft = function(left, animate) {
     if (animate) {
-      if (!player.isAnimating) {
+      if (!player.isAnimatingLeft && !player.isAnimatingTop) {
         player.left = left;
-        player.isAnimating = true;
+        player.isAnimatingLeft = true;
         player.elm.stop().animate({ top : player.topUsed + 'px', left : player.left + 'px' }, player.speed, function() {
-          player.isAnimating = false;
+          player.isAnimatingLeft = false;
         });
       }
     } else {
       player.left = left;
       player.elm.stop();
-      player.isAnimating = false;
+      player.isAnimatingLeft = false;
       player.elm.css('left', player.left + 'px');
     }
   }
@@ -1155,7 +1156,8 @@ jQuery(document).ready(function($){
       'inventory' : [null,null,null,null,null,null,null,null,null],
       'full' : false,
       'invPos' : 0,
-      'isAnimating' : false,
+      'isAnimatingTop' : false,
+      'isAnimatingLeft' : false,
       'isAnimatingFeet' : false, 
       'selectedInv' : 0,
       'maxHealth' : 10,
