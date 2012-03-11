@@ -197,6 +197,9 @@ h1#name {
   color: #AAA;
   font-size: 20px;
 }
+.container div {
+  visibility: hidden;
+}
 #room {
   z-index: 2;
   position: relative;
@@ -381,14 +384,19 @@ h1#name {
   z-index: 15;
 }
 .tree {
-    background: transparent url(images/elements/tree.png) 0 0 no-repeat;
-    width: 115px;
-    height: 151px;
+  background: transparent url(images/elements/tree.png) 0 0 no-repeat;
+  width: 115px;
+  height: 151px;
 }
 .coins {
   width: 19px;
   height: 18px;
   background: transparent url(images/elements/coins.png) 0 0 no-repeat;
+}
+.plant {
+  width: 24px;
+  height: 22px;
+  background: transparent url(images/elements/outdoor-plant.png) 0 0 no-repeat;
 }
 #elements .chest div {
   visibility: hidden;
@@ -988,6 +996,10 @@ h1#name {
   top: 462px;
   left: 440px;
   background: transparent url(images/textures/garage.png) 0 0 repeat;
+}
+.room11 .plant {
+  top: 450px;
+  left: 300px;
 }
 .room11 #doorS {
   width: 40px;
