@@ -1201,6 +1201,11 @@ jQuery(document).ready(function($){
           matchesAnyOtherKeys = true;
         }
       }
+      for (var i = 0; i < numbers.length; i+=1) {
+        if (currentKeyNumber === i+48) {
+          matchesAnyOtherKeys = true;
+        }
+      }
       if (!matchesAnyOtherKeys) {
         item.html(currentKeyName);
         item.prev().find('span').html(currentKeyNumber+'');
@@ -1218,14 +1223,15 @@ jQuery(document).ready(function($){
   };
   var titleScreen = function() {
     initializeAll();
-    keyAssignments = {
+    var defaultKeyAssignments = {
       'Up' : 38,
       'Down' : 40,
       'Left' : 37,
       'Right' : 39,
       'Use Item' : 81,
       'Action' : 87
-    }
+    };
+    keyAssignments = defaultKeyAssignments;
     $('#title-start').click(function() {
       startGame();
     });
@@ -1245,15 +1251,8 @@ jQuery(document).ready(function($){
       $('#t-options').addClass('hidden');
       $('#t-about').addClass('hidden');
     });
-    $('#title-default').live('click', function() {
-      keyAssignments = {
-        'Up' : 38,
-        'Down' : 40,
-        'Left' : 37,
-        'Right' : 39,
-        'Use Item' : 81,
-        'Action' : 87
-      }
+    $('#title-default').click(function() {
+      keyAssignments = defaultKeyAssignments;
       var defaultKeyString = '<tr><td class="key-up">Up:<span>38</span></td><td class="key-press">Up Arrow</td></tr><tr><td class="key-down">Down:<span>40</span></td><td class="key-press">Down Arrow</td></tr><tr><td class="key-left">Left:<span>37</span></td><td class="key-press">Left Arrow</td></tr><tr><td class="key-right">Right:<span>39</span></td><td class="key-press">Right Arrow</td></tr><tr><td class="key-use">Use Item:<span>81</span></td><td class="key-press">Q</td></tr><tr><td class="key-action">Action:<span>87</span></td><td class="key-press">W</td></tr><tr><td>Select Item:</td><td>Number row 1-9</td></tr>';
       $('#title-options').find('table').html(defaultKeyString);
       $('#title-content').find('table').html(defaultKeyString);
