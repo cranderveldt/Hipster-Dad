@@ -1216,6 +1216,7 @@ jQuery(document).ready(function($){
     });
   };
   var titleScreen = function() {
+    initializeAll();
     keyAssignments = {
       'Up' : 38,
       'Down' : 40,
@@ -1242,12 +1243,14 @@ jQuery(document).ready(function($){
       $('#title-content').html($('#title-credits').find('span').html());
     });
   }
-  var startGame = function() {
-    $('#title').css('display','none');
+  var initializeAll = function() {
     initializePlayer();
     initializeRooms();
-    currentRoom = setRoom(currentRoom, startingRoom, 0, null);
     initializeInventory();
+  }
+  var startGame = function() {
+    $('#title').css('display','none');
+    currentRoom = setRoom(currentRoom, startingRoom, 0, null);
     selectInvSlot(0);
     keyListener(keyAssignments);
     playMusic();
