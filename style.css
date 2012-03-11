@@ -204,6 +204,10 @@ h1#name {
 }
 #room.inside {
   border: 25px inset #80603E;
+  width: 200px;
+  height: 200px;
+  top: 80px;
+  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 #room.outside {
   background: #66a63c url(images/textures/grass.png) 0 0 repeat;
@@ -239,6 +243,16 @@ h1#name {
   height: 512px;
   top: 0px;
   left: -7px;
+}
+.inside #doorW,
+.inside #doorE {
+  width: 7px;
+  height: 40px;
+}
+.inside #doorS,
+.inside #doorN {
+  width: 40px;
+  height: 7px;
 }
 #player {
   width: 23px;
@@ -371,6 +385,11 @@ h1#name {
     width: 115px;
     height: 151px;
 }
+.coins {
+  width: 19px;
+  height: 18px;
+  background: transparent url(images/elements/coins.png) 0 0 no-repeat;
+}
 #elements .chest div {
   visibility: hidden;
 }
@@ -379,7 +398,6 @@ h1#name {
   width: 256px;
   height: 300px;
   top: 50px;
-  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 .room0 .chest {
   width: 32px;
@@ -426,15 +444,12 @@ h1#name {
 .room0 #doorS {
   top: 300px;
   left: 110px;
-  width: 40px;
-  height: 7px;
 }
 /*Hallway, Room 1*/
 #room.room1 {
   width: 50px;
   height: 400px;
   top: 20px;
-  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 .room1 .wallart {
   width: 2px;
@@ -460,8 +475,6 @@ h1#name {
 .room1 #doorS {
   top: 400px;
   left: 5px;
-  width: 40px;
-  height: 7px;
 }
 .room1 #doorE {
   top: 330px;
@@ -475,13 +488,10 @@ h1#name {
   width: 168px;
   height: 190px;
   top: 80px;
-  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 .room2 #doorN {
   top: -7px;
   left: 64px;
-  width: 40px;
-  height: 7px;
 }
 .room2 .key {
   top: 80px;
@@ -513,7 +523,6 @@ h1#name {
   width: 250px;
   height: 250px;
   top: 90px;
-  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
 }
 .room3 .table {
   top: 95px;
@@ -529,33 +538,19 @@ h1#name {
 .room3 #doorS {
   top: 250px;
   left: 110px;
-  width: 40px;
-  height: 7px;
 }
 .room3 #doorE {
   top: 110px;
   left: 250px;
-  width: 7px;
-  height: 40px;
 }
 .room3 #doorN {
   top: -7px;
   left: 110px;
-  width: 40px;
-  height: 7px;
 }
 /*Office, Room 4*/
-#room.room4 {
-  width: 200px;
-  height: 200px;
-  top: 80px;
-  background: #bc9862 url(images/textures/wood-floor.png) 0 0 repeat;
-}
 .room4 #doorN {
   top: -7px;
   left: 110px;
-  width: 40px;
-  height: 7px;
 }
 .room4 .computer {
   width: 40px;
@@ -582,8 +577,6 @@ h1#name {
 .room5 #doorW {
   top: 235px;
   left: -7px;
-  width: 7px;
-  height: 40px;
 }
 .room5 .counter {
   background: #777;
@@ -869,6 +862,10 @@ h1#name {
   width: 640px;
   height: 7px;
 }
+.room9 .coins {
+  top: 230px;
+  left: 125px;
+}
 
 /*Allen's Driveway, Room 10*/
 .room10 .fence {
@@ -991,6 +988,16 @@ h1#name {
   top: 462px;
   left: 440px;
   background: transparent url(images/textures/garage.png) 0 0 repeat;
+}
+.room11 #doorS {
+  width: 40px;
+  height: 7px;
+  top: 462px;
+  left: 360px;
+  background: #000;
+}
+.room11 #doorS.locked {
+  background: #777;
 }
 /*Road, Rooms 12-15*/
 .room12 .tree1 {
@@ -1121,6 +1128,90 @@ h1#name {
   left: 440px;
   background: transparent url(images/textures/garage.png) 0 0 repeat;
 }
+/*Room 19 - 24 Allen's house*/
+#room.room23 {
+  width: 256px;
+  height: 300px;
+  top: 50px;
+}
+#room.room22 {
+  width: 50px;
+  height: 400px;
+  top: 20px;
+}
+#room.room24 {
+  width: 168px;
+  height: 190px;
+  top: 80px;
+}
+#room.room19 {
+  width: 250px;
+  height: 250px;
+  top: 90px;
+}
+#room.room20 {
+  width: 256px;
+  height: 280px;
+  top: 50px;
+  background: #CCC url(images/textures/lamenated-floor.png) 0 0 repeat;
+}
+.room23 #doorS {
+  top: 300px;
+  left: 110px;
+}
+.room22 #doorN {
+  top: -7px;
+  left: 5px;
+  width: 40px;
+  height: 7px;
+}
+.room22 #doorS {
+  top: 400px;
+  left: 5px;
+}
+.room22 #doorW {
+  top: 330px;
+  left: -25px;
+  width: 25px;
+  height: 40px;
+  background: transparent url(images/elements/staircase-up.png) 0 0 no-repeat;
+}
+.room24 #doorN {
+  top: -7px;
+  left: 64px;
+}
+.room19 #doorE {
+  top: 190px;
+  left: 250px;
+  width: 25px;
+  height: 40px;
+  background: transparent url(images/elements/staircase-down.png) 0 0 no-repeat;
+}
+.room19 #doorS {
+  top: 250px;
+  left: 110px;
+}
+.room19 #doorW {
+  top: 110px;
+  left: -7px;
+}
+.room19 #doorN {
+  top: -7px;
+  left: 110px;
+}
+.room19 .table {
+  left: 95px;
+  top: 95px;
+}
+.room21 #doorN {
+  top: -7px;
+  left: 110px;
+}
+.room20 #doorE {
+  top: 235px;
+  left: 256px;
+}
+
 
 /*Unused elements*/
 .room0 .fire {

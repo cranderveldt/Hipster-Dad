@@ -13,7 +13,7 @@ custom control changing is a little wonky, and I would like to put that in a new
 
 jQuery(document).ready(function($){
   var keyAssignments = {}
-  var startingRoom = 7;
+  var startingRoom = 11;
   var currentRoom = {};
   var roomList = {
     'HTML' : [],
@@ -68,7 +68,7 @@ jQuery(document).ready(function($){
       currentRoom = setRoom(currentRoom,results.exitElm.exitRoomNumber, currentRoom.pos, $(results.exitElm));
     }
     if (results.locked) {
-      addData('This door is locked. You\'ll need to use a key to the ' + results.lockedElm.name + ' to open it.');
+      addData($(results.lockedElm).find('span.locked').html());
     }
     if (results.hurt > 0) {
       player.currentHealth -= results.hurt;
@@ -470,7 +470,6 @@ jQuery(document).ready(function($){
     var results = {
       'lowest' : inc
     };
-    
     if (dir === 'up'){
       results = calcOutsideUp(elms, inc);
     } else if (dir === 'down'){
@@ -493,6 +492,9 @@ jQuery(document).ready(function($){
         //this is if it's not a person
         addData($(results.messageElm.messages).html());
       }
+    }
+    if (results.locked) {
+      addData($(results.lockedElm).find('span.locked').html());
     }
     if (results.interact) {
       determineInteraction(results, currentRoom.pos);

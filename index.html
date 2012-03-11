@@ -75,12 +75,12 @@
         </span>
       </div>
       <a class="link" id="title-blog" target="_blank" href="http://blog.hipsterdadgame.com/">Blog</a>
-      <p class="version">v0.2.0 Pre-alpha</p>
+      <p class="version">v0.2.1 Pre-alpha</p>
     </div>
   </div>
   <ul id="inventory"></ul>
   <ul id="loading">
-    <li title="Bedroom" class="inside">
+    <li title="Your Bedroom" class="inside">
       <span id="start">top:134px,left:76px</span>
       <div title="Fire" class="stuck message hurt fire">
         <span class="hurt">3</span>
@@ -100,11 +100,11 @@
     <li title="Hallway" class="inside">
       <div title="Family Portrait" class="stuck wallart wallart1 message"><span class="message">It's a portrait of your family. You look really cool.</span></div>
       <div title="Landscape Painting" class="stuck wallart wallart2 message"><span class="message">It's a painting of a landscape.</span></div>
-      <div id="doorN" title="Bedroom" class="exit room0 door-00"></div>
-      <div id="doorS" title="Daughter's Bedroom" class="exit room2 door-01"></div>
+      <div id="doorN" title="Your Bedroom" class="exit room0 door-00"></div>
+      <div id="doorS" title="Evelyn's Bedroom" class="exit room2 door-01"></div>
       <div id="doorE" title="Living Room" class="exit room3 door-02"></div>
     </li>
-    <li title="Daughter's Bedroom" class="inside">
+    <li title="Evelyn's Bedroom" class="inside">
       <div title="Bookshelf" class="stuck bookshelf bookshelf1 message"><span class="message">"There are quite a lot of books for an 8-year-old."</span></div>
       <div title="Bookshelf" class="stuck bookshelf bookshelf2 message"><span class="message">"There are quite a lot of books for an 8-year-old."</span></div>
       <div title="Bed" class="bed stuck message"><span class="message">You'll be in trouble if she finds you sleeping in her bed again.</span></div>
@@ -120,7 +120,7 @@
     <li title="Living Room" class="inside">
       <div title="Table" class="stuck message table"><span class="message">Good old table.</span></div>
       <div id="doorW" title="Hallway" class="exit room1 door-02"></div>
-      <div id="doorS" title="Office" class="exit locked room4 door-03"></div>
+      <div id="doorS" title="Office" class="exit locked room4 door-03"><span class="locked">This door is locked. You'll need to use the Office key to open it.</span></div>
       <div id="doorE" title="Kitchen" class="exit room5 door-04"></div>
       <div id="doorN" title="Your Porch" class="exit room6 door-05"></div>
     </li>
@@ -209,6 +209,7 @@
       <div title="Tree" class="stuck tree tree13"></div>
       <div title="Tree" class="stuck tree tree14"></div>
       <div title="Sign" class="stuck sign message"><span class="message">Warning! Do not enter the Deadly Forest! It is very dangerous!</span></div>
+      <div title="Old Man™ Coins" class="mobile coins"></div>
     </li>
     <li title="Allen's Driveway" class="outside">
       <div id="doorW" title="Your Driveway" class="exit room7 door-09"></div>
@@ -235,12 +236,13 @@
     </li>
     <li title="Allen's Porch" class="outside">
       <div id="doorN" title="Allen's Driveway" class="exit room10 door-10"></div>
+      <div id="doorS" title="Allen's House: Living Room" class="exit room19 locked door-18"><span class="locked">"Stupid Allen always locking his door like he's got something to prove. I'll show him, I know he keeps a spare key around here somewhere ..."</span></div>
       <div title="House" class="stuck house"></div>
       <div title="Fence" class="stuck fence fence1"></div>
       <div title="Fence" class="stuck fence fence2"></div>
       <div title="Sidewalk" class="passThru sidewalk stuck"></div>
       <div title="Driveway" class="passThru driveway stuck"></div>
-      <div title="Garage" class="message garage locked exit"></div>
+      <div title="Garage" class="garage locked exit"><span class="locked">"No good, Allen's garage is locked too."</span></div>
     </li>
     <li title="Road" class="outside">
       <div id="doorW" title="Allen's Driveway" class="exit room10 door-11"></div>
@@ -306,7 +308,7 @@
       <div title="Fence" class="stuck fence fence2"></div>
       <div title="Sidewalk" class="passThru sidewalk stuck"></div>
       <div title="Driveway" class="passThru driveway stuck"></div>
-      <div title="Garage" class="message garage locked exit"></div>
+      <div title="Garage" class="garage locked exit"><span class="locked">This door is locked.</span></div>
     </li>
     <li title="Town" class="outside">
       <div id="doorW" title="Road" class="exit room15 door-17"></div>
@@ -315,6 +317,34 @@
       <div title="Road" class="passThru hroad stuck">
         <div class="line passThru"></div>
       </div>
+    </li>
+    <li title="Allen's House: Living Room" class="inside">
+      <div title="Table" class="stuck message table"><span class="message">"What's this dumb table doing in the middle of the room?"</span></div>
+      <div id="doorE" title="Allen's House: Hallway" class="exit room22 door-21"></div>
+      <div id="doorS" title="Allen's House: Office" class="exit room21 door-20"></div>
+      <div id="doorW" title="Allen's House: Kitchen" class="exit room20 door-19"></div>
+      <div id="doorN" title="Allen's Porch" class="exit room11 door-18"></div>
+    </li>
+    <li title="Allen's House: Kitchen" class="inside">
+      <div id="doorE" title="Allen's House: Living Room" class="exit room19 door-19"></div>
+      <div title="Fridge" class="stuck message fridge"><span class="message">"Stupid Allen's stupid kid's stupid A+ book report."</span></div>
+      <div title="Counter" class="stuck counter counter1"></div>
+      <div title="Counter" class="stuck counter counter2"></div>
+      <div title="Island" class="stuck island"></div>
+    </li>
+    <li title="Allen's House: Office" class="inside">
+      <div id="doorN" title="Allen's House: Living Room" class="exit room19 door-20"></div>
+    </li>
+    <li title="Allen's House: Hallway" class="inside">
+      <div id="doorN" title="Allen's House: Allen's Bedroom" class="exit room23 door-22"></div>
+      <div id="doorS" title="Allen's House: Rook's Bedroom" class="exit room24 door-23"></div>
+      <div id="doorW" title="Allen's House: Living Room" class="exit room19 door-21"></div>
+    </li>
+    <li title="Allen's House: Allen's Bedroom" class="inside">
+      <div id="doorS" title="Allen's House: Hallway" class="exit room22 door-22"></div>
+    </li>
+    <li title="Allen's House: Rook's Bedroom" class="inside">
+      <div id="doorN" title="Allen's House: Hallway" class="exit room22 door-23"></div>
     </li>
   </ul>
   <div id="music">
