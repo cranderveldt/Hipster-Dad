@@ -1254,7 +1254,7 @@ jQuery(document).ready(function($){
   };
   var titleScreen = function() {
     initializeAll();
-    var defaultKeyAssignments = {
+    keyAssignments = {
       'Up' : 38,
       'Down' : 40,
       'Left' : 37,
@@ -1262,7 +1262,6 @@ jQuery(document).ready(function($){
       'Use Item' : 81,
       'Action' : 87
     };
-    keyAssignments = defaultKeyAssignments;
     $('#title-start').click(function() {
       startGame();
     });
@@ -1283,11 +1282,16 @@ jQuery(document).ready(function($){
       $('#t-about').addClass('hidden');
     });
     $('#title-default').click(function() {
-      keyAssignments = defaultKeyAssignments;
-      var defaultKeyString = '<tr><td class="key-up">Up:<span>38</span></td><td class="key-press">Up Arrow</td></tr><tr><td class="key-down">Down:<span>40</span></td><td class="key-press">Down Arrow</td></tr><tr><td class="key-left">Left:<span>37</span></td><td class="key-press">Left Arrow</td></tr><tr><td class="key-right">Right:<span>39</span></td><td class="key-press">Right Arrow</td></tr><tr><td class="key-use">Use Item:<span>81</span></td><td class="key-press">Q</td></tr><tr><td class="key-action">Action:<span>87</span></td><td class="key-press">W</td></tr><tr><td>Select Item:</td><td>Number row 1-9</td></tr>';
-      $('#title-options').find('table').html(defaultKeyString);
+      keyAssignments = {
+        'Up' : 38,
+        'Down' : 40,
+        'Left' : 37,
+        'Right' : 39,
+        'Use Item' : 81,
+        'Action' : 87
+      };
+      var defaultKeyString = '<tr><td>Up:<span>38</span></td><td class="key-press">Up Arrow</td></tr><tr><td>Down:<span>40</span></td><td class="key-press">Down Arrow</td></tr><tr><td>Left:<span>37</span></td><td class="key-press">Left Arrow</td></tr><tr><td>Right:<span>39</span></td><td class="key-press">Right Arrow</td></tr><tr><td>Use Item:<span>81</span></td><td class="key-press">Q</td></tr><tr><td>Action:<span>87</span></td><td class="key-press">W</td></tr><tr><td>Select Item:</td><td>Number row 1-9</td></tr>';
       $('#title-content').find('table').html(defaultKeyString);
-      //need to also set the values in the spans inside the custom controls table
     });
     $('#t-options').find('table td.key-press').live('dblclick', edit_control);
   }
@@ -1300,6 +1304,7 @@ jQuery(document).ready(function($){
     $('#title').css('display','none');
     currentRoom = setRoom(currentRoom, startingRoom, 0, null);
     selectInvSlot(0);
+    console.log(keyAssignments['Down']);
     keyListener(keyAssignments);
     playMusic();
   }
