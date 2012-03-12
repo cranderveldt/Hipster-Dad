@@ -622,6 +622,9 @@ jQuery(document).ready(function($){
         player.achievements[0] = achievementUnlocked('<strong>Bad Dad:</strong> Smash your daugher\'s piggy bank.');
       }
     },
+    'room5' : function(results) {
+      $('#elements div.fridge span.message').html('There\'s a note taped to the fridge. It says "' + player.bankPIN + '" on it, written in your wife\'s handwriting.');
+    },
     'room6' : function(results) {
       if (!player.achievements[1] && player.outfit === 0) {
         player.achievements[1] = achievementUnlocked('<strong>Brave Nude World:</strong> Go outside without getting dressed.');
@@ -631,7 +634,7 @@ jQuery(document).ready(function($){
   //achievements are ROOM SPECIFIC, which may not always be the best method, be aware
   //also now this if statement has to specify which rooms have achievements, which is really bad
   var checkforAchievements = function(results, roomNumber) {
-    if (roomNumber === 2 || roomNumber === 6) {
+    if (roomNumber === 2 || roomNumber === 6 || roomNumber === 5) {
       roomAchievements['room' + roomNumber](results);
     }
   }
@@ -676,7 +679,7 @@ jQuery(document).ready(function($){
       //this method messes up if you logout and try to log back in, something to do with the .live making multiple instances of each ID
       $('#computer_pin_submit').click(function() {
         var pinID = parseInt($('#computer_pin_ID').val());
-        if (!isNaN(pinID) && pinID === 3830) {
+        if (!isNaN(pinID) && pinID === parseInt(player.bankPIN)) {
           changeOverlay('<h3 class="bank">CoolBank Online</h3><p>You are now logged in to your account. What would you like to do?</p><input id="computer_withdraw_20" type="button" value="Withdraw $20"><input id="computer_withdraw_all" type="button" value="Withdraw All My Money"><input id="computer_logout" type="button" value="Log Out">');
         } else {
           changeOverlayP('We\'re sorry, that PIN is incorrect, please try again.');
@@ -1160,6 +1163,7 @@ jQuery(document).ready(function($){
       'currentHealth' : 10,
       'money' : 0,
       'bankAccount' : 230,
+      'bankPIN' : Math.floor(Math.random()*9) + '' + Math.floor(Math.random()*9) + '' + Math.floor(Math.random()*9) + '' + Math.floor(Math.random()*9),
       'outfit' : 0,
       'playerSprite' : 0,
       'paused' : false,
@@ -1168,6 +1172,7 @@ jQuery(document).ready(function($){
         'piggySmashed' : false
       }
     };
+    console.log(player.bankPIN);
   }
   var edit_control = function(event) {
     //set up the symbols obj lit
@@ -1302,7 +1307,6 @@ jQuery(document).ready(function($){
     $('#title').css('display','none');
     currentRoom = setRoom(currentRoom, startingRoom, 0, null);
     selectInvSlot(0);
-    console.log(keyAssignments['Down']);
     keyListener(keyAssignments);
     playMusic();
   }

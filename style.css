@@ -393,10 +393,20 @@ h1#name {
   height: 18px;
   background: transparent url(images/elements/coins.png) 0 0 no-repeat;
 }
-.plant {
+.plant1 {
+  width: 23px;
+  height: 31px;
+  background: transparent url(images/elements/potted-plant1.png) 0 0 no-repeat;
+}
+.plant2 {
+  width: 27px;
+  height: 45px;
+  background: transparent url(images/elements/potted-plant2.png) 0 0 no-repeat;
+}
+.plant3 {
   width: 24px;
-  height: 22px;
-  background: transparent url(images/elements/outdoor-plant.png) 0 0 no-repeat;
+  height: 49px;
+  background: transparent url(images/elements/potted-plant3.png) 0 0 no-repeat;
 }
 #elements .chest div {
   visibility: hidden;
@@ -561,18 +571,18 @@ h1#name {
   left: 110px;
 }
 .room4 .computer {
-  width: 40px;
+  width: 32px;
   height: 40px;
-  background: #777;
-  top: 104px;
-  left: 55px;
+  background: transparent url(images/elements/computer.png) 0 0 no-repeat;
+  top: 93px;
+  left: 35px;
 }
 .room4 .desk {
-  top: 110px;
+  top: 118px;
   left: 20px;
   width: 130px;
-  height: 40px;
-  background: #714C22;
+  height: 32px;
+  background: transparent url(images/elements/desk.png) 0 0 no-repeat;
 }
 #overlay h3.bank {
   font-family: MaximumSecurityRegular, Arial, sans-serif;
@@ -615,7 +625,7 @@ h1#name {
   height: 60px;
   top: 0px;
   left: 210px;
-  background: #333;
+  background: transparent url(images/elements/fridge1.png) 0 0 no-repeat;
 }
 /*Porch, Room 6*/
 .room6 #doorS {
@@ -1001,9 +1011,29 @@ h1#name {
   left: 440px;
   background: transparent url(images/textures/garage.png) 0 0 repeat;
 }
-.room11 .plant {
-  top: 450px;
-  left: 300px;
+.room11 .plant1.left {
+  top: 430px;
+  left: 330px;
+}
+.room11 .plant1.right {
+  top: 430px;
+  left: 405px;
+}
+.room11 .plant2.garden1 {
+  top: 416px;
+  left: 285px;
+}
+.room11 .plant3.garden1 {
+  top: 412px;
+  left: 245px;
+}
+.room11 .plant2.garden2 {
+  top: 416px;
+  left: 205px;
+}
+.room11 .plant3.garden2 {
+  top: 412px;
+  left: 165px;
 }
 .room11 #doorS {
   width: 40px;
@@ -1238,8 +1268,8 @@ h1#name {
   left: 20px;
 }
 .room4 .gun {
-  top: 130px;
-  left: 117px;
+  top: 121px;
+  left: 97px;
 }
 /* About, footer etc */
 #loading {
