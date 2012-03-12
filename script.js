@@ -623,7 +623,9 @@ jQuery(document).ready(function($){
       }
     },
     'room5' : function(results) {
-      $('#elements div.fridge span.message').html('There\'s a note taped to the fridge. It says "' + player.bankPIN + '" on it, written in your wife\'s handwriting.');
+      if ($('#elements div.fridge span.message').html() === '') {
+        $('#elements div.fridge span.message').html('There\'s a note taped to the fridge. It says "' + player.bankPIN + '" on it, written in your wife\'s handwriting.');
+      }
     },
     'room6' : function(results) {
       if (!player.achievements[1] && player.outfit === 0) {
