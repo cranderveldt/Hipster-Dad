@@ -13,7 +13,7 @@ custom control changing is a little wonky, and I would like to put that in a new
 
 jQuery(document).ready(function($){
   var keyAssignments = {}
-  var startingRoom = 0;
+  var startingRoom = 4;
   var currentRoom = {};
   var roomList = {
     'HTML' : [],
@@ -677,7 +677,7 @@ jQuery(document).ready(function($){
       $('#computer_pin_submit').click(function() {
         var pinID = parseInt($('#computer_pin_ID').val());
         if (!isNaN(pinID) && pinID === 3830) {
-          changeOverlay('<p>You are now logged in to your account. What would you like to do?</p><input id="computer_withdraw_20" type="button" value="Withdraw $20"><input id="computer_withdraw_all" type="button" value="Withdraw All My Money"><input id="computer_logout" type="button" value="Log Out">');
+          changeOverlay('<h3 class="bank">CoolBank Online</h3><p>You are now logged in to your account. What would you like to do?</p><input id="computer_withdraw_20" type="button" value="Withdraw $20"><input id="computer_withdraw_all" type="button" value="Withdraw All My Money"><input id="computer_logout" type="button" value="Log Out">');
         } else {
           changeOverlayP('We\'re sorry, that PIN is incorrect, please try again.');
         }

@@ -574,6 +574,10 @@ h1#name {
   height: 40px;
   background: #714C22;
 }
+#overlay h3.bank {
+  font-family: MaximumSecurityRegular, Arial, sans-serif;
+  font-size: 40px;
+}
 
 /*Kitchen, Room 5*/
 #room.room5 {
