@@ -13,13 +13,14 @@ custom control changing is a little wonky, and I would like to put that in a new
 
 jQuery(document).ready(function($){
   var keyAssignments = {}
-  var startingRoom = 4;
+  var startingRoom = 0;
   var currentRoom = {};
   var roomList = {
     'HTML' : [],
     'classes' : []
   };
   var player = {};
+  var time = 480;
   var elements = null;
   var move = function(horz, vert) {
     var currentLeft = player.left;
@@ -610,6 +611,38 @@ jQuery(document).ready(function($){
       addData(finalMessage);
     }
   }
+  var findClocksInRoom = function(elm) {
+    var clock = elm.find('span.time');
+    $(clock).html(displayTime());
+  }
+  var advanceTime = function(add) {
+    //1440 is the number of minutes in 24 hours
+    time += add;
+    if (time >= 1440) {
+      time -= 1440;
+    }
+    console.log('The time is now ' + displayTime());
+  }
+  var displayTime = function() {
+    var hourNum = Math.floor(time/60);
+    var minuteNum = time%60;
+    var AMPM = 'a.m.';
+    var hourStr = hourNum + '';
+    var minuteStr = minuteNum + '';
+    if (time >= 720) {
+      AMPM = 'p.m.';
+    }
+    if (hourNum === 0) {
+      hourStr = '12';
+    }
+    if (hourNum > 12) {
+      hourStr = hourNum-12 + '';
+    }
+    if (minuteNum < 10) {
+      minuteStr = '0' + minuteNum;
+    }
+    return hourStr + ':' + minuteStr + ' ' + AMPM;
+  }
   var achievementUnlocked = function(str) {
     $('#achievement').html('<span>Achievement Unlocked</span>' + str);
     addData('Achievement Unlocked<br/>' + str);
@@ -824,6 +857,7 @@ jQuery(document).ready(function($){
       elms[i].money = false;
       elms[i].person = false;
       elms[i].dead = false;
+      elms[i].time = false;
       if ($(elms[i]).attr('class').indexOf('mobile') !== -1) {
         elms[i].mobile = true;
         elms[i].playerSprite = parseInt($(elms[i]).find('span.sprite').html());
@@ -833,6 +867,10 @@ jQuery(document).ready(function($){
       }
       if ($(elms[i]).attr('class').indexOf('stuck') !== -1) {
         elms[i].stuck = true;
+      }
+      if ($(elms[i]).attr('class').indexOf('time') !== -1) {
+        elms[i].time = true;
+        findClocksInRoom($(elms[i]));
       }
       if ($(elms[i]).attr('class').indexOf('exit') !== -1) {
         elms[i].exit = true;
@@ -902,6 +940,7 @@ jQuery(document).ready(function($){
     } else {
       getLocationFromElement(r.elm.find('#start'));
     }
+    advanceTime(7);
     return r;
   }
   var saveRoom = function(r, pos) {

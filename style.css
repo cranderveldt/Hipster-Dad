@@ -281,6 +281,9 @@ h1#name {
   margin-bottom: 15px;
   color: #EEE;
 }
+#data span.time {
+  display: inline;
+}
 #inventory {
   width: 640px;
   height: 67px;
@@ -407,6 +410,11 @@ h1#name {
   width: 24px;
   height: 49px;
   background: transparent url(images/elements/potted-plant3.png) 0 0 no-repeat;
+}
+.grandfather-clock {
+  width: 25px;
+  height: 62px;
+  background: transparent url(images/elements/grandfather-clock.png) 0 0 no-repeat;
 }
 #elements .chest div {
   visibility: hidden;
@@ -546,6 +554,10 @@ h1#name {
   top: 95px;
   left: 95px;
 }
+.room3 .grandfather-clock {
+  left: 40px;
+  top: 0px;
+}
 .room3 #doorW {
   top: 190px;
   left: -25px;
@@ -571,7 +583,7 @@ h1#name {
   left: 110px;
 }
 .room4 .computer {
-  width: 32px;
+  width: 40px;
   height: 40px;
   background: transparent url(images/elements/computer.png) 0 0 no-repeat;
   top: 93px;
