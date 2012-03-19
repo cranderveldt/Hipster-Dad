@@ -416,6 +416,11 @@ h1#name {
   height: 62px;
   background: transparent url(images/elements/grandfather-clock.png) 0 0 no-repeat;
 }
+.tv {
+  width: 40px;
+  height: 38px;
+  background: transparent url(images/elements/tv.png) 0 0 no-repeat;
+}
 #elements .chest div {
   visibility: hidden;
 }
@@ -553,6 +558,10 @@ h1#name {
 .room3 .table {
   top: 95px;
   left: 95px;
+}
+.room3 .tv {
+  top: 0px;
+  left: 180px;
 }
 .room3 .grandfather-clock {
   left: 40px;
@@ -1146,6 +1155,13 @@ h1#name {
 .room16 .fence2 {
   width: 590px;
   height: 10px;
+}
+.room16 .frog {
+  background: transparent url(images/elements/frog.png) 0 0 no-repeat;
+  width: 21px;
+  height: 21px;
+  top: 110px;
+  left: 470px;
 }
 /*Jerry's Porch, Room 17*/
 .room17 .fence {
