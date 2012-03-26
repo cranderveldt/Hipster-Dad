@@ -258,10 +258,10 @@ h1#name {
   height: 7px;
 }
 #player {
-  width: 23px;
-  height: 41px;
+  width: 31px;
+  height: 87px;
   display: block;
-  background: transparent url(images/player/player.png) -23px 0 no-repeat;
+  background: transparent url(images/player/player.png) -31px 0 no-repeat;
   position: absolute;
   z-index: 10;
 }
