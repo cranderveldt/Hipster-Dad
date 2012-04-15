@@ -516,13 +516,13 @@ h1#name {
 }
 /*Daughter's Room, Room 2*/
 #room.room2 {
-  width: 168px;
-  height: 190px;
+  width: 200px;
+  height: 250px;
   top: 80px;
 }
 .room2 #doorN {
   top: -7px;
-  left: 64px;
+  left: 82px;
 }
 .room2 .key {
   top: 80px;
@@ -543,28 +543,28 @@ h1#name {
 .room2 .bookshelf2 {
     background: transparent url(images/elements/bookshelf2.png) 0 0 no-repeat;
     top: 0px;
-    left: 104px;
+    left: 136px;
 }
 .room2 .bed {
-  top: 120px;
-  left: 115px;
+  top: 170px;
+  left: 140px;
 }
 /*Living Room, Room 3*/
 #room.room3 {
-  width: 250px;
-  height: 250px;
+  width: 300px;
+  height: 300px;
   top: 90px;
 }
 .room3 .table {
-  top: 95px;
-  left: 95px;
+  top: 120px;
+  left: 120px;
 }
 .room3 .tv {
   top: 0px;
-  left: 180px;
+  left: 220px;
 }
 .room3 .grandfather-clock {
-  left: 40px;
+  left: 20px;
   top: 0px;
 }
 .room3 #doorW {
@@ -575,16 +575,16 @@ h1#name {
   background: transparent url(images/elements/staircase-up.png) 0 0 no-repeat;
 }
 .room3 #doorS {
-  top: 250px;
-  left: 110px;
+  top: 300px;
+  left: 135px;
 }
 .room3 #doorE {
   top: 110px;
-  left: 250px;
+  left: 300px;
 }
 .room3 #doorN {
   top: -7px;
-  left: 110px;
+  left: 135px;
 }
 /*Office, Room 4*/
 .room4 #doorN {

@@ -13,7 +13,7 @@ custom control changing is a little wonky, and I would like to put that in a new
 
 jQuery(document).ready(function($){
   var keyAssignments = {}
-  var startingRoom = 0;
+  var startingRoom = 6;
   var currentRoom = {};
   var roomList = {
     'HTML' : [],
